@@ -208,7 +208,7 @@ async def process_queue(client):
     try:
         # Process files one by one from the queue
         while mrsydt_g:
-            await client.send_message(1733124290, "2")
+            await message.reply_text("22")
             file_details = mrsydt_g.pop(0)  # Get the first file in the queue
             await autosyd(client, file_details)  # Process it
     finally:
@@ -219,6 +219,7 @@ async def autosyd(client, file_details):
     sydd = file_details['file_name']
     media = file_details['media']
     message = file_details['message']
+    await message.reply_text("23")
     #user_id = message.from_user.id
     #firstname = message.from_user.first_name
    # format_template = await madflixbotz.get_format_template(user_id)
@@ -258,20 +259,6 @@ async def autosyd(client, file_details):
     if episode_number and season_number:
         formatted_episode = f"S{int(season_no):02d}E{int(episode_number):02d}"
         Syd = formatted_episode + sydd
-            
-        # Add extracted qualities to the format template
-        quality_placeholders = ["quality", "Quality", "QUALITY", "{quality}"]
-        for quality_placeholder in quality_placeholders:
-            if quality_placeholder in Syd:
-                extracted_qualities = extract_quality(file_name)
-                if extracted_qualities == "Unknown":
-                    await message.reply_text("I Was Not Able To Extract The Quality Properly. Renaming As 'Unknown'...")
-                    # Mark the file as ignored
-                    del renaming_operations[file_id]
-                    return  # Exit the handler if quality extraction fails
-                
-                Syd = Syd.replace(quality_placeholder, "".join(extracted_qualities))           
-            
         _, file_extension = os.path.splitext(file_name)
         new_file_name = f"[KDL] {Syd} @Klands{file_extension}"
         file_path = f"downloads/{new_file_name}"
