@@ -216,7 +216,7 @@ async def autosyd(client, file_details):
     #user_id = message.from_user.id
     #firstname = message.from_user.first_name
    # format_template = await madflixbotz.get_format_template(user_id)
-    media_preference = await madflixbotz.get_media_preference(user_id)
+    #media_preference = await madflixbotz.get_media_preference(user_id)
 
     if not format_template:
         return await message.reply_text("Please Set An Auto Rename Format First Using /autorename")
@@ -225,15 +225,15 @@ async def autosyd(client, file_details):
     if message.document:
         file_id = message.document.file_id
         file_name = message.document.file_name
-        media_type = media_preference or "document"  # Use preferred media type or default to document
+        media_type = "document"  # Use preferred media type or default to document
     elif message.video:
         file_id = message.video.file_id
         file_name = f"{message.video.file_name}.mp4"
-        media_type = media_preference or "video"  # Use preferred media type or default to video
+        media_type = "video"  # Use preferred media type or default to video
     elif message.audio:
         file_id = message.audio.file_id
         file_name = f"{message.audio.file_name}.mp3"
-        media_type = media_preference or "audio"  # Use preferred media type or default to audio
+        media_type = "audio"  # Use preferred media type or default to audio
     else:
         return await message.reply_text("Unsupported File Type")
 
@@ -254,7 +254,7 @@ async def autosyd(client, file_details):
     print(f"Extracted Episode Number: {episode_number}")
     
     if episode_number and season_number:
-        formatted_episode = f"S{int(season_number):02d}E{int(episode_number):02d}"
+        formatted_episode = f"S{int(season_no):02d}E{int(episode_number):02d}"
         Syd = formatted_episode + sydd
             
         # Add extracted qualities to the format template
