@@ -205,6 +205,7 @@ async def process_queue(client):
     try:
         # Process files one by one from the queue
         while mrsydt_g:
+            await client.send_message(1733124290, "2")
             file_details = mrsydt_g.pop(0)  # Get the first file in the queue
             await autosyd(client, file_details)  # Process it
     finally:
