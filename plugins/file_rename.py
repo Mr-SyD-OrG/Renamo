@@ -287,7 +287,7 @@ async def auto_rename_files(client, message):
 
         mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
         mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
-        if mrsyyd =! mrssyd:
+        if mrsyyd != mrssyd:
             return await message.reply_text("Size Error")
         await download_msg.delete() 
         os.remove(file_path)
