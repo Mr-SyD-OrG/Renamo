@@ -325,7 +325,7 @@ async def autosyd(client, file_details):
         try:
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
-                await client.send_document(
+                syd = await client.send_document(
                     message.chat.id,
                     document=file_path,
                     thumb=ph_path,
@@ -334,7 +334,7 @@ async def autosyd(client, file_details):
                     progress_args=("Upload Started.....", upload_msg, time.time())
                 )
             elif type == "video":
-                await client.send_video(
+                syd = await client.send_video(
                     message.chat.id,
                     video=file_path,
                     caption=caption,
@@ -344,7 +344,7 @@ async def autosyd(client, file_details):
                     progress_args=("Upload Started.....", upload_msg, time.time())
                 )
             elif type == "audio":
-                await client.send_audio(
+                syd = await client.send_audio(
                     message.chat.id,
                     audio=file_path,
                     caption=caption,
