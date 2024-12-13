@@ -257,7 +257,6 @@ async def autosyd(client, file_details):
     elif season_pattern2.match(sydd):
         sydd = sydd.replace(season_pattern2.pattern, "")
 
-    await message.reply_text("2i")
     print(f"Original File Name: {file_name}")
 
 
@@ -282,12 +281,15 @@ async def autosyd(client, file_details):
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
             Syd = Syd.replace('[Dual]', '[ Eng + Jap ]')
-        filename = ' '.join([
+        filenme = ' '.join([
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
         ])
-        _, file_extension = os.path.splitext(filename)
-        new_file_name = f"[KDL] {Syd} @Klands{file_extension}"
+        pattern = r'(?P<filename>.*?)(\.\w+)?$'
+        match = re.search(pattern, filenme)
+        filename = match.group('filename')
+        extension = match.group(2) or ''
+        new_file_name = f"[KDL] {filename} @Klands{extension}"
         file_path = f"downloads/{new_file_name}"
         file = message
 
