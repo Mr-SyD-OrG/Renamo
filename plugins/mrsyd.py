@@ -285,6 +285,8 @@ async def autosyd(client, file_details):
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
         ])
+        if not (filenme.lower().endswith(".mkv") or new_name.lower().endswith(".mp4")):
+            filenme += ".mkv"
         pattern = r'(?P<filename>.*?)(\.\w+)?$'
         match = re.search(pattern, filenme)
         filename = match.group('filename')
@@ -325,7 +327,7 @@ async def autosyd(client, file_details):
         try:
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
-                syd = await client.send_document(
+                sydfil = await client.send_document(
                     message.chat.id,
                     document=file_path,
                     thumb=ph_path,
@@ -334,7 +336,7 @@ async def autosyd(client, file_details):
                     progress_args=("Upload Started.....", upload_msg, time.time())
                 )
             elif type == "video":
-                syd = await client.send_video(
+                sydfil = await client.send_video(
                     message.chat.id,
                     video=file_path,
                     caption=caption,
@@ -344,7 +346,7 @@ async def autosyd(client, file_details):
                     progress_args=("Upload Started.....", upload_msg, time.time())
                 )
             elif type == "audio":
-                syd = await client.send_audio(
+                sydfil = await client.send_audio(
                     message.chat.id,
                     audio=file_path,
                     caption=caption,
@@ -361,6 +363,8 @@ async def autosyd(client, file_details):
             return await upload_msg.edit(f"Error: {e}")
 
         await download_msg.delete() 
+        mrsyyy = sydfil.file_size
+        print(f'{mrsyyy}')
         os.remove(file_path)
         if ph_path:
             os.remove(ph_path)
