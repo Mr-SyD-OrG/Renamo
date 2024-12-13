@@ -214,7 +214,7 @@ async def autosyd(client, file_details):
     media = file_details['media']
     message = file_details['message']
     #user_id = message.from_user.id
-    firstname = message.from_user.first_name
+    #firstname = message.from_user.first_name
    # format_template = await madflixbotz.get_format_template(user_id)
     media_preference = await madflixbotz.get_media_preference(user_id)
 
@@ -240,8 +240,7 @@ async def autosyd(client, file_details):
     print(f"Original File Name: {file_name}")
     
     
-
-# Check whether the file is already being renamed or has been renamed recently
+# Check whether the file is already being renamed
     if file_id in renaming_operations:
         elapsed_time = (datetime.now() - renaming_operations[file_id]).seconds
         if elapsed_time < 10:
