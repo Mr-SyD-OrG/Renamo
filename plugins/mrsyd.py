@@ -242,21 +242,16 @@ async def autosyd(client, file_details):
 
     await message.reply_text("2i")
     print(f"Original File Name: {file_name}")
-    
-    
-# Check whether the file is already being renamed
+
+
     if file_id in renaming_operations:
         elapsed_time = (datetime.now() - renaming_operations[file_id]).seconds
         if elapsed_time < 10:
             print("File is being ignored as it is currently being renamed or was renamed recently.")
             return  # Exit the handler if the file is being ignored
-
-    await message.reply_text("20")
     renaming_operations[file_id] = datetime.now()
-    await message.reply_text("23=")
     episode_number = extract_episode_number(file_name)
     season_no = extract_season_number(file_name)
-    await message.reply_text("2kk")
     print(f"Extracted Episode Number: {episode_number}")
     
     if episode_number and season_no:
@@ -265,6 +260,8 @@ async def autosyd(client, file_details):
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
             '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
                  ]
+        if '[Dual]' in new_name:
+            new_name = new_name.replace('[Dual]', '[ Eng + Jap ]')
         filename = ' '.join([
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
