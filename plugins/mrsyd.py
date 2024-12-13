@@ -160,7 +160,7 @@ print(f"Extracted Episode Number: {episode_number}")
 
 # Inside the handler for file uploads
 @Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
-async def refunc(client, message):
+async def refu(client, message):
     global processing
     syd_id = {MRSYD}
     await client.send_message(1733124290, "1")
