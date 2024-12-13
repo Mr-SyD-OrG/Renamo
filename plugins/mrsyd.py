@@ -266,7 +266,7 @@ async def autosyd(client, file_details):
             '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
                  ]
         filename = ' '.join([
-            x for x in syd.split()
+            x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
         ])
         _, file_extension = os.path.splitext(filename)
