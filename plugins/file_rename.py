@@ -247,7 +247,7 @@ async def auto_rename_files(client, message):
         
 
         try:
-            mrsyd = await db.get_dump(chat_id)
+            mrsyd = await db.get_dump(user_id)
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
                 await client.send_document(
