@@ -7,7 +7,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 async def progress_for_pyrogram(current, total, ud_type, message, start):
     now = time.time()
     diff = now - start
-    if round(diff % 10.00) == 0 or current == total:        
+    if round(diff % 25.00) == 0 or current == total:        
         percentage = current * 100 / total
         speed = current / diff
         elapsed_time = round(diff) * 1000
@@ -18,8 +18,8 @@ async def progress_for_pyrogram(current, total, ud_type, message, start):
         estimated_total_time = TimeFormatter(milliseconds=estimated_total_time)
 
         progress = "{0}{1}".format(
-            ''.join(["⬢" for i in range(math.floor(percentage / 10))]),
-            ''.join(["⬡" for i in range(20 - math.floor(percentage / 10))])
+            ''.join(["⬢" for i in range(math.floor(percentage / 25))]),
+            ''.join(["⬡" for i in range(20 - math.floor(percentage / 25))])
         )            
         tmp = progress + Txt.PROGRESS_BAR.format( 
             round(percentage, 2),
