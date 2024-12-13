@@ -342,10 +342,3 @@ async def autosyd(client, file_details):
 # Remove the entry from renaming_operations after successful renaming
         del renaming_operations[file_id]
 
-
-
-
-# Jishu Developer 
-# Don't Remove Credit 🥺
-# Telegram Channel @Madflix_Bots
-# Developer @JishuDeveloper
