@@ -14,6 +14,9 @@ class Database:
             _id=int(id),                                   
             file_id=None,
             caption=None,
+            dump=int(id),
+            prefix=None,
+            suffix=None,
             format_template=None  # Add this line for the format template
         )
 
