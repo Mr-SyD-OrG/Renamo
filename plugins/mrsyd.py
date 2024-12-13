@@ -366,6 +366,7 @@ async def autosyd(client, file_details):
         mrsyyy = sydfil.file_size
         print(f'{mrsyyy}')
         os.remove(file_path)
+        await message.delete()
         if ph_path:
             os.remove(ph_path)
 
