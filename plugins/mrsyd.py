@@ -280,7 +280,7 @@ async def autosyd(client, file_details):
         remove_list = ['-', 'Episode', 'item3']
         for item in remove_list:
             Syd = Syd.replace(item, "")
-        if '[Dual]' in new_name:
+        if '[Dual]' in Syd:
             Syd = Syd.replace('[Dual]', '[ Eng + Jap ]')
         filename = ' '.join([
             x for x in Syd.split()
