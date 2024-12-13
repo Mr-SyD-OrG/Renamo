@@ -246,10 +246,11 @@ async def auto_rename_files(client, message):
         
 
         try:
+            mrsyd = await db.get_dump(chat_id)
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
                 await client.send_document(
-                    message.chat.id,
+                    mrsyd,
                     document=file_path,
                     thumb=ph_path,
                     caption=caption,
@@ -258,7 +259,7 @@ async def auto_rename_files(client, message):
                 )
             elif type == "video":
                 await client.send_video(
-                    message.chat.id,
+                    mrsyd,
                     video=file_path,
                     caption=caption,
                     thumb=ph_path,
@@ -268,7 +269,7 @@ async def auto_rename_files(client, message):
                 )
             elif type == "audio":
                 await client.send_audio(
-                    message.chat.id,
+                    mrsyd,
                     audio=file_path,
                     caption=caption,
                     thumb=ph_path,
