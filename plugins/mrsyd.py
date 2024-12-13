@@ -276,9 +276,9 @@ async def autosyd(client, file_details):
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
             '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
                  ]
-        remove_list = ['-', 'Episode', 'item3']
-        for item in remove_list:
-            Syd = Syd.replace(item, "")
+        #remove_list = ['-', 'Episode', 'item3']
+        #for item in remove_list:
+            #Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
             Syd = Syd.replace('[Dual]', '[ Eng + Jap ]')
         filenme = ' '.join([
