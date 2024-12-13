@@ -67,6 +67,28 @@ class Database:
         user = await self.col.find_one({'_id': int(id)})
         return user.get('media_type', None)
 
+    async def set_suffix(self, id, suffix):
+        await self.col.update_one({'_id': int(id)}, {'$set': {'suffix': suffix}})
+
+    async def get_suffix(self, id):
+        user = await self.col.find_one({'_id': int(id)})
+        return user.get('suffix', None)
+
+    async def set_dump(self, id, dump: int):
+        await self.col.update_one({'_id': int(id)}, {'$set': {'dump': int(dump)}})
+
+    async def get_dump(self, id):
+        user = await self.col.find_one({'_id': int(id)})
+        return user.get('dump', int(id))
+
+    async def set_prefix(self, id, prefix):
+        await self.col.update_one({'_id': int(id)}, {'$set': {'prefix': prefix}})
+
+    async def get_prefix(self, id):
+        user = await self.col.find_one({'_id': int(id)})
+        return user.get('prefix', None)
+
+
 
 
 madflixbotz = Database(Config.DB_URL, Config.DB_NAME)
