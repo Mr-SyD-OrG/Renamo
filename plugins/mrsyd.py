@@ -223,10 +223,6 @@ async def autosyd(client, file_details):
     #firstname = message.from_user.first_name
    # format_template = await madflixbotz.get_format_template(user_id)
     #media_preference = await madflixbotz.get_media_preference(user_id)
-
-    if not format_template:
-        return await message.reply_text("Please Set An Auto Rename Format First Using /autorename")
-
     # Extract information from the incoming file name
     if message.document:
         file_id = message.document.file_id
@@ -266,7 +262,7 @@ async def autosyd(client, file_details):
         # Add extracted qualities to the format template
         quality_placeholders = ["quality", "Quality", "QUALITY", "{quality}"]
         for quality_placeholder in quality_placeholders:
-            if quality_placeholder in format_template:
+            if quality_placeholder in Syd:
                 extracted_qualities = extract_quality(file_name)
                 if extracted_qualities == "Unknown":
                     await message.reply_text("I Was Not Able To Extract The Quality Properly. Renaming As 'Unknown'...")
@@ -274,7 +270,7 @@ async def autosyd(client, file_details):
                     del renaming_operations[file_id]
                     return  # Exit the handler if quality extraction fails
                 
-                format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))           
+                Syd = Syd.replace(quality_placeholder, "".join(extracted_qualities))           
             
         _, file_extension = os.path.splitext(file_name)
         new_file_name = f"[KDL] {Syd} @Klands{file_extension}"
