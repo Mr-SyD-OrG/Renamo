@@ -166,7 +166,6 @@ print(f"Extracted Episode Number: {episode_number}")
 async def refu(client, message):
     global processing
     syd_id = {MRSYD, MRSYD}
-    await message.reply_text("22")
     #await client.send_message(Config.LOG_CHANNEL, "1")
     if message.chat.id in syd_id :
         try:
@@ -211,7 +210,6 @@ async def process_queue(client):
     try:
         # Process files one by one from the queue
         while mrsydt_g:
-            await message.reply_text("22")
             file_details = mrsydt_g.pop(0)  # Get the first file in the queue
             await autosyd(client, file_details)  # Process it
     finally:
