@@ -10,6 +10,7 @@ from helper.database import madflixbotz
 from config import Config
 import os
 import time
+import logging
 import re
 
 processing = False
@@ -17,6 +18,7 @@ MRSYD = -1002289521919
 sydtg = -1002305372915
 Syd_T_G = -1002160523059
 renaming_operations = {}
+logger = logging.getLogger(__name__)
 
 # Pattern 1: S01E02 or S01EP02
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
