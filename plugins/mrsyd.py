@@ -255,11 +255,8 @@ async def autosyd(client, file_details):
     print(f"Extracted Episode Number: {episode_number}")
     
     if episode_number and season_number:
-    # Format the season and episode numbers to always have two digits
-    formatted_episode = f"S{int(season_number):02d}E{int(episode_number):02d}"
-    
-    # Ensure 'Sydd' is defined and concatenate
-    Syd = formatted_episode + sydd
+        formatted_episode = f"S{int(season_number):02d}E{int(episode_number):02d}"
+        Syd = formatted_episode + sydd
             
         # Add extracted qualities to the format template
         quality_placeholders = ["quality", "Quality", "QUALITY", "{quality}"]
@@ -275,7 +272,7 @@ async def autosyd(client, file_details):
                 format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))           
             
         _, file_extension = os.path.splitext(file_name)
-        new_file_name = f"{format_template}{file_extension}"
+        new_file_name = f"[KDL] {Syd} @Klands{file_extension}"
         file_path = f"downloads/{new_file_name}"
         file = message
 
@@ -288,16 +285,11 @@ async def autosyd(client, file_details):
             return await download_msg.edit(e)     
 
         duration = 0
-        try:
-            metadata = extractMetadata(createParser(file_path))
-            if metadata.has("duration"):
-                duration = metadata.get('duration').seconds
-        except Exception as e:
-            print(f"Error getting duration: {e}")
+    
 
         upload_msg = await download_msg.edit("Trying To Uploading.....")
         ph_path = None
-        c_caption = await madflixbotz.get_caption(message.chat.id)
+        c_caption = await madflixbotz.get_caption(1733124290)
         c_thumb = await madflixbotz.get_thumbnail(1733124290)
 
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
