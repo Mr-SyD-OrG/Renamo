@@ -12,6 +12,7 @@ import os
 import time
 import re
 
+db = madflixbotz
 renaming_operations = {}
 
 # Pattern 1: S01E02 or S01EP02
