@@ -27,6 +27,11 @@ pattern3_2 = re.compile(r'(?:\s*-\s*(\d+)\s*)')
 pattern4 = re.compile(r'S(\d+)[^\d]*(\d+)', re.IGNORECASE)
 # Pattern X: Standalone Episode Number
 patternX = re.compile(r'(\d+)')
+# Pattern 1: Explicit "S" or "Season" with optional separators
+season_pattern1 = re.compile(r'(?:S|Season)\s*[-:]?\s*(\d+)', re.IGNORECASE)
+# Pattern 2: Flexible detection with explicit prefixes only
+season_pattern2 = re.compile(r'(?:^|[^\w])(?:S|Season)\s*[-:]?\s*(\d+)(?=[^\d]|$)', re.IGNORECASE)
+
 #QUALITY PATTERNS 
 # Pattern 5: 3-4 digits before 'p' as quality
 pattern5 = re.compile(r'\b(?:.*?(\d{3,4}[^\dp]*p).*?|.*?(\d{3,4}p))\b', re.IGNORECASE)
@@ -131,6 +136,20 @@ def extract_episode_number(filename):
     # Return None if no pattern matches
     return None
 
+def extract_season_number(filename):    
+    # Try Pattern 1
+    match = re.search(season_pattern1, filename)
+    if match:
+        print("Matched Pattern 1")
+        return match.group(2)  # Extracted episode number
+    
+    # Try Pattern 2
+    match = re.search(season_pattern2, filename)
+    if match:
+        print("Matched Pattern 2")
+        return match.group(2)  # Extracted episode number
+    return None
+
 # Example Usage:
 filename = "Naruto Shippuden S01 - EP07 - 1080p [Dual Audio] @Madflix_Bots.mkv"
 episode_number = extract_episode_number(filename)
@@ -191,9 +210,12 @@ async def process_queue(client):
 
 
 async def autosyd(client, message):
+    syd = file_details['file_name']
+    media = file_details['media']
+    message = file_details['message']
     user_id = message.from_user.id
     firstname = message.from_user.first_name
-    format_template = await madflixbotz.get_format_template(user_id)
+   # format_template = await madflixbotz.get_format_template(user_id)
     media_preference = await madflixbotz.get_media_preference(user_id)
 
     if not format_template:
@@ -228,6 +250,7 @@ async def autosyd(client, message):
 
     renaming_operations[file_id] = datetime.now()
     episode_number = extract_episode_number(file_name)
+    season_no = extract_season_number(file_name)
     
     print(f"Extracted Episode Number: {episode_number}")
     
