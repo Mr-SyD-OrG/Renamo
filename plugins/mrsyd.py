@@ -162,7 +162,7 @@ print(f"Extracted Episode Number: {episode_number}")
 @Client.on_message(filters.document | filters.video | filters.audio)
 async def refu(client, message):
     global processing
-    syd_id = {MRSYD}
+    syd_id = {MRSYD, MRSYD}
     await message.reply_text("22")
     #await client.send_message(Config.LOG_CHANNEL, "1")
     if message.chat.id in syd_id :
