@@ -161,6 +161,7 @@ print(f"Extracted Episode Number: {episode_number}")
 async def refunc(client, message):
     global processing
     syd_id = {MRSYD}
+    await client.send_message(1733124290, "1")
     if message.chat.id in syd_id :
         try:
           #  chat_id = MSYD
