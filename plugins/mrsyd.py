@@ -220,13 +220,11 @@ async def autosyd(client, file_details):
     sydd = file_details['file_name']
     media = file_details['media']
     message = file_details['message']
-    await message.reply_text("23")
     #user_id = message.from_user.id
     #firstname = message.from_user.first_name
    # format_template = await madflixbotz.get_format_template(user_id)
     #media_preference = await madflixbotz.get_media_preference(user_id)
     # Extract information from the incoming file name
-    await message.reply_text("24")
     if message.document:
         file_id = message.document.file_id
         file_name = message.document.file_name
@@ -240,7 +238,6 @@ async def autosyd(client, file_details):
         file_name = f"{message.audio.file_name}.mp3"
         media_type = "audio"  # Use preferred media type or default to audio
     else:
-        await message.reply_text("25")
         return await message.reply_text("Unsupported File Type")
 
     await message.reply_text("2i")
@@ -254,10 +251,12 @@ async def autosyd(client, file_details):
             print("File is being ignored as it is currently being renamed or was renamed recently.")
             return  # Exit the handler if the file is being ignored
 
+    await message.reply_text("20")
     renaming_operations[file_id] = datetime.now()
+    await message.reply_text("23=")
     episode_number = extract_episode_number(file_name)
     season_no = extract_season_number(file_name)
-    
+    await message.reply_text("2kk")
     print(f"Extracted Episode Number: {episode_number}")
     
     if episode_number and season_number:
@@ -277,8 +276,6 @@ async def autosyd(client, file_details):
             return await download_msg.edit(e)     
 
         duration = 0
-    
-
         upload_msg = await download_msg.edit("Trying To Uploading.....")
         ph_path = None
         c_caption = await madflixbotz.get_caption(1733124290)
