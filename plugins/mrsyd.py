@@ -147,13 +147,13 @@ def extract_season_number(filename):
     match = re.search(season_pattern1, filename)
     if match:
         print("Matched Pattern 1")
-        return match.group(2)  # Extracted episode number
+        return match.group(1)  # Extracted episode number
     
     # Try Pattern 2
     match = re.search(season_pattern2, filename)
     if match:
         print("Matched Pattern 2")
-        return match.group(2)  # Extracted episode number
+        return match.group(1)  # Extracted episode number
     return None
 
 # Example Usage:
@@ -226,6 +226,7 @@ async def autosyd(client, file_details):
    # format_template = await madflixbotz.get_format_template(user_id)
     #media_preference = await madflixbotz.get_media_preference(user_id)
     # Extract information from the incoming file name
+    await message.reply_text("24")
     if message.document:
         file_id = message.document.file_id
         file_name = message.document.file_name
@@ -239,8 +240,10 @@ async def autosyd(client, file_details):
         file_name = f"{message.audio.file_name}.mp3"
         media_type = "audio"  # Use preferred media type or default to audio
     else:
+        await message.reply_text("25")
         return await message.reply_text("Unsupported File Type")
 
+    await message.reply_text("2i")
     print(f"Original File Name: {file_name}")
     
     
