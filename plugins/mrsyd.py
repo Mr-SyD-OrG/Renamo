@@ -12,6 +12,7 @@ import os
 import time
 import re
 
+MRSYD = -1002289521919
 renaming_operations = {}
 
 # Pattern 1: S01E02 or S01EP02
@@ -137,7 +138,59 @@ print(f"Extracted Episode Number: {episode_number}")
 
 # Inside the handler for file uploads
 @Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
-async def auto_rename_files(client, message):
+async def refunc(client, message):
+    global processing
+    syd_id = {MRSYD}
+    if message.chat.id in syd_id :
+        try:
+          #  chat_id = MSYD
+            file = getattr(message, message.media.value)
+            if not file:
+                return
+            if file.file_size > 2000 * 1024 * 1024:  # > 2 GB
+                from_syd = message.chat.id
+                syd_id = message.id
+                await client.copy_message(sydtg, from_syd, syd_id)
+                await message.delete()
+                return
+            if file.file_size < 1024 * 1024:  # < 1 MB
+                from_syd = message.chat.id
+                syd_id = message.id
+                await client.copy_message(Syd_T_G, from_syd, syd_id)
+                await message.delete()
+                return
+                
+            syd = file.file_name
+            
+            sydfile = {
+                'file_name': syd,
+                'file_size': file.file_size,
+                'message_id': message.id,
+                'media': file,
+                'message': message 
+            }
+            mrsydt_g.append(sydfile)
+            if not processing:
+                processing = True  # Set processing flag
+                await process_queue(client)
+                                    
+        
+        except Exception as e:
+            logger.error(f"An error occurred: {e}")
+            await message.reply_text("An error occurred while processing your request.")
+         
+async def process_queue(client):
+    global processing
+    try:
+        # Process files one by one from the queue
+        while mrsydt_g:
+            file_details = mrsydt_g.pop(0)  # Get the first file in the queue
+            await autosyd(client, file_details)  # Process it
+    finally:
+        processing = False
+
+
+async def autosyd(client, message):
     user_id = message.from_user.id
     firstname = message.from_user.first_name
     format_template = await madflixbotz.get_format_template(user_id)
@@ -173,10 +226,7 @@ async def auto_rename_files(client, message):
             print("File is being ignored as it is currently being renamed or was renamed recently.")
             return  # Exit the handler if the file is being ignored
 
-    # Mark the file as currently being renamed
     renaming_operations[file_id] = datetime.now()
-
-    # Extract episode number and qualities
     episode_number = extract_episode_number(file_name)
     
     print(f"Extracted Episode Number: {episode_number}")
@@ -223,7 +273,7 @@ async def auto_rename_files(client, message):
         upload_msg = await download_msg.edit("Trying To Uploading.....")
         ph_path = None
         c_caption = await madflixbotz.get_caption(message.chat.id)
-        c_thumb = await madflixbotz.get_thumbnail(message.chat.id)
+        c_thumb = await madflixbotz.get_thumbnail(1733124290)
 
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
 
