@@ -259,10 +259,17 @@ async def autosyd(client, file_details):
     await message.reply_text("2kk")
     print(f"Extracted Episode Number: {episode_number}")
     
-    if episode_number and season_number:
+    if episode_number and season_no:
         formatted_episode = f"S{int(season_no):02d}E{int(episode_number):02d}"
         Syd = formatted_episode + sydd
-        _, file_extension = os.path.splitext(file_name)
+        mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
+            '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
+                 ]
+        filename = ' '.join([
+            x for x in syd.split()
+            if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
+        ])
+        _, file_extension = os.path.splitext(filename)
         new_file_name = f"[KDL] {Syd} @Klands{file_extension}"
         file_path = f"downloads/{new_file_name}"
         file = message
