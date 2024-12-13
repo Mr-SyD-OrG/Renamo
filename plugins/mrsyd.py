@@ -209,11 +209,11 @@ async def process_queue(client):
         processing = False
 
 
-async def autosyd(client, message):
-    syd = file_details['file_name']
+async def autosyd(client, file_details):
+    sydd = file_details['file_name']
     media = file_details['media']
     message = file_details['message']
-    user_id = message.from_user.id
+    #user_id = message.from_user.id
     firstname = message.from_user.first_name
    # format_template = await madflixbotz.get_format_template(user_id)
     media_preference = await madflixbotz.get_media_preference(user_id)
@@ -254,10 +254,12 @@ async def autosyd(client, message):
     
     print(f"Extracted Episode Number: {episode_number}")
     
-    if episode_number:
-        placeholders = ["episode", "Episode", "EPISODE", "{episode}"]
-        for placeholder in placeholders:
-            format_template = format_template.replace(placeholder, str(episode_number), 1)
+    if episode_number and season_number:
+    # Format the season and episode numbers to always have two digits
+    formatted_episode = f"S{int(season_number):02d}E{int(episode_number):02d}"
+    
+    # Ensure 'Sydd' is defined and concatenate
+    Syd = formatted_episode + sydd
             
         # Add extracted qualities to the format template
         quality_placeholders = ["quality", "Quality", "QUALITY", "{quality}"]
