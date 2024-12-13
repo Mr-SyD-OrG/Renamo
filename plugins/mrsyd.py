@@ -163,7 +163,8 @@ print(f"Extracted Episode Number: {episode_number}")
 async def refu(client, message):
     global processing
     syd_id = {MRSYD}
-    await client.send_message(Config.LOG_CHANNEL, "1")
+    await message.reply_text("22")
+    #await client.send_message(Config.LOG_CHANNEL, "1")
     if message.chat.id in syd_id :
         try:
           #  chat_id = MSYD
