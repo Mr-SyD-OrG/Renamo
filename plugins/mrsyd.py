@@ -240,6 +240,23 @@ async def autosyd(client, file_details):
     else:
         return await message.reply_text("Unsupported File Type")
 
+    if pattern1.match(Sydd):
+        Sydd = Sydd.replace(pattern1.pattern, "")
+    elif pattern2.match(Sydd):
+        Sydd = Sydd.replace(pattern2.pattern, "")
+    elif pattern3.match(Sydd):
+        Sydd = Syd.replace(pattern3.pattern, "")
+    elif pattern3_2.match(Sydd):
+        Sydd = Sydd.replace(pattern3_2.pattern, "")
+    elif pattern4.match(Sydd):
+        Sydd = Sydd.replace(pattern4.pattern, "")
+    elif patternX.match(Sydd):
+        Sydd = Sydd.replace(patternX.pattern, "")
+    elif season_pattern1.match(Sydd):
+        Sydd = Sydd.replace(season_pattern1.pattern, "")
+    elif season_pattern2.match(Sydd):
+        Sydd = Sydd.replace(season_pattern2.pattern, "")
+
     await message.reply_text("2i")
     print(f"Original File Name: {file_name}")
 
