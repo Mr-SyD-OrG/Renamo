@@ -250,7 +250,7 @@ async def auto_rename_files(client, message):
             mrsyd = await db.get_dump(user_id)
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
-                await client.send_document(
+                sydfil = await client.send_document(
                     mrsyd,
                     document=file_path,
                     thumb=ph_path,
@@ -259,7 +259,7 @@ async def auto_rename_files(client, message):
                     progress_args=("Upload Started.....", upload_msg, time.time())
                 )
             elif type == "video":
-                await client.send_video(
+                sydfil = await client.send_video(
                     mrsyd,
                     video=file_path,
                     caption=caption,
@@ -269,7 +269,7 @@ async def auto_rename_files(client, message):
                     progress_args=("Upload Started.....", upload_msg, time.time())
                 )
             elif type == "audio":
-                await client.send_audio(
+                sydfil = await client.send_audio(
                     mrsyd,
                     audio=file_path,
                     caption=caption,
