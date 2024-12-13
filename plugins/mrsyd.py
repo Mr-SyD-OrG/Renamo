@@ -13,6 +13,7 @@ import time
 import logging
 import re
 
+mrsydt_g = []
 processing = False
 MRSYD = -1002289521919
 sydtg = -1002305372915
