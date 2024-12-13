@@ -12,6 +12,7 @@ import os
 import time
 import re
 
+processing = False
 MRSYD = -1002289521919
 renaming_operations = {}
 
