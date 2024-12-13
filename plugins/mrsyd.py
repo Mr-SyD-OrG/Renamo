@@ -14,6 +14,8 @@ import re
 
 processing = False
 MRSYD = -1002289521919
+sydtg = -1002305372915
+Syd_T_G = -1002160523059
 renaming_operations = {}
 
 # Pattern 1: S01E02 or S01EP02
