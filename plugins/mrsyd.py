@@ -363,8 +363,15 @@ async def autosyd(client, file_details):
             return await upload_msg.edit(f"Error: {e}")
 
         await download_msg.delete() 
-        mrsyyy = sydfil.file_size
-        print(f'{mrsyyy}')
+        mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
+        mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
+        if mrsyyd != mrssyd:
+            await sydfil.delete()
+            os.remove(file_path)
+            if ph_path:
+                os.remove(ph_path)
+            del renaming_operations[file_id]
+            return await message.reply_text("Size Error")
         os.remove(file_path)
         await message.delete()
         if ph_path:
