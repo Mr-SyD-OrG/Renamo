@@ -33,7 +33,7 @@ pattern3_2 = re.compile(r'(?:\s*-\s*(\d+)\s*)')
 # Pattern 4: S2 09 ex.
 pattern4 = re.compile(r'S(\d+)[^\d]*(\d+)', re.IGNORECASE)
 # Pattern X: Standalone Episode Number
-patternX = re.compile(r'(\d+)')
+patternX = re.compile(r'(?<!\d{2,3}p)(\d+)(?!p)', re.IGNORECASE)
 # Pattern 1: Explicit "S" or "Season" with optional separators
 season_pattern1 = re.compile(r'(?:S|Season)\s*[-:]?\s*(\d+)', re.IGNORECASE)
 # Pattern 2: Flexible detection with explicit prefixes only
