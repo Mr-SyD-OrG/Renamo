@@ -239,24 +239,14 @@ async def autosyd(client, file_details):
     else:
         return await message.reply_text("Unsupported File Type")
 
-    patterns = [
-        pattern1,
-        pattern2,
-        pattern3,
-        pattern3_2,
-        pattern4,
-        patternX,
-        season_pattern1,
-        season_pattern2,
-    ]
-
-    # Remove matching patterns from 'sydd'
-    for pattern in patterns:
-        if pattern.match(sydd):
-            sydd = sydd.replace(pattern.pattern, "")
-    print(f"Original File Name: {file_name}")
-
-
+    pat1 = re.sub(pattern1, "", sydd)
+    pat2 = re.sub(pattern2, "", pat1)
+    pat3 = re.sub(pattern3, "", pat2)
+    pat4 = re.sub(pattern3_2, "", pat3)
+    pat5 = re.sub(pattern4, "", pat4)
+    pat6 = re.sub(patternX, "", pat5)
+    pat7 = re.sub(season_pattern1, "", pat6)
+    sydX = re.sub(season_pattern2, "", pat7)
     if file_id in renaming_operations:
         elapsed_time = (datetime.now() - renaming_operations[file_id]).seconds
         if elapsed_time < 10:
@@ -269,7 +259,7 @@ async def autosyd(client, file_details):
     
     if episode_number and season_no:
         formatted_episode = f"S{int(season_no):02d}E{int(episode_number):02d} "
-        Syd = formatted_episode + sydd
+        Syd = formatted_episode + sydX
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
             '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
                  ]
