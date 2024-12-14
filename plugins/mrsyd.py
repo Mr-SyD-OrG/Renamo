@@ -289,10 +289,10 @@ async def autosyd(client, file_details):
         match = re.search(pattern, filenme)
         filename = match.group('filename')
         extension = match.group(2) or ''
-        syd_name = f"{filename} @GetTGLinks{extension}"
+        #syd_name = f"{filename} @GetTGLinks{extension}"
         new_file_name = f"[KDL] {filename} @Klands{extension}"
         file_path = f"downloads/{new_file_name}"
-        syd_path = f"downloads/{syd_name}"
+        #syd_path = f"downloads/{syd_name}"
         file = message
 
         download_msg = await message.reply_text(text="Trying To Download.....")
