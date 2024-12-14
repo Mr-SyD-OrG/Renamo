@@ -10,6 +10,7 @@ from helper.database import madflixbotz
 from config import Config
 import os
 import time
+import asyncio
 import re
 
 db = madflixbotz
@@ -157,6 +158,28 @@ print(f"Extracted Episode Number: {episode_number}")
 
 # Inside the handler for file uploads
 @Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
+async def auto_rename_files(client, message):
+    user_id = message.from_user.id
+    if user_id not in user_queues:
+        user_queues[user_id] = asyncio.Queue()
+        asyncio.create_task(process_user_queue(client, user_id))
+    await user_queues[user_id].put(message)
+    await message.reply_text("Your file has been queued for renaming. Please wait...")
+async def process_user_queue(client, user_id):
+    global user_queues
+    active_operations = set()
+
+    while user_id in user_queues:
+        if len(active_operations) < 4 and not user_queues[user_id].empty():
+            message = await user_queues[user_id].get()
+            task = asyncio.create_task(handle_file_rename(client, message))
+            active_operations.add(task)
+            task.add_done_callback(lambda t: active_operations.remove(t))
+        await asyncio.sleep(1)
+
+    # Clean up if the user's queue is empty
+    if user_id in user_queues and user_queues[user_id].empty():
+        del user_queues[user_id]
 async def auto_rename_files(client, message):
     user_id = message.from_user.id
     firstname = message.from_user.first_name
