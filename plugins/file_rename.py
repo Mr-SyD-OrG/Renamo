@@ -295,6 +295,7 @@ async def auto_rename_files(client, message):
             del renaming_operations[file_id]
             return await message.reply_text("Size Error")
         await download_msg.delete() 
+        await message.delete()
         os.remove(file_path)
         if ph_path:
             os.remove(ph_path)
