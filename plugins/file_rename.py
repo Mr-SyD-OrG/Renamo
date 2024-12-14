@@ -15,6 +15,7 @@ import re
 
 db = madflixbotz
 renaming_operations = {}
+user_queues = {}
 
 # Pattern 1: S01E02 or S01EP02
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
