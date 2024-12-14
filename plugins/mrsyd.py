@@ -238,23 +238,21 @@ async def autosyd(client, file_details):
     else:
         return await message.reply_text("Unsupported File Type")
 
-    if pattern1.match(sydd):
-        sydd = sydd.replace(pattern1.pattern, "")
-    elif pattern2.match(sydd):
-        sydd = sydd.replace(pattern2.pattern, "")
-    elif pattern3.match(sydd):
-        sydd = sydd.replace(pattern3.pattern, "")
-    elif pattern3_2.match(sydd):
-        sydd = sydd.replace(pattern3_2.pattern, "")
-    elif pattern4.match(sydd):
-        sydd = sydd.replace(pattern4.pattern, "")
-    elif patternX.match(sydd):
-        sydd = sydd.replace(patternX.pattern, "")
-    elif season_pattern1.match(sydd):
-        sydd = sydd.replace(season_pattern1.pattern, "")
-    elif season_pattern2.match(sydd):
-        sydd = sydd.replace(season_pattern2.pattern, "")
+    patterns = [
+        pattern1,
+        pattern2,
+        pattern3,
+        pattern3_2,
+        pattern4,
+        patternX,
+        season_pattern1,
+        season_pattern2,
+    ]
 
+    # Remove matching patterns from 'sydd'
+    for pattern in patterns:
+        if pattern.match(sydd):
+            sydd = sydd.replace(pattern.pattern, "")
     print(f"Original File Name: {file_name}")
 
 
@@ -270,7 +268,7 @@ async def autosyd(client, file_details):
     
     if episode_number and season_no:
         formatted_episode = f"S{int(season_no):02d}E{int(episode_number):02d} "
-        Syd = formatted_episode + sydd
+        Syd = formatted_episode + syddd
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
             '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
                  ]
