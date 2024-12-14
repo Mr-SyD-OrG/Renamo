@@ -174,7 +174,7 @@ async def refuntion(client, message):
             if file.file_size > 2000 * 1024 * 1024:  # > 2 GB
                 from_syd = message.chat.id
                 syd_id = message.id
-                await client.copy_message(sydtg, from_syd, syd_id)
+                await client.copy_message(-1002213261472, from_syd, syd_id)
                 await message.delete()
                 return
             if file.file_size < 1024 * 1024:  # < 1 MB
@@ -289,8 +289,10 @@ async def autosyd(client, file_details):
         match = re.search(pattern, filenme)
         filename = match.group('filename')
         extension = match.group(2) or ''
+        syd_name = f"{filename} @GetTGLinks{extension}"
         new_file_name = f"[KDL] {filename} @Klands{extension}"
         file_path = f"downloads/{new_file_name}"
+        syd_path = f"downloads/{syd_name}"
         file = message
 
         download_msg = await message.reply_text(text="Trying To Download.....")
