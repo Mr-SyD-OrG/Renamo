@@ -136,6 +136,20 @@ def extract_episode_number(filename):
     # Return None if no pattern matches
     return None
 
+def extract_season_number(filename):    
+    # Try Pattern 1
+    match = re.search(season_pattern1, filename)
+    if match:
+        print("Matched Pattern 1")
+        return match.group(1)  # Extracted episode number
+    
+    # Try Pattern 2
+    match = re.search(season_pattern2, filename)
+    if match:
+        print("Matched Pattern 2")
+        return match.group(1)  # Extracted episode number
+    return None
+
 # Example Usage:
 filename = "Naruto Shippuden S01 - EP07 - 1080p [Dual Audio] @Madflix_Bots.mkv"
 episode_number = extract_episode_number(filename)
