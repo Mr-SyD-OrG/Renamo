@@ -223,12 +223,10 @@ async def auto_rname_files(client, message):
     season_number = extract_season_number(file_name)
     print(f"Extracted Episode Number: {episode_number}")
 
-    if episode_number or season_number:
-        placeholders = {"episode": episode_number, "season": season_number}
-        for key, value in placeholders.items():
-            if value is not None:
-                format_template = format_template.replace(f"{{{key}}}", str(value), 1)
-
+    if episode_number:
+        placeholders = ["episode", "Episode", "EPISODE", "{episode}"]
+        for placeholder in placeholders:
+            format_template = format_template.replace(placeholder, str(episode_number), 1)
  
         # Add extracted qualities to the format template
         quality_placeholders = ["quality", "Quality", "QUALITY", "{quality}"]
