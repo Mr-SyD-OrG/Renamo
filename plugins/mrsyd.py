@@ -268,7 +268,7 @@ async def autosyd(client, file_details):
     
     if episode_number and season_no:
         formatted_episode = f"S{int(season_no):02d}E{int(episode_number):02d} "
-        Syd = formatted_episode + syddd
+        Syd = formatted_episode + sydd
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
             '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
                  ]
