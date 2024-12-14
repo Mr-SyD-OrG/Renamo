@@ -166,6 +166,7 @@ async def auto_rename_files(client, message):
         asyncio.create_task(process_user_queue(client, user_id))
     await user_queues[user_id].put(message)
     await message.reply_text("Your file has been queued for renaming. Please wait...")
+    
 async def process_user_queue(client, user_id):
     global user_queues
     active_operations = set()
@@ -177,9 +178,7 @@ async def process_user_queue(client, user_id):
             active_operations.add(task)
             task.add_done_callback(lambda t: active_operations.remove(t))
         await asyncio.sleep(1)
-
-    # Clean up if the user's queue is empty
-    if user_id in user_queues and user_queues[user_id].empty():
+    if user_id in user_queues and user_queues[user_id].empty() and len(active_operations) == 0:
         del user_queues[user_id]
 async def auto_rname_files(client, message):
     user_id = message.from_user.id
