@@ -171,7 +171,7 @@ async def process_user_queue(client, user_id, message):
     global user_queues
     active_operations = set()
     while user_id in user_queues:
-        if len(active_operations) < 4 and not user_queues[user_id].empty():
+        if len(active_operations) < 2 and not user_queues[user_id].empty():
             message = await user_queues[user_id].get()
             task = asyncio.create_task(auto_rname_files(client, message))
             active_operations.add(task)
