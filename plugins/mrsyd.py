@@ -323,10 +323,11 @@ async def autosyd(client, file_details):
         
 
         try:
+            mrsyd = await db.get_dump(1733124290)
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
                 sydfil = await client.send_document(
-                    message.chat.id,
+                    mrsyd,
                     document=file_path,
                     thumb=ph_path,
                     caption=caption,
@@ -335,7 +336,7 @@ async def autosyd(client, file_details):
                 )
             elif type == "video":
                 sydfil = await client.send_video(
-                    message.chat.id,
+                    mrsyd,
                     video=file_path,
                     caption=caption,
                     thumb=ph_path,
@@ -345,7 +346,7 @@ async def autosyd(client, file_details):
                 )
             elif type == "audio":
                 sydfil = await client.send_audio(
-                    message.chat.id,
+                    mrsyd,
                     audio=file_path,
                     caption=caption,
                     thumb=ph_path,
