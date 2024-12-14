@@ -43,6 +43,7 @@ Use These Keywords To Setup Custom File Name
 
 ✓ episode :- To Replace Episode Number
 ✓ quality :- To Replace Video Resolution
+✓ season :- To Rᴇᴩʟᴀᴄᴇ Sᴇᴀꜱᴏɴ Nᴜᴍʙᴇʀ
 
 <b>➻ Example :</b> <code> /autorename Naruto Shippuden S02 - EPepisode - quality  [Dual Audio] - @Madflix_Bots </code>
 
