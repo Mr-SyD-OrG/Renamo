@@ -172,7 +172,7 @@ async def process_user_queue(client, user_id):
     while user_id in user_queues:
         if len(active_operations) < 4 and not user_queues[user_id].empty():
             message = await user_queues[user_id].get()
-            task = asyncio.create_task(handle_file_rename(client, message))
+            task = asyncio.create_task(auto_rname_files(client, message))
             active_operations.add(task)
             task.add_done_callback(lambda t: active_operations.remove(t))
         await asyncio.sleep(1)
@@ -180,7 +180,7 @@ async def process_user_queue(client, user_id):
     # Clean up if the user's queue is empty
     if user_id in user_queues and user_queues[user_id].empty():
         del user_queues[user_id]
-async def auto_rename_files(client, message):
+async def auto_rname_files(client, message):
     user_id = message.from_user.id
     firstname = message.from_user.first_name
     format_template = await madflixbotz.get_format_template(user_id)
