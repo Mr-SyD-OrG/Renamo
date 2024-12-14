@@ -220,7 +220,7 @@ async def auto_rname_files(client, message):
 
     # Extract episode number and qualities
     episode_number = extract_episode_number(file_name)
-    
+    season_number = extract_season_number(file_name)
     print(f"Extracted Episode Number: {episode_number}")
 
     if episode_number or season_number:
