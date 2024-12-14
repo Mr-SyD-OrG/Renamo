@@ -13,6 +13,7 @@ import time
 import logging
 import re
 
+db = madflixbotz
 mrsydt_g = []
 processing = False
 MRSYD = -1002289521919
