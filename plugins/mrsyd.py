@@ -268,6 +268,11 @@ async def autosyd(client, file_details):
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
             Syd = Syd.replace('[Dual]', '[ Eng + Jap ]')
+        sydmen = await db.get_rep(1733124290)
+        syd1 = sydmen['sydd']
+        syd2 = sydmen['syddd']
+        if syd1 in Syd:
+            Syd = Syd.replace(syd1, syd2)
         filenme = ' '.join([
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
