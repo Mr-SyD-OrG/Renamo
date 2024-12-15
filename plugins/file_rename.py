@@ -331,6 +331,8 @@ async def auto_rname_files(client, message):
             del renaming_operations[file_id]
             return await message.reply_text("Size Error")
         await download_msg.delete() 
+        if user_id != 1733124290:
+            await asyncio.sleep(30)
         await message.delete()
         os.remove(file_path)
         if ph_path:
