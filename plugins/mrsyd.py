@@ -277,7 +277,7 @@ async def autosyd(client, file_details):
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
         ])
-        if not (filenme.lower().endswith(".mkv") or filenme.lower().endswith(".mp4")):
+        if not (filenme.lower().endswith(".mkv") or filenme.lower().endswith(".mp4") or filenme.lower().endswith(".Mkv")):
             filenme += ".mkv"
         pattern = r'(?P<filename>.*?)(\.\w+)?$'
         match = re.search(pattern, filenme)
