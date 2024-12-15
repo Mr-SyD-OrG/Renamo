@@ -135,6 +135,27 @@ async def delete_dump(client, message):
     await db.set_dump(message.from_user.id, message.from_user.id)
     await SyD.edit("__**❌️ ᴘʀᴇꜰɪx ᴅᴇʟᴇᴛᴇᴅ**__")
 
+@Client.on_message(filters.private & filters.command('del_rep'))
+async def delete_dump(client, message):
+
+    SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
+    dump = await db.get_dump(message.from_user.id)
+    if not dump:
+        return await SyD.edit("__**😔 ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴇꜰɪx**__")
+    await db.set_dump(message.from_user.id, message.from_user.id)
+    await SyD.edit("__**❌️ ᴘʀᴇꜰɪx ᴅᴇʟᴇᴛᴇᴅ**__")
+	
+@Client.on_message(filters.private & filters.command('set_rep'))
+async def add_dump(client, message):
+    if len(message.command) == 2:
+        return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @Roofiverse`**")
+    txt = message.text.split(" ", 2)
+    Sydd = txt[1]
+    Syddd = txt[2]
+    SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
+    await db.set_rep(message.from_user.id, sydd, syddd)
+    await SyD.edit("__**✅ ᴘʀᴇꜰɪx ꜱᴀᴠᴇᴅ**__")
+
 
 @Client.on_message(filters.private & filters.command('see_from'))
 async def see_csuffix(client, message):
