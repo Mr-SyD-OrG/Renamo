@@ -3,7 +3,7 @@ from pyrogram.errors import FloodWait
 from helper.database import madflixbotz
 
 @Client.on_message(filters.private & filters.command("set_format"))
-async def auto_rename_command(client, message):
+async def auto_renme_command(client, message):
     user_id = message.from_user.id
 
     # Extract the format from the command
