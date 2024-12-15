@@ -175,6 +175,8 @@ async def process_user_queue(client, user_id, message):
             message = await user_queues[user_id].get()
             task = asyncio.create_task(auto_rname_files(client, message))
             active_operations.add(task)
+            if user_id != 1733124290:
+                await asyncio.sleep(60)
             task.add_done_callback(lambda t: active_operations.remove(t))
         await asyncio.sleep(1)
     if user_id in user_queues and user_queues[user_id].empty() and len(active_operations) == 0:
@@ -340,7 +342,7 @@ async def auto_rname_files(client, message):
             return await message.reply_text("Size Error")
         await download_msg.delete() 
         if user_id != 1733124290:
-            await asyncio.sleep(30)
+            await asyncio.sleep(8)
         await message.delete()
         os.remove(file_path)
         if ph_path:
