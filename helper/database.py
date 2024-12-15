@@ -17,6 +17,8 @@ class Database:
             dump=int(id),
             prefix=None,
             suffix=None,
+            sydd=None,
+            syddd=None,
             format_template=None  # Add this line for the format template
         )
 
@@ -80,9 +82,24 @@ class Database:
     async def set_dump(self, id, dump: int):
         await self.col.update_one({'_id': int(id)}, {'$set': {'dump': int(dump)}})
 
+    async def set_rep(self, id, sydd, syddd):
+        await self.col.update_one(
+            {'_id': int(id)},  # Find the document by its ID
+            {'$set': {'sydd': sydd, 'syddd': syddd}}  # Update 'sydd' and 'syddd' fields
+        )
     async def get_dump(self, id):
         user = await self.col.find_one({'_id': int(id)})
         return user.get('dump', int(id))
+
+    async def get_rep(self, id):
+        user = await self.col.find_one({'_id': int(id)})
+        if user:  # Check if the document exists
+            return {
+                'sydd': user.get('sydd', ""),   # Default to an empty string if 'sydd' is not found
+                'syddd': user.get('syddd', "")  # Default to an empty string if 'syddd' is not found
+            }
+        return {'sydd': "", 'syddd': ""}  # Default return if the document doesn't exist
+
 
     async def set_prefix(self, id, prefix):
         await self.col.update_one({'_id': int(id)}, {'$set': {'prefix': prefix}})
