@@ -193,7 +193,7 @@ async def see_dump(client, message):
     SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
     dump = await db.get_dump(message.from_user.id)
     if dump:
-        await SyD.edit(f"**ʏᴏᴜʀ ᴘʀᴇꜰɪx:-**\n\n`{dump}`")
+        await SyD.edit(f"**ʏᴏᴜʀ ᴅᴜᴍᴩ :-**\n\n`{dump}`")
     else:
         await SyD.edit("__**😔 ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴀɴʏ ᴘʀᴇꜰɪx**__")
 
@@ -201,7 +201,7 @@ async def see_dump(client, message):
 async def add_dump(client, message):
 
     if len(message.command) == 1:
-        return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @Roofiverse`**")
+        return await message.reply_text("**__Give The ᴅᴜᴍᴩ ᴄʜᴀɴɴᴇʟ ɪᴅ__\n\nExᴀᴍᴩʟᴇ:- `/set_dump -1002042969565`**")
     dump = message.text.split(" ", 1)[1]
     SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
     await db.set_dump(message.from_user.id, dump)
