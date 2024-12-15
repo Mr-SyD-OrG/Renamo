@@ -136,7 +136,7 @@ async def delete_dump(client, message):
     await SyD.edit("__**❌️ ᴘʀᴇꜰɪx ᴅᴇʟᴇᴛᴇᴅ**__")
 
 @Client.on_message(filters.private & filters.command('del_rep'))
-async def delete_dump(client, message):
+async def delete_rep(client, message):
     SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
     dump = await db.get_rep(message.from_user.id)
     if not dump:
@@ -145,7 +145,7 @@ async def delete_dump(client, message):
     await SyD.edit("__**❌️ ᴘʀᴇꜰɪx ᴅᴇʟᴇᴛᴇᴅ**__")
 	
 @Client.on_message(filters.private & filters.command('set_rep'))
-async def add_dump(client, message):
+async def add_rep(client, message):
     if len(message.command) < 3:
         return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @Roofiverse`**")
     txt = message.text.split(" ", 2)
