@@ -254,7 +254,7 @@ async def autosyd(client, file_details):
             return  # Exit the handler if the file is being ignored
     renaming_operations[file_id] = datetime.now()
     episode_number = extract_episode_number(file_name)
-    season_no = extract_season_number(file_name)
+    season_no = extract_season_number(file_name) if extract_season_number(file_name) else '01'
     print(f"Extracted Episode Number: {episode_number}")
     
     if episode_number and season_no:
