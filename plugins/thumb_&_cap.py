@@ -152,7 +152,7 @@ async def add_rep(client, message):
     Sydd = txt[1]
     Syddd = txt[2]
     SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
-    await db.set_rep(message.from_user.id, sydd, syddd)
+    await db.set_rep(message.from_user.id, Sydd, Syddd)
     await SyD.edit("__**✅ ᴘʀᴇꜰɪx ꜱᴀᴠᴇᴅ**__")
 
 
