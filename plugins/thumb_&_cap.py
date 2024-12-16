@@ -150,7 +150,7 @@ async def add_rep(client, message):
         return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @Roofiverse`**")
     txt = message.text.split(" ", 2)
     Sydd = txt[1]
-    Syddd = txt[2]
+    Syddd = txt[2] if txt[2] else ''
     SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
     await db.set_rep(message.from_user.id, Sydd, Syddd)
     await SyD.edit("__**✅ ᴘʀᴇꜰɪx ꜱᴀᴠᴇᴅ**__")
