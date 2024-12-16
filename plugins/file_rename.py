@@ -165,7 +165,10 @@ async def auto_rename_files(client, message):
         user_queues[user_id] = asyncio.Queue()
         asyncio.create_task(process_user_queue(client, user_id, message))
     await user_queues[user_id].put(message)
-    await message.reply_text("Your file has been queued for renaming. Please wait...")
+    syd = await message.reply_text("Your file has been queued for renaming. Please wait...")
+    await asyncio.sleep(100)
+    await syd.delete()
+    
     
 async def process_user_queue(client, user_id, message):
     global user_queues
