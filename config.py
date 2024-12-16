@@ -44,9 +44,9 @@ Use These Keywords To Setup Custom File Name
 /see_format
 /set_format
 
-✓ episode :- To Replace Episode Number
-✓ quality :- To Replace Video Resolution
-✓ season :- To Rᴇᴩʟᴀᴄᴇ Sᴇᴀꜱᴏɴ Nᴜᴍʙᴇʀ
+✓ <code>{episode}</code> :- To Replace Episode Number
+✓ <code>quality</code> :- To Replace Video Resolution
+✓ <code>{season}</code> :- To Rᴇᴩʟᴀᴄᴇ Sᴇᴀꜱᴏɴ Nᴜᴍʙᴇʀ
 
 <b>➻ Example :</b> <code> /set_format Naruto Shippuden S02 - EPepisode - quality  [Dual Audio] - @Madflix_Bots </code>
 
