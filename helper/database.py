@@ -93,8 +93,8 @@ class Database:
         user = await self.col.find_one({'_id': int(id)})
         return user.get('dump', int(id))
         
-    async def set_topic(self, id, dump: int):
-        await self.col.update_one({'_id': int(id)}, {'$set': {'dump': int(dump)}})
+    async def set_topic(self, id, syd: int):
+        await self.col.update_one({'_id': int(id)}, {'$set': {'topic': int(syd)}})
 
     async def get_topic(self, id):
         user = await self.col.find_one({'_id': int(id)})
