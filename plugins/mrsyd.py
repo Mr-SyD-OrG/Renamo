@@ -369,6 +369,17 @@ async def autosyd(client, file_details):
             return await message.reply_text("Size Error")
         os.remove(file_path)
         await message.delete()
+        try:
+            topic_thread_id = file_details['target']  # Replace with the actual thread ID of the topic
+            await client.forward_messages(
+                chat_id=-1002322136660,  # Replace with the target group ID
+                from_chat_id=mrsyd,
+                message_ids=sydfil.message_id,
+                message_thread_id=topic_thread_id
+            )
+        except Exception as e:
+            return await message.reply_text(f"Failed to forward to topic: {e}")
+
         if ph_path:
             os.remove(ph_path)
 
