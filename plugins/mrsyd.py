@@ -186,12 +186,13 @@ async def refuntion(client, message):
                 return
                 
             syd = file.file_name
-            
+            mrsyd = await db.get_topic(1733124290)
             sydfile = {
                 'file_name': syd,
                 'file_size': file.file_size,
                 'message_id': message.id,
                 'media': file,
+                'topic': mrsyd,
                 'message': message 
             }
             mrsydt_g.append(sydfile)
