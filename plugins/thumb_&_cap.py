@@ -209,14 +209,12 @@ async def add_dump(client, message):
 	
 @Client.on_message(filters.private & filters.command('set_topic'))
 async def add_topic(client, message):
-    if len(message.command) < 3:
+    if len(message.command) == 1:
         return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @Roofiverse`**")
-    txt = message.text.split(" ", 2)
-    Sydd = txt[1]
-    Syddd = txt[2] if txt[2] else ''
+    txt = message.text.split(" ", 1)[1]
     SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
-    await db.set_rep(message.from_user.id, Sydd, Syddd)
-    await SyD.edit("__**✅ ᴘʀᴇꜰɪx ꜱᴀᴠᴇᴅ**__")
+    await db.set_topic(message.from_user.id, txt)
+    await SyD.edit("__**✅ ᴛᴏᴩɪᴄ ꜱᴀᴠᴇᴅ**__")
 
 # Jishu Developer 
 # Don't Remove Credit 🥺
