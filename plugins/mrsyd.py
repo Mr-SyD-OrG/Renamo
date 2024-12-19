@@ -306,7 +306,7 @@ async def autosyd(client, file_details):
         c_caption = await madflixbotz.get_caption(1733124290)
         c_thumb = await madflixbotz.get_thumbnail(1733124290)
 
-        topic_thread_id = file_details['topic']
+        topic_thread_id = int(file_details['topic'])
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
 
         if c_thumb:
@@ -324,6 +324,7 @@ async def autosyd(client, file_details):
 
         if 'last_season_number' not in globals():
             last_season_number = season_no
+            
         if season_no == last_season_number + 1:
             try:
                 await client.send_sticker(
