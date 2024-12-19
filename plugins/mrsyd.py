@@ -391,7 +391,7 @@ async def autosyd(client, file_details):
             await client.forward_messages(
                 chat_id=-1002322136660,  # Replace with the target group ID
                 from_chat_id=mrsyd,
-                message_ids=sydfil.message_id,
+                message_ids=sydfil.id,
                 message_thread_id=topic_thread_id
             )
         except Exception as e:
