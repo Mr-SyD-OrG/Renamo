@@ -328,7 +328,7 @@ async def autosyd(client, file_details):
             try:
                 await client.send_sticker(
                     chat_id=-1002322136660,
-                    sticker="CAACAgUAAxkBAAEELoRnMdY9Cjhme4dI1ex_MF4KwoIc4AACKxEAAh6lEVXmKTGWbQABUOMeBA",
+                    sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
                     message_thread_id=topic_thread_id
                 )
                 last_season_number = season_no  # Update the last season number
