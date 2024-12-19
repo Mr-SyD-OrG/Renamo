@@ -21,7 +21,7 @@ sydtg = -1002305372915
 Syd_T_G = -1002160523059
 renaming_operations = {}
 logger = logging.getLogger(__name__)
-last_season_number = None
+last_season_number = 0
 
 # Pattern 1: S01E02 or S01EP02
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
