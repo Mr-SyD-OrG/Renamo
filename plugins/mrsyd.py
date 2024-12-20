@@ -324,10 +324,10 @@ async def autosyd(client, file_details):
             img.save(ph_path, "JPEG")    
         
 
-        if last_season_number is 0:
-            last_season_number = season_no
+        if last_season_number == 0:
+            last_season_number = syd_xyz
             
-        if season_no == last_season_number + 1:
+        if syd_xyz == last_season_number + 1:
             try:
                 await client.send_sticker(
                     chat_id=-1002322136660,
