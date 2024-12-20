@@ -332,19 +332,18 @@ async def autosyd(client, file_details):
                 await client.send_sticker(
                     chat_id=-1002322136660,
                     sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
-                    message_thread_id=topic_syd_id
+                    reply_to_message_id=topic_syd_id
                 )
+                last_season_number = syd_xyz
             except Exception as e:
                 print(f"Failed to send sticker to topic: {e}")
-
-        last_season_number = syd_xyz
         try:
             mrsyd = await db.get_dump(1733124290)
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
                 sydfil = await client.send_document(
                     mrsyd,
-                    document=file_path,
+                    documents=file_path,
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
@@ -391,7 +390,7 @@ async def autosyd(client, file_details):
         await message.delete()
         try:  # Replace with the actual thread ID of the topic
             await client.copy_message(
-                chat_id=-1002407746052,  # Replace with the target group ID
+                chat_id=-1002322136660,  # Replace with the target group ID
                 from_chat_id=mrsyd,
                 message_id=sydfil.id,
                 reply_to_message_id=topic_syd_id
