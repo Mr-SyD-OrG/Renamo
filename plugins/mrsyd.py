@@ -396,14 +396,14 @@ async def autosyd(client, file_details):
             await download_image(PIS, SYD_PATH)
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
-                sydfil = await client.send_document(
+                sydfile = await client.send_document(
                     -1002163302783,
                     document=file_path,
                     thumb=SYD_PATH,
                     caption=caption
                 )
             elif type == "video":
-                sydfil = await client.send_video(
+                sydfile = await client.send_video(
                     -1002163302783,
                     video=file_path,
                     caption=caption,
@@ -411,7 +411,7 @@ async def autosyd(client, file_details):
                     duration=duration
                 )
             elif type == "audio":
-                sydfil = await client.send_audio(
+                sydfile = await client.send_audio(
                     -1002163302783,
                     audio=file_path,
                     caption=caption,
