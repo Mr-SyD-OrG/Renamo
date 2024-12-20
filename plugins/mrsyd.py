@@ -306,7 +306,7 @@ async def autosyd(client, file_details):
         c_caption = await madflixbotz.get_caption(1733124290)
         c_thumb = await madflixbotz.get_thumbnail(1733124290)
 
-        topic_syd_id = int(file_details['topic'])
+        topic_syd_id = file_details['topic']
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
 
         if c_thumb:
