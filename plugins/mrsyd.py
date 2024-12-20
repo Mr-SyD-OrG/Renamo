@@ -22,6 +22,7 @@ Syd_T_G = -1002160523059
 renaming_operations = {}
 logger = logging.getLogger(__name__)
 last_season_number = 0
+syd_top = 0
 
 # Pattern 1: S01E02 or S01EP02
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
@@ -218,7 +219,7 @@ async def process_queue(client):
 
 
 async def autosyd(client, file_details):
-    global last_season_number
+    global last_season_number, syd_top
     sydd = file_details['file_name']
     media = file_details['media']
     message = file_details['message']
@@ -288,10 +289,10 @@ async def autosyd(client, file_details):
         match = re.search(pattern, filenme)
         filename = match.group('filename')
         extension = match.group(2) or ''
-        syd_name = f"{filename} SyD @GetTGLinks{extension}"
+        #syd_name = f"{filename} @GetTGLinks{extension}"
         new_file_name = f"[KDL] {filename} @Klands{extension}"
         file_path = f"downloads/{new_file_name}"
-        syd_path = f"downloads/{syd_name}"
+        #syd_path = f"downloads/{syd_name}"
         file = message
 
         download_msg = await message.reply_text(text="Trying To Download.....")
@@ -310,7 +311,20 @@ async def autosyd(client, file_details):
 
         topic_syd_id = file_details['topic']
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
-
+        if syd_top == 0:
+            syd_top = topic_syd_id
+            
+        if syd_top != topic_syd_id:
+            try:
+                await client.send_sticker(
+                    chat_id=-1002322136660,
+                    sticker="CAACAgUAAxkBAAEEOcxnZO0ftNzDaNCCvOdzqjnmTwiwWwACawgAAvJ9SFVrAAGBhWipiW4eBA",
+                    reply_to_message_id=syd_top
+                )
+                syd_top = topic_syd_id
+            except Exception as e:
+                print(f"Failed to end send sticker to topic: {e}")
+        
         if c_thumb:
             ph_path = await client.download_media(c_thumb)
             print(f"Thumbnail downloaded successfully. Path: {ph_path}")
@@ -382,24 +396,24 @@ async def autosyd(client, file_details):
             await download_image(PIS, SYD_PATH)
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
-                sydfile = await client.send_document(
+                sydfil = await client.send_document(
                     -1002163302783,
-                    document=syd_path,
+                    document=file_path,
                     thumb=SYD_PATH,
                     caption=caption
                 )
             elif type == "video":
-                sydfile = await client.send_video(
+                sydfil = await client.send_video(
                     -1002163302783,
-                    video=syd_path,
+                    video=file_path,
                     caption=caption,
                     thumb=SYD_PATH,
                     duration=duration
                 )
             elif type == "audio":
-                sydfile = await client.send_audio(
+                sydfil = await client.send_audio(
                     -1002163302783,
-                    audio=syd_path,
+                    audio=file_path,
                     caption=caption,
                     thumb=SYD_PATH,
                     duration=duration
@@ -415,6 +429,7 @@ async def autosyd(client, file_details):
         await download_msg.delete() 
         mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
         mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
+        mrsssyd = sydfile.document.file_size if type == "document" else sydfile.video.file_size if type == "video" else sydfile.audio.file_size
         if mrsyyd != mrssyd:
             await sydfil.delete()
             os.remove(file_path)
@@ -422,7 +437,29 @@ async def autosyd(client, file_details):
                 os.remove(ph_path)
             del renaming_operations[file_id]
             return await message.reply_text("Size Error")
+        if mrsyyd != mrsssyd:
+            await sydfile.delete()
+            os.remove(syd_path)
+            if ph_path:
+                os.remove(ph_path)
+            del renaming_operations[file_id]
+            return await message.reply_text("Size Error")
+        if season_no == 0:
+            os.remove(file_path)
+            os.remove(syd_path)
+            if ph_path:
+                os.remove(ph_path)
+            del renaming_operations[file_id]
+            return await message.reply_text("Season No. 0 Error")
+        if episode_number == 0:
+            os.remove(file_path)
+            os.remove(syd_path)
+            if ph_path:
+                os.remove(ph_path)
+            del renaming_operations[file_id]
+            return await message.reply_text("Episode No. 0 Error")
         os.remove(file_path)
+        os.remove(syd_path)
         await message.delete()
         try:  # Replace with the actual thread ID of the topic
             await client.copy_message(
