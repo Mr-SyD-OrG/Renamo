@@ -343,7 +343,7 @@ async def autosyd(client, file_details):
             if type == "document":
                 sydfil = await client.send_document(
                     mrsyd,
-                    documents=file_path,
+                    document=file_path,
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
