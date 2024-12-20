@@ -340,8 +340,8 @@ async def autosyd(client, file_details):
             img.save(ph_path, "JPEG")
         
 
-        SYD_PATH = 'downloads/thumbnail.jpg'
-        PIS = 'https://envs.sh/Arr.jpg'
+       # SYD_PATH = 'downloads/thumbnail.jpg'
+       # PIS = 'https://envs.sh/Arr.jpg'
         if last_season_number == 0:
             last_season_number = syd_xyz
             
@@ -352,6 +352,8 @@ async def autosyd(client, file_details):
                     sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
                     reply_to_message_id=topic_syd_id
                 )
+                amsyd = f'Season {syd_xyz} 🌟'
+                await client.send_message(chat_id=-1002322136660, text=amsyd, reply_to_message_id=topic_syd_id)
                 last_season_number = syd_xyz
             except Exception as e:
                 print(f"Failed to send sticker to topic: {e}")
