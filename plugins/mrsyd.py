@@ -321,7 +321,7 @@ async def autosyd(client, file_details):
             Image.open(ph_path).convert("RGB").save(ph_path)
             img = Image.open(ph_path)
             img.resize((320, 320))
-            img.save(ph_path, "JPEG")    
+            img.save(ph_path, "JPEG")
         
 
         if last_season_number == 0:
@@ -376,6 +376,39 @@ async def autosyd(client, file_details):
             # Mark the file as ignored
             return await upload_msg.edit(f"Error: {e}")
 
+        try:
+            type = media_type  # Use 'media_type' variable instead
+            if type == "document":
+                sydfil = await client.send_document(
+                    -1002163302783,
+                    document=file_path,
+                    thumb=ph_path,
+                    caption=caption
+                )
+            elif type == "video":
+                sydfil = await client.send_video(
+                    -1002163302783,
+                    video=file_path,
+                    caption=caption,
+                    thumb=ph_path,
+                    duration=duration
+                )
+            elif type == "audio":
+                sydfil = await client.send_audio(
+                    -1002163302783,
+                    audio=file_path,
+                    caption=caption,
+                    thumb=ph_path,
+                    duration=duration
+                )
+        except Exception as e:
+            os.remove(file_path)
+            if ph_path:
+                os.remove(ph_path)
+            # Mark the file as ignored
+            return await upload_msg.edit(f"Error: {e}")
+
+                
         await download_msg.delete() 
         mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
         mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
