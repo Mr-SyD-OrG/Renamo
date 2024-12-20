@@ -324,6 +324,8 @@ async def autosyd(client, file_details):
             img.save(ph_path, "JPEG")
         
 
+        SYD_PATH = 'downloads/thumbnail.jpg'
+        PIS = 'https://envs.sh/Arr.jpg'
         if last_season_number == 0:
             last_season_number = syd_xyz
             
@@ -377,12 +379,13 @@ async def autosyd(client, file_details):
             return await upload_msg.edit(f"Error: {e}")
 
         try:
+            await download_image(PIS, SYD_PATH)
             type = media_type  # Use 'media_type' variable instead
             if type == "document":
                 sydfil = await client.send_document(
                     -1002163302783,
                     document=file_path,
-                    thumb=ph_path,
+                    thumb=SYD_PATH,
                     caption=caption
                 )
             elif type == "video":
@@ -390,7 +393,7 @@ async def autosyd(client, file_details):
                     -1002163302783,
                     video=file_path,
                     caption=caption,
-                    thumb=ph_path,
+                    thumb=SYD_PATH,
                     duration=duration
                 )
             elif type == "audio":
@@ -398,7 +401,7 @@ async def autosyd(client, file_details):
                     -1002163302783,
                     audio=file_path,
                     caption=caption,
-                    thumb=ph_path,
+                    thumb=SYD_PATH,
                     duration=duration
                 )
         except Exception as e:
