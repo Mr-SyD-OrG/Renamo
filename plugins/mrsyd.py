@@ -390,10 +390,10 @@ async def autosyd(client, file_details):
         os.remove(file_path)
         await message.delete()
         try:  # Replace with the actual thread ID of the topic
-            await client.forward_messages(
+            await client.copy_message(
                 chat_id=-1002407746052,  # Replace with the target group ID
                 from_chat_id=mrsyd,
-                message_ids=sydfil.id,
+                message_id=sydfil.id,
                 reply_to_message_id=topic_syd_id
             )
         except Exception as e:
