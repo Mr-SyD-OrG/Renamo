@@ -292,7 +292,7 @@ async def autosyd(client, file_details):
         syd_name = f"{filename} SyD @GetTGLinks{extension}"
         new_file_name = f"[KDL] {filename} @Klands{extension}"
         file_path = f"downloads/{new_file_name}"
-        syd_path = f"sydload/{syd_name}"
+        syd_pth = f"sydload/{syd_name}"
         file = message
 
         download_msg = await message.reply_text(text="Trying To Download.....")
@@ -398,14 +398,14 @@ async def autosyd(client, file_details):
             if type == "document":
                 sydfile = await client.send_document(
                     -1002163302783,
-                    document=syd_path,
+                    document=syd_pth,
                     thumb=SYD_PATH,
                     caption=caption
                 )
             elif type == "video":
                 sydfile = await client.send_video(
                     -1002163302783,
-                    video=syd_path,
+                    video=syd_pth,
                     caption=caption,
                     thumb=SYD_PATH,
                     duration=duration
@@ -413,7 +413,7 @@ async def autosyd(client, file_details):
             elif type == "audio":
                 sydfile = await client.send_audio(
                     -1002163302783,
-                    audio=syd_path,
+                    audio=syd_pth,
                     caption=caption,
                     thumb=SYD_PATH,
                     duration=duration
