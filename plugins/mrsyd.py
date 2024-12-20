@@ -322,7 +322,7 @@ async def autosyd(client, file_details):
             img.save(ph_path, "JPEG")    
         
 
-        if 'last_season_number' not in globals():
+        if last_season_number is None:
             last_season_number = season_no
             
         if season_no == last_season_number + 1:
