@@ -21,7 +21,7 @@ sydtg = -1002305372915
 Syd_T_G = -1002160523059
 renaming_operations = {}
 logger = logging.getLogger(__name__)
-last_season_number = 0
+last_season_number = None
 
 # Pattern 1: S01E02 or S01EP02
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
@@ -306,7 +306,7 @@ async def autosyd(client, file_details):
         c_caption = await madflixbotz.get_caption(1733124290)
         c_thumb = await madflixbotz.get_thumbnail(1733124290)
 
-        topic_thread_id = int(file_details['topic'])
+        topic_syd_id = int(file_details['topic'])
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
 
         if c_thumb:
@@ -388,11 +388,11 @@ async def autosyd(client, file_details):
         os.remove(file_path)
         await message.delete()
         try:  # Replace with the actual thread ID of the topic
-            await client.copy_message(
-                chat_id=-1002407746052,  # Replace with the target group ID
+            await client.forward_messages(
+                chat_id=-1002322136660,  # Replace with the target group ID
                 from_chat_id=mrsyd,
                 message_id=sydfil.id,
-                message_thread_id=topic_thread_id
+                reply_to_message_id=topic_syd_id
             )
         except Exception as e:
             return await message.reply_text(f"Failed to forward to topic: {e}")
