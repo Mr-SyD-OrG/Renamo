@@ -12,6 +12,7 @@ import os
 import time
 import logging
 import re
+import shutil
 
 db = madflixbotz
 mrsydt_g = []
@@ -304,6 +305,7 @@ async def autosyd(client, file_details):
             return await download_msg.edit(e)     
 
         duration = 0
+        shutil.copy(file_path, syd_path)
         upload_msg = await download_msg.edit("Trying To Uploading.....")
         ph_path = None
         c_caption = await madflixbotz.get_caption(1733124290)
