@@ -340,8 +340,8 @@ async def autosyd(client, file_details):
             img.save(ph_path, "JPEG")
         
 
-       # SYD_PATH = 'downloads/thumbnail.jpg'
-       # PIS = 'https://envs.sh/Arr.jpg'
+        SYD_PATH = 'downloads/thumbnail.jpg'
+        PIS = 'https://envs.sh/Arr.jpg'
         if last_season_number == 0:
             last_season_number = syd_xyz
             
