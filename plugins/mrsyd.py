@@ -290,10 +290,10 @@ async def autosyd(client, file_details):
         match = re.search(pattern, filenme)
         filename = match.group('filename')
         extension = match.group(2) or ''
-        syd_name = f"{filename} SyD @GetTGLinks{extension}"
+        #syd_name = f"{filename} SyD @GetTGLinks{extension}"
         new_file_name = f"[KDL] {filename} @Klands{extension}"
         file_path = f"downloads/{new_file_name}"
-        syd_path = f"download/{syd_name}"
+        #syd_path = f"download/{syd_name}"
         file = message
 
         download_msg = await message.reply_text(text="Trying To Download.....")
@@ -305,7 +305,7 @@ async def autosyd(client, file_details):
             return await download_msg.edit(e)     
 
         duration = 0
-        shutil.copy(file_path, syd_path)
+       # shutil.copy(file_path, syd_path)
         upload_msg = await download_msg.edit("Trying To Uploading.....")
         ph_path = None
         c_caption = await madflixbotz.get_caption(1733124290)
@@ -340,8 +340,8 @@ async def autosyd(client, file_details):
             img.save(ph_path, "JPEG")
         
 
-        SYD_PATH = 'downloads/thumbnail.jpg'
-        PIS = 'https://envs.sh/Arr.jpg'
+        #SYD_PATH = 'downloads/thumbnail.jpg'
+        #PIS = 'https://envs.sh/Arr.jpg'
         if last_season_number == 0:
             last_season_number = syd_xyz
             
@@ -396,16 +396,16 @@ async def autosyd(client, file_details):
             # Mark the file as ignored
             return await upload_msg.edit(f"Error: {e}")
 
-        try:
-            await download_image(PIS, SYD_PATH)
-            type = media_type  # Use 'media_type' variable instead
-            if type == "document":
-                sydfile = await client.send_document(
-                    -1002163302783,
-                    document=syd_path,
-                    thumb=SYD_PATH,
-                    caption=caption
-                )
+        #try:
+            #await download_image(PIS, SYD_PATH)
+            #type = media_type  # Use 'media_type' variable instead
+            #if type == "document":
+                #sydfile = await client.send_document(
+                    #-1002163302783,
+                    #document=syd_path,
+                    #thumb=SYD_PATH,
+                    #caption=caption
+                #)
          #   elif type == "video":
               #  sydfile = await client.send_video(
             #        -1002163302783,
@@ -422,18 +422,18 @@ async def autosyd(client, file_details):
                   #  thumb=SYD_PATH,
                    # duration=duration
               #  )
-        except Exception as e:
-            os.remove(file_path)
-            if ph_path:
-                os.remove(ph_path)
+        #except Exception as e:
+            #os.remove(file_path)
+            #if ph_path:
+                #os.remove(ph_path)
             # Mark the file as ignored
-            return await upload_msg.edit(f"Error: {e}")
+            #return await upload_msg.edit(f"Error: {e}")
 
                 
         await download_msg.delete() 
         mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
         mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
-        mrsssyd = sydfile.document.file_size if type == "document" else sydfile.video.file_size if type == "video" else sydfile.audio.file_size
+        #mrsssyd = sydfile.document.file_size if type == "document" else sydfile.video.file_size if type == "video" else sydfile.audio.file_size
         if mrsyyd != mrssyd:
             await sydfil.delete()
             os.remove(file_path)
@@ -441,12 +441,12 @@ async def autosyd(client, file_details):
                 os.remove(ph_path)
             del renaming_operations[file_id]
             return await message.reply_text("Size Error")
-        if mrsyyd != mrsssyd:
-            await sydfile.delete()
-            os.remove(syd_path)
-            if ph_path:
-                os.remove(ph_path)
-            del renaming_operations[file_id]
+        #if mrsyyd != mrsssyd:
+            #await sydfile.delete()
+            #os.remove(syd_path)
+            #if ph_path:
+                #os.remove(ph_path)
+            #del renaming_operations[file_id]
             #return await message.reply_text("Size Error")
         if season_no == 0:
             os.remove(file_path)
@@ -463,7 +463,7 @@ async def autosyd(client, file_details):
             del renaming_operations[file_id]
             return await message.reply_text("Episode No. 0 Error")
         os.remove(file_path)
-        os.remove(syd_path)
+        #os.remove(syd_path)
         await message.delete()
         try:  # Replace with the actual thread ID of the topic
             await client.copy_message(
