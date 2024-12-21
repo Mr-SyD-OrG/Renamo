@@ -355,9 +355,10 @@ async def autosyd(client, file_details):
                 )
                 amsyd = f'Season {syd_xyz} 🌟'
                 await client.send_message(chat_id=-1002322136660, text=amsyd, reply_to_message_id=topic_syd_id)
-                last_season_number = syd_xyz
+                
             except Exception as e:
                 print(f"Failed to send sticker to topic: {e}")
+        last_season_number = syd_xyz
         try:
             mrsyd = await db.get_dump(1733124290)
             type = media_type  # Use 'media_type' variable instead
