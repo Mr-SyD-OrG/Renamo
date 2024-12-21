@@ -9,7 +9,7 @@ from helper.utils import progress_for_pyrogram, humanbytes, convert, download_im
 from helper.database import madflixbotz
 from config import Config
 import os
-import time
+import time, asyncio
 import logging
 import re
 import shutil
