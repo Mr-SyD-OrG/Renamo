@@ -189,6 +189,7 @@ async def refuntion(client, message):
                 return
                 
             syd = file.file_name
+            await asyncio.sleep(1)
             mrsyd = await db.get_topic(1733124290)
             sydfile = {
                 'file_name': syd,
