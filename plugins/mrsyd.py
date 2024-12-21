@@ -293,7 +293,7 @@ async def autosyd(client, file_details):
         syd_name = f"{filename} SyD @GetTGLinks{extension}"
         new_file_name = f"[KDL] {filename} @Klands{extension}"
         file_path = f"downloads/{new_file_name}"
-        syd_path = f"downloads/{syd_name}"
+        syd_path = f"download/{syd_name}"
         file = message
 
         download_msg = await message.reply_text(text="Trying To Download.....")
