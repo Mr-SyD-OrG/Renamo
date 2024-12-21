@@ -271,16 +271,16 @@ async def autosyd(client, file_details):
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
             '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
                  ]
-        remove_list = ['-', '[AL]', '[KDL]']
-        for item in remove_list:
-            Syd = Syd.replace(item, "")
-        if '[Dual]' in Syd:
-            Syd = Syd.replace('[Dual]', '[ Eng + Jap ]')
         sydmen = await db.get_rep(1733124290)
         syd1 = sydmen['sydd']
         syd2 = sydmen['syddd']
         if syd1 in Syd:
             Syd = Syd.replace(syd1, syd2)
+        remove_list = ['-', '[AL]', '[KDL]']
+        for item in remove_list:
+            Syd = Syd.replace(item, "")
+        if '[Dual]' in Syd:
+            Syd = Syd.replace('[Dual]', '[ Eng + Jap ]')
         filenme = ' '.join([
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
