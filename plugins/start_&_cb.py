@@ -23,7 +23,7 @@ async def start(client, message):
 
 @Client.on_message(filters.private & filters.command("season"))
 async def sydson(client, message):
-    mrsyd = await db.get_sydson(message.from_user)
+    mrsyd = await db.get_sydson(message.from_user.id)
     if mrsyd:
         button = InlineKeyboardMarkup([[
           InlineKeyboardButton('Fᴀʟꜱᴇ ✖️', callback_data='season_false')
