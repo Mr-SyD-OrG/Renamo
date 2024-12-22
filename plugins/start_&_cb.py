@@ -26,13 +26,13 @@ async def sydson(client, message):
     mrsyd = await db.get_sydson(message.from_user)
     if mrsyd:
         button = InlineKeyboardMarkup([[
-          InlineKeyboardButton('Tʀᴜᴇ ✅', callback_data='about')
+          InlineKeyboardButton('Fᴀʟꜱᴇ ✖️', callback_data='season_false')
           ],[
           InlineKeyboardButton("✖️ Close", callback_data="close")
         ]])
     else:
         button = InlineKeyboardMarkup([[
-          InlineKeyboardButton('Fᴀʟꜱᴇ ✖️', callback_data='about')
+          InlineKeyboardButton('Tʀᴜᴇ ✅', callback_data='season_true')
           ],[
           InlineKeyboardButton("✖️ Close", callback_data="close")
         ]])
