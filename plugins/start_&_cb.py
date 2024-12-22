@@ -24,7 +24,7 @@ async def start(client, message):
 @Client.on_message(filters.private & filters.command("season"))
 async def sydson(client, message):
     mrsyd = await db.get_sydson(message.from_user)
-    if mrsyd is True:
+    if mrsyd:
         button = InlineKeyboardMarkup([[
           InlineKeyboardButton('Tʀᴜᴇ ✅', callback_data='about')
           ],[
