@@ -516,6 +516,7 @@ async def autosyd(client, file_details):
         new_file_name = f"[KDL] {filename} @Klands{extension}"
         file_path = f"downloads/{new_file_name}"
         #syd_path = f"download/{syd_name}"
+        sydname = filename.replace("480p", "").replace("720p", "").replace("1080p", "").strip()
         file = message
         download_msg = await message.reply_text(text="Trying To Download.....")
         try:
@@ -524,6 +525,18 @@ async def autosyd(client, file_details):
             # Mark the file as ignored
             del renaming_operations[file_id]
             return await download_msg.edit(e)
+        try:
+            await client.send_sticker(
+                chat_id=-1002322136660,
+                sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                reply_to_message_id=topic_syd_id
+            )
+            amsyd = f'Movie {sydname} 🌟'
+            await client.send_message(chat_id=-1002322136660, text=amsyd, reply_to_message_id=topic_syd_id)
+                
+        except Exception as e:
+            print(f"Failed to send sticker to topic: {e}")
+       
         duration = 0
        # shutil.copy(file_path, syd_path)
         upload_msg = await download_msg.edit("Trying To Uploading.....")
