@@ -266,6 +266,7 @@ async def autosyd(client, file_details):
     if episode_number and season_no:
         syd_tg = int(episode_number)
         syd_xyz = int(season_no)
+        tg_Syd_Xyz = await db.sydson(1733124290)
         formatted_episode = f"S{syd_xyz:02d}E{syd_tg:02d} "
         Syd = formatted_episode + sydX
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
