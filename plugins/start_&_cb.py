@@ -36,7 +36,7 @@ async def sydson(client, message):
           ],[
           InlineKeyboardButton("✖️ Close", callback_data="close")
         ]])
-    await message.reply_text(text=Txt.START_TXT.format(user.mention), reply_markup=button)   
+    await message.reply_text(text="Sᴇᴛ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ ɪɴ ", reply_markup=button)   
 
 @Client.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
