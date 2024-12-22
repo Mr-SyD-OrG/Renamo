@@ -211,7 +211,7 @@ async def add_dump(client, message):
 async def add_topic(client, message):
     if len(message.command) == 1:
         return await message.reply_text("**__Give The ᴅᴜᴍᴩ ᴄʜᴀɴɴᴇʟ ɪᴅ__\n\nExᴀᴍᴩʟᴇ:- `/set_dump -1002042969565`**")
-    mrsyd = message.text.split(" ", 1)[1
+    mrsyd = message.text.split(" ", 1)[1]
    # mrsyd = await client.ask(message.from_user.id, "<b>ꜱᴇɴᴅ ᴍᴇ ᴛʜᴇ ᴛᴏᴩɪᴄ ɪᴅ ᴏʀ ʟɪɴᴋ.\n\n/cancel - ᴄᴀɴᴄᴇʟ ᴛʜɪs ᴘʀᴏᴄᴇss.</b>")
     if mrsyd.startswith("https://t.me/"):
         match = re.search(r"/(\d+)$", mrsyd)
