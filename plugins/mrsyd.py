@@ -187,7 +187,8 @@ async def refuntion(client, message):
                 await client.copy_message(Syd_T_G, from_syd, syd_id)
                 await message.delete()
                 return
-                
+
+            sydmen = await db.get_sydson(1733124290)
             syd = file.file_name
             await asyncio.sleep(1)
             mrsyd = await db.get_topic(1733124290)
@@ -197,6 +198,7 @@ async def refuntion(client, message):
                 'message_id': message.id,
                 'media': file,
                 'topic': mrsyd,
+                'season': sydmen,
                 'message': message 
             }
             mrsydt_g.append(sydfile)
@@ -266,8 +268,8 @@ async def autosyd(client, file_details):
     if episode_number and season_no:
         syd_tg = int(episode_number)
         syd_xyz = int(season_no)
-        tg_Syd_Xyz = await db.get_sydson(1733124290)
-        if tg_Syd_Xyz:
+        tg_Syd_Xyz = file_details['season']
+        if tg_Syd_Xyz == True:
             formatted_episode = f"S{syd_xyz:02d}E{syd_tg:02d} "
         else:
             formatted_episode = f"E{syd_tg:02d} "
