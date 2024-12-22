@@ -267,7 +267,7 @@ async def autosyd(client, file_details):
         syd_tg = int(episode_number)
         syd_xyz = int(season_no)
         tg_Syd_Xyz = await db.get_sydson(1733124290)
-        if tg_Syd_Xyz is True:
+        if tg_Syd_Xyz:
             formatted_episode = f"S{syd_xyz:02d}E{syd_tg:02d} "
         else:
             formatted_episode = f"E{syd_tg:02d} "
