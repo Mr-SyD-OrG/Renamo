@@ -532,7 +532,7 @@ async def autosyd(client, file_details):
             return await download_msg.edit(e)
         if syd_mov == None:
             syd_mov = sydname
-        if syd_mov =! sydname:
+        if syd_mov != sydname:
             try:
                 await client.send_sticker(
                     chat_id=-1002322136660,
