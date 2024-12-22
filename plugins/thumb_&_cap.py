@@ -209,8 +209,10 @@ async def add_dump(client, message):
 	
 @Client.on_message(filters.private & filters.command('set_topic'))
 async def add_topic(client, message):
-    if len(message.command) == 1:
-        return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @Roofiverse`**")
+    mrsyd = await client.ask(message.chat.id, "<b>ꜱᴇɴᴅ ᴍᴇ ᴛʜᴇ ᴛᴏᴩɪᴄ ɪᴅ ᴏʀ ʟɪɴᴋ.\n\n/cancel - ᴄᴀɴᴄᴇʟ ᴛʜɪs ᴘʀᴏᴄᴇss.</b>")
+    if mrsyd.text == '/cancel':
+        await mrsyd.delete()
+        return await message.reply('<b>Cᴀɴᴄᴇʟᴇᴅ ᴛʜɪs ᴘʀᴏᴄᴇss 🚫</b>')
     txt = message.text.split(" ", 1)[1]
     SyD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
     await db.set_topic(message.from_user.id, txt)
