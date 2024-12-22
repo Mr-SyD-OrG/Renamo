@@ -36,7 +36,7 @@ async def sydson(client, message):
           ],[
           InlineKeyboardButton("✖️ Close", callback_data="close")
         ]])
-    await message.reply_text(text="Sᴇᴛ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ ɪɴ ", reply_markup=button)   
+    await message.reply_text(text="Sᴇᴛ ᴛʀᴜᴇ ᴏʀ ꜰᴀʟꜱᴇ, ɪꜰ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ ɪꜱ ᴛᴏ ʙᴇ ɪɴ ꜰɪʟᴇ ᴇᴠᴇʀʏᴛɪᴍᴇ (ɪꜰ ꜰɪʟᴇ ᴅᴏɴᴛ ʜᴀᴠᴇ ꜱᴇᴀꜱᴏɴ ɴᴏ. ɪᴛ ᴡɪʟʟ ʙᴇ ᴅᴇꜰᴜᴀʟᴛ ᴛᴏ 1) ᴏʀ ꜰᴀʟꜱᴇ ᴛᴏ ᴀᴠᴏɪᴅ ꜱᴇᴀꜱᴏɴ ᴛᴀɢ", reply_markup=button)   
 
 @Client.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
@@ -121,7 +121,7 @@ async def cb_handler(client, query: CallbackQuery):
     elif data == "season_false":
         await db.set_sydson(user_id, False)
         await query.message.edit_text(
-            text=Txt.ABOUT_TXT,
+            text="Sᴇᴛ ᴛʀᴜᴇ ᴏʀ ꜰᴀʟꜱᴇ, ɪꜰ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ ɪꜱ ᴛᴏ ʙᴇ ɪɴ ꜰɪʟᴇ ᴇᴠᴇʀʏᴛɪᴍᴇ (ɪꜰ ꜰɪʟᴇ ᴅᴏɴᴛ ʜᴀᴠᴇ ꜱᴇᴀꜱᴏɴ ɴᴏ. ɪᴛ ᴡɪʟʟ ʙᴇ ᴅᴇꜰᴜᴀʟᴛ ᴛᴏ 1) ᴏʀ ꜰᴀʟꜱᴇ ᴛᴏ ᴀᴠᴏɪᴅ ꜱᴇᴀꜱᴏɴ ᴛᴀɢ",
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton("Tʀᴜᴇ ✅", callback_data="season_true")
             ],[
@@ -132,7 +132,7 @@ async def cb_handler(client, query: CallbackQuery):
     elif data == "season_true":
         await db.set_sydson(user_id, True)
         await query.message.edit_text(
-            text=Txt.ABOUT_TXT,
+            text="Sᴇᴛ ᴛʀᴜᴇ ᴏʀ ꜰᴀʟꜱᴇ, ɪꜰ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ ɪꜱ ᴛᴏ ʙᴇ ɪɴ ꜰɪʟᴇ ᴇᴠᴇʀʏᴛɪᴍᴇ (ɪꜰ ꜰɪʟᴇ ᴅᴏɴᴛ ʜᴀᴠᴇ ꜱᴇᴀꜱᴏɴ ɴᴏ. ɪᴛ ᴡɪʟʟ ʙᴇ ᴅᴇꜰᴜᴀʟᴛ ᴛᴏ 1) ᴏʀ ꜰᴀʟꜱᴇ ᴛᴏ ᴀᴠᴏɪᴅ ꜱᴇᴀꜱᴏɴ ᴛᴀɢ",
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton("Fᴀʟꜱᴇ ✖️", callback_data="season_false")
             ],[
