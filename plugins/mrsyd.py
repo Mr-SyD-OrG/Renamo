@@ -284,7 +284,7 @@ async def autosyd(client, file_details):
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
-            Syd = Syd.replace('[Dual]', '[ Eng + Jap ]')
+            Syd = Syd.replace('[Dual]', 'Dual')
         filenme = ' '.join([
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
@@ -486,4 +486,29 @@ async def autosyd(client, file_details):
 
 # Remove the entry from renaming_operations after successful renaming
         del renaming_operations[file_id]
+    else:
+        Syd = sydX
+        sydmen = await db.get_rep(1733124290)
+        syd1 = sydmen['sydd']
+        syd2 = sydmen['syddd']
+        if syd1 in Syd:
+            Syd = Syd.replace(syd1, syd2)
+        remove_list = ['-', '[AL]', '[KDL]']
+        for item in remove_list:
+            Syd = Syd.replace(item, "")
+        filenme = ' '.join([
+            x for x in Syd.split()
+            if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
+        ])
+        if not (filenme.lower().endswith(".mkv") or filenme.lower().endswith(".mp4") or filenme.lower().endswith(".Mkv")):
+            filenme += ".mkv"
+        pattern = r'(?P<filename>.*?)(\.\w+)?$'
+        match = re.search(pattern, filenme)
+        filename = match.group('filename')
+        extension = match.group(2) or ''
+        #syd_name = f"{filename} SyD @GetTGLinks{extension}"
+        new_file_name = f"[KDL] {filename} @Klands{extension}"
+        file_path = f"downloads/{new_file_name}"
+        #syd_path = f"download/{syd_name}"
+        file = message
 
