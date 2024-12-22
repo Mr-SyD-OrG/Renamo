@@ -20,6 +20,7 @@ class Database:
             sydd=None,
             syddd=None,
             topic=None,
+            sydson=True,
             format_template=None  # Add this line for the format template
         )
 
@@ -92,10 +93,17 @@ class Database:
     async def get_dump(self, id):
         user = await self.col.find_one({'_id': int(id)})
         return user.get('dump', int(id))
-        
+
+    async def set_sydson(self, id, syd: bool):
+        await self.col.update_one({'_id': int(id)}, {'$set': {'syd': syd}})
+
     async def set_topic(self, id, syd: int):
         await self.col.update_one({'_id': int(id)}, {'$set': {'topic': int(syd)}})
-
+    
+    async def get_sydson(self, id):
+        user = await self.col.find_one({'_id': int(id)})
+        return user.get('sydson', int(id))
+    
     async def get_topic(self, id):
         user = await self.col.find_one({'_id': int(id)})
         return user.get('topic', int(id))
