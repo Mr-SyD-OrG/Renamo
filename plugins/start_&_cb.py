@@ -48,8 +48,8 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.START_TXT.format(query.from_user.mention),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton('Uᴩᴅᴀᴛᴇ', url='https://t.me/Madflix_Bots'),
-                InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', url='https://t.me/MadflixBots_Support')
+                InlineKeyboardButton('Uᴩᴅᴀᴛᴇ', url='https://t.me/Bot_Cracker'),
+                InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Mod_Moviez_X')
                 ],[
                 InlineKeyboardButton('⚡ Hᴇʟᴩ ⚡', callback_data='help'),
                 InlineKeyboardButton('⚡ Δʙᴏᴜᴛ ⚡', callback_data='about')
