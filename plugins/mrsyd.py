@@ -495,6 +495,9 @@ async def autosyd(client, file_details):
         sydmen = await db.get_rep(1733124290)
         syd1 = sydmen['sydd']
         syd2 = sydmen['syddd']
+        mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
+            '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
+                 ]
         if syd1 in Syd:
             Syd = Syd.replace(syd1, syd2)
         if '[Dual]' in Syd:
