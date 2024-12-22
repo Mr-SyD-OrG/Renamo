@@ -209,7 +209,7 @@ async def add_dump(client, message):
 	
 @Client.on_message(filters.private & filters.command('set_topic'))
 async def add_topic(client, message):
-    mrsyd = await client.ask(message.chat.id, "<b>ꜱᴇɴᴅ ᴍᴇ ᴛʜᴇ ᴛᴏᴩɪᴄ ɪᴅ ᴏʀ ʟɪɴᴋ.\n\n/cancel - ᴄᴀɴᴄᴇʟ ᴛʜɪs ᴘʀᴏᴄᴇss.</b>")
+    mrsyd = await client.ask(message.from_user.id, "<b>ꜱᴇɴᴅ ᴍᴇ ᴛʜᴇ ᴛᴏᴩɪᴄ ɪᴅ ᴏʀ ʟɪɴᴋ.\n\n/cancel - ᴄᴀɴᴄᴇʟ ᴛʜɪs ᴘʀᴏᴄᴇss.</b>")
     if mrsyd.text.startswith("https://t.me/"):
         match = re.search(r"/(\d+)$", mrsyd.text)
         if match:
