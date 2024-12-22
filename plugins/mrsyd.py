@@ -223,7 +223,7 @@ async def process_queue(client):
 
 
 async def autosyd(client, file_details):
-    global last_season_number, syd_top
+    global last_season_number, syd_top, syd_mov
     sydd = file_details['file_name']
     media = file_details['media']
     message = file_details['message']
@@ -530,18 +530,21 @@ async def autosyd(client, file_details):
             # Mark the file as ignored
             del renaming_operations[file_id]
             return await download_msg.edit(e)
-        try:
-            await client.send_sticker(
-                chat_id=-1002322136660,
-                sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
-                reply_to_message_id=topic_syd_id
-            )
-            amsyd = f'Movie {sydname} 🌟'
-            await client.send_message(chat_id=-1002322136660, text=amsyd, reply_to_message_id=topic_syd_id)
+        if syd_mov == None:
+            syd_mov = sydname
+        if syd_mov =! sydname:
+            try:
+                await client.send_sticker(
+                    chat_id=-1002322136660,
+                    sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                    reply_to_message_id=topic_syd_id
+                )
+                amsyd = f'Movie {sydname} 🌟'
+                await client.send_message(chat_id=-1002322136660, text=amsyd, reply_to_message_id=topic_syd_id)
                 
-        except Exception as e:
-            print(f"Failed to send sticker to topic: {e}")
-       
+            except Exception as e:
+                print(f"Failed to send sticker to topic: {e}")
+        syd_mov = sydname
         duration = 0
        # shutil.copy(file_path, syd_path)
         upload_msg = await download_msg.edit("Trying To Uploading.....")
