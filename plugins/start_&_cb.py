@@ -4,7 +4,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, ForceRepl
 
 from helper.database import madflixbotz
 from config import Config, Txt  
-
+db = madflixbotz
 @Client.on_message(filters.private & filters.command("start"))
 async def start(client, message):
     user = message.from_user
@@ -20,6 +20,12 @@ async def start(client, message):
         await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)       
     else:
         await message.reply_text(text=Txt.START_TXT.format(user.mention), reply_markup=button, disable_web_page_preview=True)   
+
+@Client.on_message(filters.private & filters.command("season"))
+async def sydson(client, message):
+    mrsyd = await db.get_sydson(message.from_user)
+    button = InlineKeyboardMarkup([[
+      InlineKeyboardButton('⚡ Aʙᴏᴜᴛ ⚡', callback_data='about')
 
 @Client.on_callback_query()
 async def cb_handler(client, query: CallbackQuery):
