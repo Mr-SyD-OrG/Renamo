@@ -12,7 +12,7 @@ import os
 import time, asyncio
 import logging
 import re
-import shutil
+#import shutil
 
 db = madflixbotz
 mrsydt_g = []
