@@ -517,4 +517,103 @@ async def autosyd(client, file_details):
         file_path = f"downloads/{new_file_name}"
         #syd_path = f"download/{syd_name}"
         file = message
+        download_msg = await message.reply_text(text="Trying To Download.....")
+        try:
+            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
+        except Exception as e:
+            # Mark the file as ignored
+            del renaming_operations[file_id]
+            return await download_msg.edit(e)
+        duration = 0
+       # shutil.copy(file_path, syd_path)
+        upload_msg = await download_msg.edit("Trying To Uploading.....")
+        ph_path = None
+        c_caption = await madflixbotz.get_caption(1733124290)
+        c_thumb = await madflixbotz.get_thumbnail(1733124290)
+        topic_syd_id = file_details['topic']
+        caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
+        if syd_top == 0:
+            syd_top = topic_syd_id
+            
+        if syd_top != topic_syd_id:
+            try:
+                await client.send_sticker(
+                    chat_id=-1002322136660,
+                    sticker="CAACAgUAAxkBAAEEOcxnZO0ftNzDaNCCvOdzqjnmTwiwWwACawgAAvJ9SFVrAAGBhWipiW4eBA",
+                    reply_to_message_id=syd_top
+                )
+                syd_top = topic_syd_id
+            except Exception as e:
+                print(f"Failed to end send sticker to topic: {e}")
+        if c_thumb:
+            ph_path = await client.download_media(c_thumb)
+            print(f"Thumbnail downloaded successfully. Path: {ph_path}")
+        elif media_type == "video" and message.video.thumbs:
+            ph_path = await client.download_media(message.video.thumbs[0].file_id)
+
+        if ph_path:
+            Image.open(ph_path).convert("RGB").save(ph_path)
+            img = Image.open(ph_path)
+            img.resize((320, 320))
+            img.save(ph_path, "JPEG")
+        try:
+            mrsyd = await db.get_dump(1733124290)
+            type = media_type  # Use 'media_type' variable instead
+            if type == "document":
+                sydfil = await client.send_document(
+                    mrsyd,
+                    document=file_path,
+                    thumb=ph_path,
+                    caption=caption,
+                    progress=progress_for_pyrogram,
+                    progress_args=("Upload Started.....", upload_msg, time.time())
+                )
+            elif type == "video":
+                sydfil = await client.send_video(
+                    mrsyd,
+                    video=file_path,
+                    caption=caption,
+                    thumb=ph_path,
+                    duration=duration,
+                    progress=progress_for_pyrogram,
+                    progress_args=("Upload Started.....", upload_msg, time.time())
+                )
+            elif type == "audio":
+                sydfil = await client.send_audio(
+                    mrsyd,
+                    audio=file_path,
+                    caption=caption,
+                    thumb=ph_path,
+                    duration=duration,
+                    progress=progress_for_pyrogram,
+                    progress_args=("Upload Started.....", upload_msg, time.time())
+                )
+        except Exception as e:
+            os.remove(file_path)
+            if ph_path:
+                os.remove(ph_path)
+            # Mark the file as ignored
+            return await upload_msg.edit(f"Error: {e}")
+        await download_msg.edit("No ᴇᴩɪꜱᴏᴅᴇ ɴᴜᴍʙᴇʀ ᴀɴᴅ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ")
+        mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
+        mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
+        if mrsyyd != mrssyd:
+            await sydfil.delete()
+            os.remove(file_path)
+            if ph_path:
+                os.remove(ph_path)
+            del renaming_operations[file_id]
+            return await message.reply_text("Size Error")
+        try:  # Replace with the actual thread ID of the topic
+            await client.copy_message(
+                chat_id=-1002322136660,  # Replace with the target group ID
+                from_chat_id=mrsyd,
+                message_id=sydfil.id,
+                reply_to_message_id=topic_syd_id
+            )
+        except Exception as e:
+            return await message.reply_text(f"Failed to forward to topic: {e}")
+        if ph_path:
+            os.remove(ph_path)
+        del renaming_operations[file_id]
 
