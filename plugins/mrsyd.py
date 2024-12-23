@@ -162,7 +162,7 @@ def extract_season_number(filename):
     return None
 
 # Example Usage:
-filename = "Naruto Shippuden S01 - EP07 - 1080p [Dual Audio] @Madflix_Bots.mkv"
+filename = "Naruto Shippuden S01 - EP07 - 1080p [Dual Audio].mkv"
 episode_number = extract_episode_number(filename)
 print(f"Extracted Episode Number: {episode_number}")
 
@@ -285,7 +285,7 @@ async def autosyd(client, file_details):
             Syd = Syd.replace(syd1, syd2)
         if '_' in Syd:
             Syd = Syd.replace('_', ' ')
-        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL']
+        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'fair']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
@@ -509,7 +509,7 @@ async def autosyd(client, file_details):
             Syd = Syd.replace('[Multi]', 'Multi')
         if '_' in Syd:
             Syd = Syd.replace('_', ' ')
-        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'www', [KDL]]
+        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'www', 'KDL', 'fair']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         filenme = ' '.join([
