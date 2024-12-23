@@ -509,7 +509,7 @@ async def autosyd(client, file_details):
             Syd = Syd.replace('[Multi]', 'Multi')
         if '_' in Syd:
             Syd = Syd.replace('_', ' ')
-        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'www', 'KDL', 'faoooooir']
+        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'www', 'KDL', 'fair']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         filenme = ' '.join([
