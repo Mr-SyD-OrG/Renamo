@@ -24,7 +24,7 @@ async def start(client, message):
 @Client.on_message(filters.private & filters.command("season"))
 async def sydson(client, message):
     mrsyd = await db.get_sydson(message.from_user.id)
-    if mrsyd:
+    if mrsyd == "True":
         button = InlineKeyboardMarkup([[
           InlineKeyboardButton('Fᴀʟꜱᴇ ✖️', callback_data='season_false')
           ],[
@@ -119,7 +119,7 @@ async def cb_handler(client, query: CallbackQuery):
         )
 
     elif data == "season_false":
-        await db.set_sydson(user_id, False)
+        await db.set_sydson(user_id, "False")
         await query.message.edit_text(
             text="Sᴇᴛ ᴛʀᴜᴇ ᴏʀ ꜰᴀʟꜱᴇ, ɪꜰ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ ɪꜱ ᴛᴏ ʙᴇ ɪɴ ꜰɪʟᴇ ᴇᴠᴇʀʏᴛɪᴍᴇ (ɪꜰ ꜰɪʟᴇ ᴅᴏɴᴛ ʜᴀᴠᴇ ꜱᴇᴀꜱᴏɴ ɴᴏ. ɪᴛ ᴡɪʟʟ ʙᴇ ᴅᴇꜰᴜᴀʟᴛ ᴛᴏ 1) ᴏʀ ꜰᴀʟꜱᴇ ᴛᴏ ᴀᴠᴏɪᴅ ꜱᴇᴀꜱᴏɴ ᴛᴀɢ",
             reply_markup=InlineKeyboardMarkup([[
@@ -130,7 +130,7 @@ async def cb_handler(client, query: CallbackQuery):
         )
             
     elif data == "season_true":
-        await db.set_sydson(user_id, True)
+        await db.set_sydson(user_id, "True")
         await query.message.edit_text(
             text="Sᴇᴛ ᴛʀᴜᴇ ᴏʀ ꜰᴀʟꜱᴇ, ɪꜰ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ ɪꜱ ᴛᴏ ʙᴇ ɪɴ ꜰɪʟᴇ ᴇᴠᴇʀʏᴛɪᴍᴇ (ɪꜰ ꜰɪʟᴇ ᴅᴏɴᴛ ʜᴀᴠᴇ ꜱᴇᴀꜱᴏɴ ɴᴏ. ɪᴛ ᴡɪʟʟ ʙᴇ ᴅᴇꜰᴜᴀʟᴛ ᴛᴏ 1) ᴏʀ ꜰᴀʟꜱᴇ ᴛᴏ ᴀᴠᴏɪᴅ ꜱᴇᴀꜱᴏɴ ᴛᴀɢ",
             reply_markup=InlineKeyboardMarkup([[
