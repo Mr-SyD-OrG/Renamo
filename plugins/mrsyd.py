@@ -284,8 +284,6 @@ async def autosyd(client, file_details):
         syd2 = sydmen['syddd']
         if syd1 in Syd:
             Syd = Syd.replace(syd1, syd2)
-        if '_' in Syd:
-            Syd = Syd.replace('_', ' ')
         remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir', '[', ']']
         for item in remove_list:
             Syd = Syd.replace(item, "")
@@ -299,6 +297,8 @@ async def autosyd(client, file_details):
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
         ])
+        if '_' in Syd:
+            Syd = Syd.replace('_', ' ')
         if not (filenme.lower().endswith(".mkv") or filenme.lower().endswith(".mp4") or filenme.lower().endswith(".Mkv")):
             filenme += ".mkv"
         pattern = r'(?P<filename>.*?)(\.\w+)?$'
