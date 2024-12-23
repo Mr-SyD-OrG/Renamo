@@ -94,7 +94,7 @@ class Database:
         user = await self.col.find_one({'_id': int(id)})
         return user.get('dump', int(id))
 
-    async def set_sydson(self, id, syd: bool):
+    async def set_sydson(self, id, syd):
         await self.col.update_one({'_id': int(id)}, {'$set': {'syd': syd}})
 
     async def set_topic(self, id, syd: int):
