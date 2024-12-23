@@ -283,7 +283,7 @@ async def autosyd(client, file_details):
         syd2 = sydmen['syddd']
         if syd1 in Syd:
             Syd = Syd.replace(syd1, syd2)
-        remove_list = ['-', '[AL]', '[KDL]']
+        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', '_']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
@@ -505,7 +505,7 @@ async def autosyd(client, file_details):
             Syd = Syd.replace('[Dual]', 'Dual')
         if '[Multi]' in Syd:
             Syd = Syd.replace('[Multi]', 'Multi')
-        remove_list = ['-', '[AL]', '[KDL]']
+        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', '_']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         filenme = ' '.join([
@@ -531,7 +531,7 @@ async def autosyd(client, file_details):
             # Mark the file as ignored
             del renaming_operations[file_id]
             return await download_msg.edit(e)
-        if syd_mov == None:
+        if syd_mov == "None":
             syd_mov = sydname
         if syd_mov != sydname:
             try:
