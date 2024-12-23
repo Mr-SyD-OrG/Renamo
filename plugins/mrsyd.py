@@ -14,6 +14,7 @@ import logging
 import re
 #import shutil
 
+fulsyd = "fair"
 db = madflixbotz
 mrsydt_g = []
 processing = False
@@ -512,6 +513,8 @@ async def autosyd(client, file_details):
         remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'www', 'KDL', 'fair', '[', ']']
         for item in remove_list:
             Syd = Syd.replace(item, "")
+        if fulsyd in Syd:
+            Syd = Syd.replace(fulsyd, '')
         filenme = ' '.join([
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
