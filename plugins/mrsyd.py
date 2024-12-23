@@ -24,7 +24,7 @@ renaming_operations = {}
 logger = logging.getLogger(__name__)
 last_season_number = 0
 syd_top = 0
-syd_mov = None
+syd_mov = "None"
 
 # Pattern 1: S01E02 or S01EP02
 pattern1 = re.compile(r'S(\d+)(?:E|EP)(\d+)')
