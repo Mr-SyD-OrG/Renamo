@@ -273,7 +273,7 @@ async def autosyd(client, file_details):
         tg_Syd_Xyz = file_details['season']
         if tg_Syd_Xyz == "True":
             formatted_episode = f"S{syd_xyz:02d}E{syd_tg:02d} "
-        if tg_Syd_Xyz == "False":
+        elif tg_Syd_Xyz == "False":
             formatted_episode = f"E{syd_tg:02d} "
         Syd = formatted_episode + sydX
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
