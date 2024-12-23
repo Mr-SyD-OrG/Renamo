@@ -293,6 +293,8 @@ async def autosyd(client, file_details):
             Syd = Syd.replace('[Dual]', 'Dual')
         if '[Multi]' in Syd:
             Syd = Syd.replace('[Multi]', 'Multi')
+        if fulsyd in Syd:
+            Syd = Syd.replace(fulsyd, "")
         filenme = ' '.join([
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
@@ -514,7 +516,7 @@ async def autosyd(client, file_details):
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if fulsyd in Syd:
-            Syd = Syd.replace(fulsyd, '')
+            Syd = Syd.replace(fulsyd, "")
         filenme = ' '.join([
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
