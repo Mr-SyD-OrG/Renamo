@@ -271,7 +271,7 @@ async def autosyd(client, file_details):
         syd_tg = int(episode_number)
         syd_xyz = int(season_no)
         tg_Syd_Xyz = file_details['season']
-        if tg_Syd_Xyz == True:
+        if tg_Syd_Xyz == "True":
             formatted_episode = f"S{syd_xyz:02d}E{syd_tg:02d} "
         else:
             formatted_episode = f"E{syd_tg:02d} "
