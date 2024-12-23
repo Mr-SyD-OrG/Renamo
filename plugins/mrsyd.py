@@ -285,7 +285,7 @@ async def autosyd(client, file_details):
             Syd = Syd.replace(syd1, syd2)
         if '_' in Syd:
             Syd = Syd.replace('_', ' ')
-        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir']
+        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir', , '[', ']']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
@@ -509,7 +509,7 @@ async def autosyd(client, file_details):
             Syd = Syd.replace('[Multi]', 'Multi')
         if '_' in Syd:
             Syd = Syd.replace('_', ' ')
-        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'www', 'KDL', 'fair']
+        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'www', 'KDL', 'fair', '[', ']']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         filenme = ' '.join([
