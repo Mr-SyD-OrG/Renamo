@@ -20,7 +20,7 @@ class Database:
             sydd=None,
             syddd=None,
             topic=None,
-            sydson=True,
+            sydson="True",
             format_template=None  # Add this line for the format template
         )
 
