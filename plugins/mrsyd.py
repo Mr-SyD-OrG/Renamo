@@ -358,37 +358,37 @@ async def autosyd(client, file_details):
                 if qualit == "360p"
                     await client.send_sticker(
                         chat_id=-1002322136660,
-                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        sticker="CAACAgUAAxkBAAEEOvZnasxONLg3zHkwBi52PsbiYZDy4AACLxQAAuwdUFcKB6KPifdvMB4E",
                         reply_to_message_id=topic_syd_id
                     )
                 elif qualit == "480p"
                     await client.send_sticker(
                         chat_id=-1002322136660,
-                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        sticker="CAACAgUAAxkBAAEEOvVnasxNvJquI8hykr3CUvnFwuhD0AACvhIAAkZ3WVeHD_oDDwlT-h4E",
                         reply_to_message_id=topic_syd_id
                 )
                 elif qualit == "720p"
                     await client.send_sticker(
                         chat_id=-1002322136660,
-                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        sticker="CAACAgUAAxkBAAEEOvdnasxPpmOR0wtba78SUUrcz7OCdgACjhEAArLMWVeqZU0pn2UNDx4E",
                         reply_to_message_id=topic_syd_id
                     )
                 elif qualit == "1080p"
                     await client.send_sticker(
                         chat_id=-1002322136660,
-                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        sticker="CAACAgUAAxkBAAEEOvhnasxQl3SeR-S-iLJuLmW16ItMfQACWxUAAvcKWVdq4miltFHN9h4E",
                         reply_to_message_id=topic_syd_id
                     )
                 elif qualit == "2160p"
                     await client.send_sticker(
                         chat_id=-1002322136660,
-                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        sticker="CAACAgUAAxkBAAEEOvlnasxRvumZMN2V17odpte8j6NxgwACnRUAAicgWFcwwUluHbCrbR4E",
                         reply_to_message_id=topic_syd_id
                     )
                 elif qualit == "4K"
                     await client.send_sticker(
                         chat_id=-1002322136660,
-                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        sticker="CAACAgUAAxkBAAEEOvpnasxTpXTMsefsYw-pEBXpmFvzPwACawgAAvJ9SFVrAAGBhWipiW4eBA",
                         reply_to_message_id=topic_syd_id
                 )
             except Exception as e:
