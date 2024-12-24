@@ -373,13 +373,13 @@ async def autosyd(client, file_details):
                         sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
                         reply_to_message_id=topic_syd_id
                     )
-                elif qualit == "480p"
+                elif qualit == "2160p"
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
                         reply_to_message_id=topic_syd_id
                     )
-                elif qualit == "480p"
+                elif qualit == "4K"
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
