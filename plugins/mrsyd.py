@@ -355,12 +355,18 @@ async def autosyd(client, file_details):
         last_season_number = syd_xyz
         if syd_qua != qualit:
             try:
-                if qualit == "480p"
+                if qualit == "360p"
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
                         reply_to_message_id=topic_syd_id
                     )
+                elif qualit == "480p"
+                    await client.send_sticker(
+                        chat_id=-1002322136660,
+                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        reply_to_message_id=topic_syd_id
+                )
                 elif qualit == "720p"
                     await client.send_sticker(
                         chat_id=-1002322136660,
