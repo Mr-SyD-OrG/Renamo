@@ -80,28 +80,7 @@ def extract_quality(filename):
         quality7 = "2k"
         print(f"Quality: {quality7}")
         return quality7
-
-    match8 = re.search(pattern8, filename)
-    if match8:
-        print("Matched Pattern 8")
-        quality8 = "HdRip"
-        print(f"Quality: {quality8}")
-        return quality8
-
-    match9 = re.search(pattern9, filename)
-    if match9:
-        print("Matched Pattern 9")
-        quality9 = "4kX264"
-        print(f"Quality: {quality9}")
-        return quality9
-
-    match10 = re.search(pattern10, filename)
-    if match10:
-        print("Matched Pattern 10")
-        quality10 = "4kx265"
-        print(f"Quality: {quality10}")
-        return quality10    
-
+    
     # Return "Unknown" if no pattern matches
     unknown_quality = "Unknown"
     print(f"Quality: {unknown_quality}")
@@ -264,6 +243,7 @@ async def autosyd(client, file_details):
             return  # Exit the handler if the file is being ignored
     renaming_operations[file_id] = datetime.now()
     episode_number = extract_episode_number(file_name)
+    qualit = extract_quality(file_name)
     season_no = extract_season_number(file_name) if extract_season_number(file_name) else '01'
     print(f"Extracted Episode Number: {episode_number}")
     
@@ -375,10 +355,35 @@ async def autosyd(client, file_details):
         last_season_number = syd_xyz
         if syd_qua != qualit:
             try:
-                await client.send_sticker(
-                    chat_id=-1002322136660,
-                    sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
-                    reply_to_message_id=topic_syd_id
+                if qualit == "480p"
+                    await client.send_sticker(
+                        chat_id=-1002322136660,
+                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        reply_to_message_id=topic_syd_id
+                    )
+                elif qualit == "720p"
+                    await client.send_sticker(
+                        chat_id=-1002322136660,
+                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        reply_to_message_id=topic_syd_id
+                    )
+                elif qualit == "1080p"
+                    await client.send_sticker(
+                        chat_id=-1002322136660,
+                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        reply_to_message_id=topic_syd_id
+                    )
+                elif qualit == "480p"
+                    await client.send_sticker(
+                        chat_id=-1002322136660,
+                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        reply_to_message_id=topic_syd_id
+                    )
+                elif qualit == "480p"
+                    await client.send_sticker(
+                        chat_id=-1002322136660,
+                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        reply_to_message_id=topic_syd_id
                 )
             except Exception as e:
                 print(f"Failed to send sticker to topic: {e}")
