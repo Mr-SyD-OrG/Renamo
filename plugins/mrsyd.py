@@ -225,7 +225,7 @@ async def process_queue(client):
 
 
 async def autosyd(client, file_details):
-    global last_season_number, syd_top, syd_mov
+    global last_season_number, syd_top, syd_mov, syd_qua
     sydd = file_details['file_name']
     media = file_details['media']
     message = file_details['message']
@@ -373,6 +373,16 @@ async def autosyd(client, file_details):
             except Exception as e:
                 print(f"Failed to send sticker to topic: {e}")
         last_season_number = syd_xyz
+        if syd_qua != qualit:
+            try:
+                await client.send_sticker(
+                    chat_id=-1002322136660,
+                    sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                    reply_to_message_id=topic_syd_id
+                )
+            except Exception as e:
+                print(f"Failed to send sticker to topic: {e}")
+        
         try:
             mrsyd = await db.get_dump(1733124290)
             type = media_type  # Use 'media_type' variable instead
