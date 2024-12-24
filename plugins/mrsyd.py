@@ -25,6 +25,7 @@ renaming_operations = {}
 logger = logging.getLogger(__name__)
 last_season_number = 0
 syd_top = 0
+syd_qua = "None"
 syd_mov = "None"
 
 # Pattern 1: S01E02 or S01EP02
@@ -353,6 +354,7 @@ async def autosyd(client, file_details):
             except Exception as e:
                 print(f"Failed to send sticker to topic: {e}")
         last_season_number = syd_xyz
+        if syd_qua == "None":
         if syd_qua != qualit:
             try:
                 if qualit == "360p"
@@ -393,7 +395,7 @@ async def autosyd(client, file_details):
                 )
             except Exception as e:
                 print(f"Failed to send sticker to topic: {e}")
-        
+        syd_qua = qualit
         try:
             mrsyd = await db.get_dump(1733124290)
             type = media_type  # Use 'media_type' variable instead
