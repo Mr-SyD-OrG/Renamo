@@ -355,6 +355,7 @@ async def autosyd(client, file_details):
                 print(f"Failed to send sticker to topic: {e}")
         last_season_number = syd_xyz
         if syd_qua == "None":
+            syd_qua = qualit
         if syd_qua != qualit:
             try:
                 if qualit == "360p"
