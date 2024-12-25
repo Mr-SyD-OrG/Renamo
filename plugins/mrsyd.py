@@ -358,44 +358,44 @@ async def autosyd(client, file_details):
             syd_qua = qualit
         if syd_qua != qualit:
             try:
-                if qualit == "360p"
+                if qualit == "360p":
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOvZnasxONLg3zHkwBi52PsbiYZDy4AACLxQAAuwdUFcKB6KPifdvMB4E",
                         reply_to_message_id=topic_syd_id
                     )
-                elif qualit == "480p"
+                elif qualit == "480p":
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOvVnasxNvJquI8hykr3CUvnFwuhD0AACvhIAAkZ3WVeHD_oDDwlT-h4E",
                         reply_to_message_id=topic_syd_id
                 )
-                elif qualit == "720p"
+                elif qualit == "720p":
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOvdnasxPpmOR0wtba78SUUrcz7OCdgACjhEAArLMWVeqZU0pn2UNDx4E",
                         reply_to_message_id=topic_syd_id
                     )
-                elif qualit == "1080p"
+                elif qualit == "1080p":
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOvhnasxQl3SeR-S-iLJuLmW16ItMfQACWxUAAvcKWVdq4miltFHN9h4E",
                         reply_to_message_id=topic_syd_id
                     )
-                elif qualit == "2160p"
+                elif qualit == "2160p":
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOvlnasxRvumZMN2V17odpte8j6NxgwACnRUAAicgWFcwwUluHbCrbR4E",
                         reply_to_message_id=topic_syd_id
                     )
-                elif qualit == "4K"
+                elif qualit == "4K":
                     await client.send_sticker(
                         chat_id=-1002322136660,
                         sticker="CAACAgUAAxkBAAEEOvpnasxTpXTMsefsYw-pEBXpmFvzPwACawgAAvJ9SFVrAAGBhWipiW4eBA",
                         reply_to_message_id=topic_syd_id
                 )
             except Exception as e:
-                print(f"Failed to send sticker to topic: {e}")
+                print(f"Failed to send sticker to topic for quality : {e}")
         syd_qua = qualit
         try:
             mrsyd = await db.get_dump(1733124290)
