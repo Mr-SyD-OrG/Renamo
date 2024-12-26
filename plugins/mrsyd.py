@@ -654,6 +654,43 @@ async def autosyd(client, file_details):
         mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
         if mrsyyd != mrssyd:
             await sydfil.delete()
+            try:  # Use 'media_type' variable instead
+                if type == "document":
+                    newsydfil = await client.send_document(
+                        mrsyd,
+                        document=file_path,
+                        thumb=ph_path,
+                        caption=caption,
+                        progress=progress_for_pyrogram,
+                        progress_args=("Upload Started.....", upload_msg, time.time())
+                    )
+                elif type == "video":
+                    newsydfil = await client.send_video(
+                        mrsyd,
+                        video=file_path,
+                        caption=caption,
+                        thumb=ph_path,
+                        duration=duration,
+                        progress=progress_for_pyrogram,
+                        progress_args=("Upload Started.....", upload_msg, time.time())
+                    )
+                elif type == "audio":
+                    newsydfil = await client.send_audio(
+                        mrsyd,
+                        audio=file_path,
+                        caption=caption,
+                        thumb=ph_path,
+                        duration=duration,
+                        progress=progress_for_pyrogram,
+                        progress_args=("Upload Started.....", upload_msg, time.time())
+                    )
+            except Exception as e:
+                os.remove(file_path)
+                if ph_path:
+                    os.remove(ph_path)
+            # Mark the file as ignored
+                return await upload_msg.edit(f"Error: {e}")
+            mrsyyd = newsydfil.document.file_size if type == "document" else newsydfil.video.file_size if type == "video" else newsydfil.audio.file_size
             os.remove(file_path)
             if ph_path:
                 os.remove(ph_path)
