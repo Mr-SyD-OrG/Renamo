@@ -19,7 +19,9 @@ async def handle_metadata(bot: Client, message: Message):
 @Client.on_message(filters.private & filters.command('set_metadata'))
 async def handle_set_metadata(bot: Client, message: Message):
     try:
-        metadata = await bot.ask(text=Txt.SEND_METADATA, chat_id=message.from_user.id, filters=filters.text, timeout=30, disable_web_page_preview=True)
+        metadata = await bot.ask(text=Txt.SEND_METADATA, chat_id=message.from_user.id, filters=filters.text, disable_web_page_preview=True)
+    except:
+        return 
     if metadata == "/cancel":
         return
     print(metadata.text)
