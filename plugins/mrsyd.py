@@ -474,13 +474,13 @@ async def autosyd(client, file_details):
         mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
         mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
         #mrsssyd = sydfile.document.file_size if type == "document" else sydfile.video.file_size if type == "video" else sydfile.audio.file_size
-        if mrsyyd != mrssyd:
-            await sydfil.delete()
-            os.remove(file_path)
-            if ph_path:
-                os.remove(ph_path)
-            del renaming_operations[file_id]
-            return await message.reply_text("Size Error")
+        #if mrsyyd != mrssyd:
+           # await sydfil.delete()
+            #os.remove(file_path)
+           # if ph_path:
+             #   os.remove(ph_path)
+          #  del renaming_operations[file_id]
+           # return await message.reply_text("Size Error")
         #if mrsyyd != mrsssyd:
             #await sydfile.delete()
             #os.remove(syd_path)
@@ -489,22 +489,12 @@ async def autosyd(client, file_details):
             #del renaming_operations[file_id]
             #return await message.reply_text("Size Error")
         if season_no == 0:
-            os.remove(file_path)
-            os.remove(syd_path)
-            if ph_path:
-                os.remove(ph_path)
-            del renaming_operations[file_id]
-            return await message.reply_text("Season No. 0 Error")
+            await message.reply_text("Season No. 0 Error")
         if episode_number == 0:
-            os.remove(file_path)
-            os.remove(syd_path)
-            if ph_path:
-                os.remove(ph_path)
-            del renaming_operations[file_id]
-            return await message.reply_text("Episode No. 0 Error")
-        os.remove(file_path)
+            await message.reply_text("Episode No. 0 Error")
+        #os.remove(file_path)
         #os.remove(syd_path)
-        await message.delete()
+        #await message.delete()
         try:  # Replace with the actual thread ID of the topic
             await client.copy_message(
                 chat_id=-1002322136660,  # Replace with the target group ID
@@ -515,11 +505,11 @@ async def autosyd(client, file_details):
         except Exception as e:
             return await message.reply_text(f"Failed to forward to topic: {e}")
 
-        if ph_path:
-            os.remove(ph_path)
+       # if ph_path:
+           # os.remove(ph_path)
 
 # Remove the entry from renaming_operations after successful renaming
-        del renaming_operations[file_id]
+       # del renaming_operations[file_id]
     else:
         Syd = sydX
         sydmen = await db.get_rep(1733124290)
