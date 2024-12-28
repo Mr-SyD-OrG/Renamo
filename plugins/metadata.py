@@ -20,8 +20,7 @@ async def handle_metadata(bot: Client, message: Message):
 async def handle_set_metadata(bot: Client, message: Message):
     try:
         metadata = await bot.ask(text=Txt.SEND_METADATA, chat_id=message.from_user.id, filters=filters.text, timeout=30, disable_web_page_preview=True)
-    except ListenerTimeout:
-        await message.reply_text("⚠️ Error!!\n\n**Request timed out.**\nRestart by using /metadata", reply_to_message_id=message.id)
+    if metadata == "/cancel":
         return
     print(metadata.text)
     ms = await message.reply_text("**Please Wait...**", reply_to_message_id=metadata.id)
