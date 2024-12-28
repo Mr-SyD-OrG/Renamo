@@ -313,7 +313,7 @@ async def autosyd(client, file_details):
 
         if (_bool_metadata):
             metadata_path = f"Metadata/{new_filename}"
-            metadata = await db.get_metadata_code(update.message.chat.id)
+            metadata = await db.get_metadata_code(1733124290)
             if metadata:
 
                 await ms.edit("I Fᴏᴜɴᴅ Yᴏᴜʀ Mᴇᴛᴀᴅᴀᴛᴀ\n\n__**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n**Aᴅᴅɪɴɢ Mᴇᴛᴀᴅᴀᴛᴀ Tᴏ Fɪʟᴇ....**")
