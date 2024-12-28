@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, CallbackQuery
-from helper.database import db
+from helper.database import madflixbotz as db
 
 
 async def features_button(user_id):
