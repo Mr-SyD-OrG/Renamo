@@ -18,13 +18,9 @@ async def handle_metadata(bot: Client, message: Message):
 
 @Client.on_message(filters.private & filters.command('set_metadata'))
 async def handle_set_metadata(bot: Client, message: Message):
-    try:
-        metadata = await bot.ask(text=Txt.SEND_METADATA, chat_id=message.from_user.id, filters=filters.text, disable_web_page_preview=True)
-    except:
-        return 
-    if metadata == "/cancel":
-        return
-    print(metadata.text)
-    ms = await message.reply_text("**Please Wait...**", reply_to_message_id=metadata.id)
-    await db.set_metadata_code(message.from_user.id, metadata_code=metadata.text)
+    if len(message.command) == 1:
+        return await message.reply_text("**__Give The ᴅᴜᴍᴩ ᴄʜᴀɴɴᴇʟ ɪᴅ__\n\nExᴀᴍᴩʟᴇ:- `/set_dump -1002042969565`**")
+    mrsyd = message.text.split(" ", 1)[1]
+    ms = await message.reply_text("**Please Wait...**", reply_to_message_id=message.id)
+    await db.set_metadata_code(message.from_user.id, metadata_code=mrsyd)
     await ms.edit("**Your Metadta Code Set Successfully ✅**")
