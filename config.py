@@ -87,7 +87,8 @@ Use These Keywords To Setup Custom File Name
 If You Like My Bots & Projects, You Can 🎁 Donate Me Any Amount From 10 Rs Upto Your Choice.
     
 <b>🛍 UPI ID:</b> <code>madflixofficial@axl</code> """
-    
+
+    SEND_METADATA = """ᴀᴅᴅ"""
     HELP_TXT = """<b>Hey</b> {}
     
 Here Is The Help For My Commands."""
