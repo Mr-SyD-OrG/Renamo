@@ -174,6 +174,9 @@ async def refuntion(client, message):
             syd = file.file_name
             await asyncio.sleep(1)
             mrsyd = await db.get_topic(1733124290)
+            mrsydt = await db.get_rep(1733124290)
+            syd1 = mrsydt['sydd']
+            syd2 = mrsydt['syddd']
             sydfile = {
                 'file_name': syd,
                 'file_size': file.file_size,
@@ -505,9 +508,6 @@ async def autosyd(client, file_details):
         except Exception as e:
             return await message.reply_text(f"Failed to forward to topic: {e}")
 
-       # if ph_path:
-           # os.remove(ph_path)
-
 # Remove the entry from renaming_operations after successful renaming
        # del renaming_operations[file_id]
     else:
@@ -651,10 +651,6 @@ async def autosyd(client, file_details):
             )
         except Exception as e:
             return await message.reply_text(f"Failed to forward to topic: {e}")
-        if ph_path:
-            os.remove(ph_path)
-        del renaming_operations[file_id]
-
     if mrsyyd != mrssyd:
         await sydfil.delete()
         try:  # Use 'media_type' variable instead
@@ -693,11 +689,19 @@ async def autosyd(client, file_details):
                 os.remove(ph_path)
             # Mark the file as ignored
             return await upload_msg.edit(f"Error: {e}")
-        mrsyyd = newsydfil.document.file_size if type == "document" else newsydfil.video.file_size if type == "video" else newsydfil.audio.file_size
+        mrsydd = newsydfil.document.file_size if type == "document" else newsydfil.video.file_size if type == "video" else newsydfil.audio.file_size
         os.remove(file_path)
         if ph_path:
             os.remove(ph_path)
         del renaming_operations[file_id]
-        return await message.reply_text("Size Error")
+        return await message.reply_text("ʀᴇᴜᴩʟᴏᴀᴅᴇᴅ")
+
+    if mrsyyd != mrsydd:
+        return await message.reply_text("ꜱɪᴢᴇ ᴍɪꜱᴍᴀᴛᴄʜ ᴀꜰᴛᴇʀ ꜱᴇᴄᴏɴᴅ ᴛʀʏ")
+    if ph_path:
+        os.remove(ph_path)
+    del renaming_operations[file_id]
+    await message.delete()
+    
 
 
