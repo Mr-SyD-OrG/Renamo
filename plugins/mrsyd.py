@@ -388,7 +388,7 @@ async def autosyd(client, file_details):
         if last_season_number == 0:
             last_season_number = syd_xyz
             
-        if syd_xyz == last_season_number + 1:
+        if syd_xyz != last_season_number:
             try:
                 await client.send_sticker(
                     chat_id=-1002322136660,
