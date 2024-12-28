@@ -309,7 +309,45 @@ async def autosyd(client, file_details):
             del renaming_operations[file_id]
             return await download_msg.edit(e)     
 
+        _bool_metadata = await db.get_metadata(update.message.chat.id)
+
+        if (_bool_metadata):
+            metadata_path = f"Metadata/{new_filename}"
+            metadata = await db.get_metadata_code(update.message.chat.id)
+            if metadata:
+
+                await ms.edit("I Fᴏᴜɴᴅ Yᴏᴜʀ Mᴇᴛᴀᴅᴀᴛᴀ\n\n__**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n**Aᴅᴅɪɴɢ Mᴇᴛᴀᴅᴀᴛᴀ Tᴏ Fɪʟᴇ....**")
+                cmd = f"""ffmpeg -i "{path}" {metadata} "{metadata_path}" """
+
+                process = await asyncio.create_subprocess_shell(
+                    cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+                )
+
+                stdout, stderr = await process.communicate()
+                er = stderr.decode()
+
+                try:
+                    if er:
+                        try:
+                            os.remove(path)
+                            os.remove(metadata_path)
+                        except:
+                            pass
+                        return await ms.edit(str(er) + "\n\n**Error**")
+                except BaseException:
+                    pass
+
         duration = 0
+        try:
+            parser = createParser(file_path)
+            metadata = extractMetadata(parser)
+            if metadata.has("duration"):
+                duration = metadata.get('duration').seconds
+            parser.close()
+
+        except:
+            pass
+
        # shutil.copy(file_path, syd_path)
         upload_msg = await download_msg.edit("Trying To Uploading.....")
         ph_path = None
@@ -412,7 +450,7 @@ async def autosyd(client, file_details):
             if type == "document":
                 sydfil = await client.send_document(
                     mrsyd,
-                    document=file_path,
+                    document=metadata_path if _bool_metadata else file_path,
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
@@ -421,7 +459,7 @@ async def autosyd(client, file_details):
             elif type == "video":
                 sydfil = await client.send_video(
                     mrsyd,
-                    video=file_path,
+                    video=metadata_path if _bool_metadata else file_path,
                     caption=caption,
                     thumb=ph_path,
                     duration=duration,
@@ -431,7 +469,7 @@ async def autosyd(client, file_details):
             elif type == "audio":
                 sydfil = await client.send_audio(
                     mrsyd,
-                    audio=file_path,
+                    audio=metadata_path if _bool_metadata else file_path,
                     caption=caption,
                     thumb=ph_path,
                     duration=duration,
@@ -706,6 +744,8 @@ async def autosyd(client, file_details):
         return await message.reply_text("ꜱɪᴢᴇ ᴍɪꜱᴍᴀᴛᴄʜ ᴀꜰᴛᴇʀ ꜱᴇᴄᴏɴᴅ ᴛʀʏ")
     if ph_path:
         os.remove(ph_path)
+    if metadata_path:
+        os.remove(metadata_path)
     del renaming_operations[file_id]
     await message.delete()
     
