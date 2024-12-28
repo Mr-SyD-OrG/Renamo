@@ -1,6 +1,6 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from helper.database import db
+from helper.database import madflixbotz as db
 from pyromod.exceptions import ListenerTimeout
 from config import Txt
 from plugins.features import features_button
