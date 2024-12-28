@@ -184,6 +184,8 @@ async def refuntion(client, message):
                 'media': file,
                 'topic': mrsyd,
                 'season': sydmen,
+                'repm': syd1,
+                'repw': syd2,
                 'message': message 
             }
             mrsydt_g.append(sydfile)
@@ -266,9 +268,11 @@ async def autosyd(client, file_details):
         sydmen = await db.get_rep(1733124290)
         syd1 = sydmen['sydd']
         syd2 = sydmen['syddd']
+        sydd1 = file_details['repw']
+        sydd2 = file_details['repm']
         if syd1 in Syd:
             Syd = Syd.replace(syd1, syd2)
-        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir', '[', ']']
+        remove_list = ['-', '⌯', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir', '[', ']']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
@@ -281,6 +285,8 @@ async def autosyd(client, file_details):
             x for x in Syd.split()
             if not any(x.startswith(mrsyd) for mrsyd in mrsyds) and x != '@GetTGLinks'
         ])
+        if sydd1 in Syd:
+            Syd = Syd.replace(sydd1, sydd2)
         if '_' in Syd:
             Syd = Syd.replace('_', ' ')
         if not (filenme.lower().endswith(".mkv") or filenme.lower().endswith(".mp4") or filenme.lower().endswith(".Mkv")):
