@@ -614,7 +614,44 @@ async def autosyd(client, file_details):
             except Exception as e:
                 print(f"Failed to send sticker to topic: {e}")
         syd_mov = sydname
+        _bool_metadata = await db.get_metadata(1733124290)
+
+        if (_bool_metadata):
+            metadata_path = f"Metadata/{new_filename}"
+            metadata = await db.get_metadata_code(1733124290)
+            if metadata:
+
+                await ms.edit("I Fᴏᴜɴᴅ Yᴏᴜʀ Mᴇᴛᴀᴅᴀᴛᴀ\n\n__**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n**Aᴅᴅɪɴɢ Mᴇᴛᴀᴅᴀᴛᴀ Tᴏ Fɪʟᴇ....**")
+                cmd = f"""ffmpeg -i "{path}" {metadata} "{metadata_path}" """
+
+                process = await asyncio.create_subprocess_shell(
+                    cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
+                )
+
+                stdout, stderr = await process.communicate()
+                er = stderr.decode()
+
+                try:
+                    if er:
+                        try:
+                            os.remove(path)
+                            os.remove(metadata_path)
+                        except:
+                            pass
+                        return await ms.edit(str(er) + "\n\n**Error**")
+                except BaseException:
+                    pass
+
         duration = 0
+        try:
+            parser = createParser(file_path)
+            metadata = extractMetadata(parser)
+            if metadata.has("duration"):
+                duration = metadata.get('duration').seconds
+            parser.close()
+
+        except:
+            pass
        # shutil.copy(file_path, syd_path)
         upload_msg = await download_msg.edit("Trying To Uploading.....")
         ph_path = None
