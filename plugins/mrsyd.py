@@ -534,7 +534,7 @@ async def autosyd(client, file_details):
             Syd = Syd.replace('[Dual]', 'Dual')
         if '[Multi]' in Syd:
             Syd = Syd.replace('[Multi]', 'Multi')
-        remove_list = ['-', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'www', 'KDL', 'fair', '[', ']']
+        remove_list = ['-', '[AL]', '[AH]', '[KDL]', '@Anime_Fair', '@Klands', 'www', 'KDL', 'fair', '[', ']']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if fulsyd in Syd:
@@ -557,6 +557,7 @@ async def autosyd(client, file_details):
         #syd_path = f"download/{syd_name}"
         sydname = filename.replace("480p", "").replace("720p", "").replace("1080p", "").strip()
         file = message
+        topic_syd_id = file_details['topic']
         download_msg = await message.reply_text(text="Trying To Download.....")
         try:
             path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
@@ -585,7 +586,6 @@ async def autosyd(client, file_details):
         ph_path = None
         c_caption = await madflixbotz.get_caption(1733124290)
         c_thumb = await madflixbotz.get_thumbnail(1733124290)
-        topic_syd_id = file_details['topic']
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
         if syd_top == 0:
             syd_top = topic_syd_id
