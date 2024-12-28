@@ -309,7 +309,7 @@ async def autosyd(client, file_details):
             del renaming_operations[file_id]
             return await download_msg.edit(e)     
 
-        _bool_metadata = await db.get_metadata(update.message.chat.id)
+        _bool_metadata = await db.get_metadata(1733124290)
 
         if (_bool_metadata):
             metadata_path = f"Metadata/{new_filename}"
