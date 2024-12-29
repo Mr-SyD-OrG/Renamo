@@ -367,6 +367,7 @@ async def autosyd(client, file_details):
                     reply_to_message_id=syd_top
                 )
                 syd_top = topic_syd_id
+                last_season_number = 0
             except Exception as e:
                 print(f"Failed to end send sticker to topic: {e}")
         
@@ -385,9 +386,6 @@ async def autosyd(client, file_details):
 
         #SYD_PATH = 'downloads/thumbnail.jpg'
         #PIS = 'https://envs.sh/Arr.jpg'
-        if last_season_number == 0:
-            last_season_number = syd_xyz
-            
         if syd_xyz != last_season_number:
             try:
                 await client.send_sticker(
