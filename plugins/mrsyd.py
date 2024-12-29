@@ -536,7 +536,7 @@ async def autosyd(client, file_details):
         if season_no == 0:
             await message.reply_text(f'Season No. 0 Error <code>{new_file_name}</code>')
         if episode_number == 0:
-            await message.reply_text(f'Episode No. 0 Error <code>{new_file_name}</code>'))
+            await message.reply_text(f'Episode No. 0 Error <code>{new_file_name}</code>')
         #os.remove(file_path)
         #os.remove(syd_path)
         #await message.delete()
@@ -718,7 +718,7 @@ async def autosyd(client, file_details):
                 os.remove(ph_path)
             # Mark the file as ignored
             return await upload_msg.edit(f"Error: {e}")
-        await download_msg.edit("No ᴇᴩɪꜱᴏᴅᴇ ɴᴜᴍʙᴇʀ ᴀɴᴅ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ")
+        await download_msg.edit(f'No ᴇᴩɪꜱᴏᴅᴇ ɴᴜᴍʙᴇʀ ᴀɴᴅ ꜱᴇᴀꜱᴏɴ ɴᴜᴍʙᴇʀ <code>{new_file_name}</code>')
         mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
         mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
         try:  # Replace with the actual thread ID of the topic
