@@ -5,6 +5,7 @@ from PIL import Image
 from datetime import datetime
 from hachoir.metadata import extractMetadata
 from hachoir.parser import createParser
+from helper.ffmpeg import syd
 from helper.utils import progress_for_pyrogram, humanbytes, convert, download_image
 from helper.database import madflixbotz
 from config import Config
