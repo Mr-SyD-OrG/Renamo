@@ -6,5 +6,6 @@ dnspython
 hachoir
 Pillow
 aiohttp
+ffmpeg-python
 pytz
 psutil
