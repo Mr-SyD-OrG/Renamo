@@ -534,9 +534,9 @@ async def autosyd(client, file_details):
             #del renaming_operations[file_id]
             #return await message.reply_text("Size Error")
         if season_no == 0:
-            await message.reply_text("Season No. 0 Error")
+            await message.reply_text(f'Season No. 0 Error <code>{new_file_name}</code>')
         if episode_number == 0:
-            await message.reply_text("Episode No. 0 Error")
+            await message.reply_text(f'Episode No. 0 Error <code>{new_file_name}</code>'))
         #os.remove(file_path)
         #os.remove(syd_path)
         #await message.delete()
