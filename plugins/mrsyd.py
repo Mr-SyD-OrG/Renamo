@@ -333,7 +333,7 @@ async def autosyd(client, file_details):
                             os.remove(metadata_path)
                         except:
                             pass
-                        return await ms.edit(str(er) + "\n\n**Error**")
+                        return await download_msg.edit(str(er) + "\n\n**Error**")
                 except BaseException:
                     pass
 
