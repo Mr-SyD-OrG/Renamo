@@ -15,7 +15,6 @@ import time, asyncio
 import logging
 import re
 #import shutil
-ms = hh
 fulsyd = "fair"
 db = madflixbotz
 mrsydt_g = []
@@ -621,7 +620,7 @@ async def autosyd(client, file_details):
             metadata = await db.get_metadata_code(1733124290)
             if metadata:
 
-                await ms.edit("I Fᴏᴜɴᴅ Yᴏᴜʀ Mᴇᴛᴀᴅᴀᴛᴀ\n\n__**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n**Aᴅᴅɪɴɢ Mᴇᴛᴀᴅᴀᴛᴀ Tᴏ Fɪʟᴇ....**")
+                await download_msg.edit("I Fᴏᴜɴᴅ Yᴏᴜʀ Mᴇᴛᴀᴅᴀᴛᴀ\n\n__**Pʟᴇᴀsᴇ Wᴀɪᴛ...**__\n**Aᴅᴅɪɴɢ Mᴇᴛᴀᴅᴀᴛᴀ Tᴏ Fɪʟᴇ....**")
                 cmd = f"""ffmpeg -i "{path}" {metadata} "{metadata_path}" """
 
                 process = await asyncio.create_subprocess_shell(
@@ -638,7 +637,7 @@ async def autosyd(client, file_details):
                             os.remove(metadata_path)
                         except:
                             pass
-                        return await ms.edit(str(er) + "\n\n**Error**")
+                        return await download_msg.edit(str(er) + "\n\n**Error**")
                 except BaseException:
                     pass
 
