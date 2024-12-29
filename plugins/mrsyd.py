@@ -312,7 +312,7 @@ async def autosyd(client, file_details):
         _bool_metadata = await db.get_metadata(1733124290)
 
         if (_bool_metadata):
-            metadata_path = f"Metadata/{new_filename}"
+            metadata_path = f"Metadata/{new_file_name}"
             metadata = await db.get_metadata_code(1733124290)
             if metadata:
 
