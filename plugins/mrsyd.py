@@ -273,7 +273,7 @@ async def autosyd(client, file_details):
         sydd2 = file_details['repm']
         if syd1 in Syd:
             Syd = Syd.replace(syd1, syd2)
-        remove_list = ['-', '⌯', '[AL]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir', '[', ']']
+        remove_list = ['-', '⌯', '[AL]', '[AH]', 'Esub', '(x265)', '[JoyBoy]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir', '[', ']']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
@@ -786,6 +786,8 @@ async def autosyd(client, file_details):
         os.remove(ph_path)
     if _bool_metadata:
         os.remove(metadata_path)
+
+    os.remove(file_path)
     del renaming_operations[file_id]
     await message.delete()
     
