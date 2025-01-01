@@ -231,7 +231,7 @@ async def auto_rname_files(client, message):
     if episode_number or season_number:
         # Replace episode placeholders
         if episode_number:
-            placeholders = ["episode", "Episode", "EPISODE", "{episode}"]
+            placeholders = ["{episode}", "Episode", "EPISODE", "episode"]
             for placeholder in placeholders:
                 format_template = format_template.replace(placeholder, f"{int(episode_number):02d}", 1)
 
