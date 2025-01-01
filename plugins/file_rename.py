@@ -233,13 +233,13 @@ async def auto_rname_files(client, message):
         if episode_number:
             placeholders = ["episode", "Episode", "EPISODE", "{episode}"]
             for placeholder in placeholders:
-                format_template = format_template.replace(placeholder, f"E{int(episode_number):02d}", 1)
+                format_template = format_template.replace(placeholder, f"{int(episode_number):02d}", 1)
 
         # Replace season placeholders
         if season_number:
             season_placeholders = ["{season}"]
             for season_placeholder in season_placeholders:
-                format_template = format_template.replace(season_placeholder, f"S{int(season_number):02d}", 1)
+                format_template = format_template.replace(season_placeholder, f"{int(season_number):02d}", 1)
 
         # Add extracted qualities to the format template
         quality_placeholders = ["quality", "Quality", "QUALITY", "{quality}"]
