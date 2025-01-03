@@ -54,16 +54,8 @@ async def process_existing_messages(client, chat_id):
         offset_id = 0  # Start from the most recent message
         limit = 100  # Number of messages to fetch in each batch
 
-        while True:
-            # Fetch the next batch of messages
-            batch = await client.get_chat_history(chat_id, offset_id=offset_id, limit=limit)
-            if not batch:
-                break  # No more messages to fetch
-            
-            # Append batch messages to the list
-            messages.extend(batch)
-            offset_id = batch[-1].id  # Update offset_id to fetch the next batch
-
+        async for message in client.get_chat_history(chat_id, limit=100):
+            messages.append(message)
         # Reverse messages to process them in chronological order
         messages.reverse()
 
