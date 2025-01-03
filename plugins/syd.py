@@ -50,13 +50,13 @@ async def start_processing(client, message):
 async def process_existing_messages(client, chat_id):
     global mrsydt_g, processing
     try:
-        messages = []  # Temporary storage for fetched message
-        async for message in client.get_chat_history(chat_id, limit=8):  # Fetch messages in batches
+        messages = []
+        # Fetch the chat history (most recent to oldest)
+        async for message in client.get_chat_history(chat_id, reverse=True, limit=100):  # `reverse=True` ensures oldest messages come first
             if message.media:
                 file = getattr(message, message.media.value, None)
                 if file and file.file_size > 10 * 1024 * 1024:  # > 10 MB
                     messages.append(message)
-        messages.reverse()
         for message in messages:
             file = getattr(message, message.media.value, None)
             sydmen = await db.get_sydson(1733124290)
