@@ -389,11 +389,12 @@ async def autosyd(client, file_details):
         #PIS = 'https://envs.sh/Arr.jpg'
         if syd_xyz != last_season_number:
             try:
-                await client.send_sticker(
-                    chat_id=-1002322136660,
-                    sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
-                    reply_to_message_id=topic_syd_id
-                )
+                if syd_xyz != 1:
+                    await client.send_sticker(
+                        chat_id=-1002322136660,
+                        sticker="CAACAgUAAxkBAAEEOXZnZBMPFXQQ8Kgv-cGa4s001eWt6gACuxAAAtRd8FbK2QFnTLfR9x4E",
+                        reply_to_message_id=topic_syd_id
+                    )
                 amsyd = f'Season {syd_xyz} 🌟'
                 await client.send_message(chat_id=-1002322136660, text=amsyd, reply_to_message_id=topic_syd_id)
                 
@@ -598,8 +599,6 @@ async def autosyd(client, file_details):
             # Mark the file as ignored
             del renaming_operations[file_id]
             return await download_msg.edit(e)
-        if syd_mov == "None":
-            syd_mov = sydname
         if syd_mov != sydname:
             try:
                 await client.send_sticker(
