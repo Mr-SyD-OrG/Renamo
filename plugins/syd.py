@@ -30,7 +30,7 @@ syd_qua = "None"
 syd_mov = "None"
 
 
-@Client.on_message(filters.command("begin") & filters.user([YOUR_USER_ID]))  # Replace YOUR_USER_ID with your user ID
+@Client.on_message(filters.command("begin") & filters.user(1733124290))  # Replace YOUR_USER_ID with your user ID
 async def start_processing(client, message):
     global allowed_chats
     try:
