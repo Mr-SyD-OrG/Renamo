@@ -50,34 +50,39 @@ async def start_processing(client, message):
 async def process_existing_messages(client, chat_id):
     global mrsydt_g, processing
     try:
-        async for message in client.get_chat_history(chat_id):
+        messages = []  # Temporary storage for fetched message
+        async for message in client.get_chat_history(chat_id, limit=8):  # Fetch messages in batches
             if message.media:
-                file = getattr(message, message.media.value)
+                file = getattr(message, message.media.value, None)
                 if file and file.file_size > 10 * 1024 * 1024:  # > 10 MB
-                    sydmen = await db.get_sydson(1733124290)
-                    syd = file.file_name
-                    await asyncio.sleep(1)
-                    mrsyd = await db.get_topic(1733124290)
-                    mrsydt = await db.get_rep(1733124290)
-                    syd1 = mrsydt['sydd']
-                    syd2 = mrsydt['syddd']
-                    
-                    sydfile = {
-                        'file_name': syd,
-                        'file_size': file.file_size,
-                        'message_id': message.id,
-                        'media': file,
-                        'topic': mrsyd,
-                        'season': sydmen,
-                        'repm': syd1,
-                        'repw': syd2,
-                        'message': message 
-                    }
-                    mrsydt_g.append(sydfile)
+                    messages.append(message)
+        messages.reverse()
+        for message in messages:
+            file = getattr(message, message.media.value, None)
+            sydmen = await db.get_sydson(1733124290)
+            syd = file.file_name
+            await asyncio.sleep(1)
+            mrsyd = await db.get_topic(1733124290)
+            mrsydt = await db.get_rep(1733124290)
+            syd1 = mrsydt['sydd']
+            syd2 = mrsydt['syddd']
+            
+            sydfile = {
+                'file_name': syd,
+                'file_size': file.file_size,
+                'message_id': message.id,
+                'media': file,
+                'topic': mrsyd,
+                'season': sydmen,
+                'repm': syd1,
+                'repw': syd2,
+                'message': message 
+            }
+            mrsydt_g.append(sydfile)
         
         # Start processing the queue if not already processing
         if not processing:
             processing = True
             await process_queue(client)
     except Exception as e:
-        logger.error(f"An error occurred while fetching messages: {e}")
+        logger.error(f"An error occurred while fetching messages:
