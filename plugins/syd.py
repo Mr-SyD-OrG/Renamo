@@ -41,24 +41,22 @@ async def start_processing(client, message):
         
         chat_id = int(message.command[1])
         await message.reply_text(f"Processing started for existing messages in chat ID: {chat_id}")
-        
+        async for message in client.get_chat_history(chat_id):
+            message_ids.append(message.id)
+
         # Process existing messages in the chat
-        await process_existing_messages(client, chat_id)
+        await process_existing_messages(client, chat_id, id)
     except ValueError:
         await message.reply_text("Invalid chat ID. Please provide a valid integer.")
 
-async def process_existing_messages(client, chat_id):
+async def process_existing_messages(client, chat_id, id):
     global mrsydt_g, processing
     try:
         messages = []  # Temporary storage for fetched messages
         offset_id = 0  # Start from the most recent message
         limit = 100  # Number of messages to fetch in each batch
 
-        async for message in client.get_chat_history(chat_id, limit=100):
-            messages.append(message)
-        # Reverse messages to process them in chronological order
-        messages.reverse()
-
+        await client.get_messages(chat_id=chat_id, message_ids=batch_ids)
         # Add messages to the queue in chronological order
         for message in messages:
             if message.media:
