@@ -70,7 +70,7 @@ async def process_existing_messages(client, chat_id):
         # Add messages to the queue in chronological order
         for message in messages:
             if message.media:
-            file = getattr(message, message.media.value, None)
+                file = getattr(message, message.media.value, None)
                 if file and file.file_size > 10 * 1024 * 1024:  # > 10 MB
                     sydmen = await db.get_sydson(1733124290)
                     syd = file.file_name
