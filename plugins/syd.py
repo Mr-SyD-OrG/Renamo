@@ -40,7 +40,6 @@ async def start_processing(client, message):
             return
         
         chat_id = int(message.command[1])
-        allowed_chats.add(chat_id)
         await message.reply_text(f"Processing started for existing messages in chat ID: {chat_id}")
         
         # Process existing messages in the chat
