@@ -85,4 +85,4 @@ async def process_existing_messages(client, chat_id):
             processing = True
             await process_queue(client)
     except Exception as e:
-        logger.error(f"An error occurred while fetching messages:
+        logger.error(f"An error occurred while fetching messages: {e}")
