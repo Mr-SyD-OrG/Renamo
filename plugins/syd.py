@@ -47,6 +47,15 @@ async def start_processing(client, message):
             await message.reply_text("Invalid chat ID. Please provide a valid integer.")
             return
 
+
+        try:
+            chat = await client.get_chat(chat_id)
+            if not chat:
+                await message.reply_text("Unable to access the specified chat. Please check the chat ID.")
+                return
+        except Exception as e:
+            await message.reply_text(f"Error accessing chat: {e}")
+            return
         await message.reply_text(f"Processing started for existing messages in chat ID: {chat_id}")
 
         # Collect message IDs
