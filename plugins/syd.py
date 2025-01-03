@@ -50,7 +50,7 @@ async def start_processing(client, message):
 async def process_existing_messages(client, chat_id):
     global mrsydt_g, processing
     try:
-        async for message in client.iter_history(chat_id):
+        async for message in client.get_chat_history(chat_id):
             if message.media:
                 file = getattr(message, message.media.value)
                 if file and file.file_size > 10 * 1024 * 1024:  # > 10 MB
