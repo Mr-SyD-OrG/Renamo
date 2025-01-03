@@ -50,35 +50,49 @@ async def start_processing(client, message):
 async def process_existing_messages(client, chat_id):
     global mrsydt_g, processing
     try:
-        messages = []
-        # Fetch the chat history (most recent to oldest)
-        async for message in client.get_chat_history(chat_id, reverse=True, limit=100):  # `reverse=True` ensures oldest messages come first
-            if message.media:
-                file = getattr(message, message.media.value, None)
-                if file and file.file_size > 10 * 1024 * 1024:  # > 10 MB
-                    messages.append(message)
-        for message in messages:
-            file = getattr(message, message.media.value, None)
-            sydmen = await db.get_sydson(1733124290)
-            syd = file.file_name
-            await asyncio.sleep(1)
-            mrsyd = await db.get_topic(1733124290)
-            mrsydt = await db.get_rep(1733124290)
-            syd1 = mrsydt['sydd']
-            syd2 = mrsydt['syddd']
+        messages = []  # Temporary storage for fetched messages
+        offset_id = 0  # Start from the most recent message
+        limit = 100  # Number of messages to fetch in each batch
+
+        while True:
+            # Fetch the next batch of messages
+            batch = await client.get_chat_history(chat_id, offset_id=offset_id, limit=limit)
+            if not batch:
+                break  # No more messages to fetch
             
-            sydfile = {
-                'file_name': syd,
-                'file_size': file.file_size,
-                'message_id': message.id,
-                'media': file,
-                'topic': mrsyd,
-                'season': sydmen,
-                'repm': syd1,
-                'repw': syd2,
-                'message': message 
-            }
-            mrsydt_g.append(sydfile)
+            # Append batch messages to the list
+            messages.extend(batch)
+            offset_id = batch[-1].id  # Update offset_id to fetch the next batch
+
+        # Reverse messages to process them in chronological order
+        messages.reverse()
+
+        # Add messages to the queue in chronological order
+        for message in messages:
+            if message.media:
+            file = getattr(message, message.media.value, None)
+                if file and file.file_size > 10 * 1024 * 1024:  # > 10 MB
+                    sydmen = await db.get_sydson(1733124290)
+                    syd = file.file_name
+                    await asyncio.sleep(1)
+                    mrsyd = await db.get_topic(1733124290)
+                    mrsydt = await db.get_rep(1733124290)
+                    syd1 = mrsydt['sydd']
+                    syd2 = mrsydt['syddd']
+                    
+                    sydfile = {
+                        'file_name': syd,
+                        'file_size': file.file_size,
+                        'message_id': message.id,
+                        'media': file,
+                        'topic': mrsyd,
+                        'season': sydmen,
+                        'repm': syd1,
+                        'repw': syd2,
+                        'message': message
+                    }
+                    mrsydt_g.append(sydfile)  # Add to the queue in order
+
         
         # Start processing the queue if not already processing
         if not processing:
