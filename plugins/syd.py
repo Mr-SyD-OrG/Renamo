@@ -51,8 +51,10 @@ async def start_processing(client, message):
 
         # Collect message IDs
         message_ids = []
-        async for msg in client.get_chat_history(chat_id, reverse=True):  # Fetch in chronological order
+        async for msg in client.get_chat_history(chat_id):  # Fetch in chronological order
             message_ids.append(msg.id)
+
+        message_ids.reverse()
 
         print(f"Collected {len(message_ids)} message IDs for chat ID: {chat_id}")
 
