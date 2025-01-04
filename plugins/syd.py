@@ -73,8 +73,6 @@ async def start_processing(client, message):
             await process_existing_messages(client, chat_id, message_id, message)
         await message.reply_text("jm1")
 
-        print(f"Collected {len(message_ids)} message IDs for chat ID: {chat_id}")
-
         # Process each message ID one by one
         print("All messages processed.")
     except Exception as e:
