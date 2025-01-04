@@ -40,8 +40,9 @@ async def start_processing(client, message):
             await message.reply_text("Usage: /begin <chat_id>")
             return
 
-        chat_id = message.command[1]
-        #if not chat_id.startswith(('-100')):
+        chat_d = message.command[1]
+        if chat_d.startswith(('http')):
+            username, last_message_id = chat_id.split('/')[-2], chat_id.split('/')[-1]
             #return await message.reply_text("9191")
        # try:
             #chat_id = int(chat_id)
@@ -49,6 +50,7 @@ async def start_processing(client, message):
            # await message.reply_text("Invalid chat ID. Please provide a valid integer.")
             #return
 
+        chat_id = "@" + username
 
         try:
             chat = await client.get_chat(chat_id)
@@ -62,17 +64,6 @@ async def start_processing(client, message):
         await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
 
         # Get the last message ID in the chat
-        try:
-            last_message = await client.get_messages(chat_id=chat_id, limit=1)
-            if not last_message:
-                await message.reply_text("No messages found in the specified chat.")
-                return
-
-            last_message_id = last_message[0].id
-            await message.reply_text(f"Last message ID: {last_message_id}")
-        except Exception as e:
-            await message.reply_text(f"Error fetching last message: {e}")
-            return
 
       
         await message.reply_text("1")
