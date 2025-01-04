@@ -58,23 +58,31 @@ async def start_processing(client, message):
         except Exception as e:
             await message.reply_text(f"Error accessing chat: {e}")
             return
-        await message.reply_text(f"Processing started for existing messages in chat ID: {chat_id}")
 
-        # Collect message IDs
-        message_ids = []
-        async for msg in client.get_chat_history(chat_id):  # Fetch in chronological order
-            message_ids.append(msg.id)
+        await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
 
+        # Get the last message ID in the chat
+        try:
+            last_message = await client.get_messages(chat_id=chat_id, limit=1)
+            if not last_message:
+                await message.reply_text("No messages found in the specified chat.")
+                return
+
+            last_message_id = last_message[0].id
+            await message.reply_text(f"Last message ID: {last_message_id}")
+        except Exception as e:
+            await message.reply_text(f"Error fetching last message: {e}")
+            return
+
+      
         await message.reply_text("1")
-        message_ids.reverse()
+        for message_id in range(1, last_message_id + 1):
+            await process_existing_messages(client, chat_id, message_id, message)
         await message.reply_text("jm1")
 
         print(f"Collected {len(message_ids)} message IDs for chat ID: {chat_id}")
 
         # Process each message ID one by one
-        for message_id in message_ids:
-            await process_existing_messages(client, chat_id, message_id, message)
-
         print("All messages processed.")
     except Exception as e:
         logger.error(f"An error occurred in start_processing: {e}")
