@@ -36,7 +36,7 @@ syd_mov = "None"
 async def start_processing(client, message):
     try:
         # Validate and extract chat_id from the command
-        if len(message.command) > 2:
+        if len(message.command) < 2:
             await message.reply_text("Usage: /begin <chat_id>")
             return
 
