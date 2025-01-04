@@ -277,7 +277,7 @@ async def autosyd(client, file_details, sy):
         file_name = f"{message.audio.file_name}.mp3"
         media_type = "audio"  # Use preferred media type or default to audio
     else:
-        return await message.reply_text("Unsupported File Type")
+        return await sy.reply_text("Unsupported File Type")
 
     pat1 = re.sub(pattern1, "", sydd)
     pat2 = re.sub(pattern2, "", pat1)
