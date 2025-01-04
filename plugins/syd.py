@@ -41,13 +41,13 @@ async def start_processing(client, message):
             return
 
         chat_id = message.command[1]
-        if not chat_id.startswith(('-100')):
-            return await message.reply_text("9191")
-        try:
-            chat_id = int(chat_id)
-        except ValueError:
-            await message.reply_text("Invalid chat ID. Please provide a valid integer.")
-            return
+        #if not chat_id.startswith(('-100')):
+            #return await message.reply_text("9191")
+       # try:
+            #chat_id = int(chat_id)
+      #  except ValueError:
+           # await message.reply_text("Invalid chat ID. Please provide a valid integer.")
+            #return
 
 
         try:
