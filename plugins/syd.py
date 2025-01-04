@@ -122,17 +122,13 @@ async def process_existing_messages(client, chat_id, message_id, syd):
     except Exception as e:
         logger.error(f"An error occurred while processing message {message_id}: {e}")
 
-async def process_queue(client):
-    global mrsydt_g, processing
+async def process_queue(client, syd):
+    global processing
     try:
+        # Process files one by one from the queue
         while mrsydt_g:
-            sydfile = mrsydt_g.pop(0)  # Process the first file in the queue
-            # Add your processing logic here
-            print(f"Processing file: {sydfile['file_name']} of size {sydfile['file_size']} bytes")
-            await asyncio.sleep(1)  # Simulate processing delay
-        print("All messages processed from the queue.")
-    except Exception as e:
-        logger.error(f"An error occurred while processing the queue: {e}")
+            file_details = mrsydt_g.pop(0)  # Get the first file in the queue
+            await autosyd(client, file_details, syd)  # Process it
     finally:
         processing = False  # Reset the processing flag
 
@@ -260,7 +256,7 @@ print(f"Extracted Episode Number: {episode_number}")
 # Inside the handler for file uploads
 
 
-async def autosyd(client, file_details):
+async def autosyd(client, file_details, sy):
     global last_season_number, syd_top, syd_mov, syd_qua
     sydd = file_details['file_name']
     media = file_details['media']
@@ -354,7 +350,7 @@ async def autosyd(client, file_details):
         #syd_path = f"download/{syd_name}"
         file = message
 
-        download_msg = await message.reply_text(text="Trying To Download.....")
+        download_msg = await sy.reply_text(text="Trying To Download.....")
         try:
             path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
         except Exception as e:
@@ -738,7 +734,7 @@ async def autosyd(client, file_details):
             if type == "document":
                 sydfil = await client.send_document(
                     mrsyd,
-                    document=metadata_path if _bool_metadata else file_path,
+                    document=metadata_path if _bool_metama else file_path,
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
