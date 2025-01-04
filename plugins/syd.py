@@ -42,7 +42,10 @@ async def start_processing(client, message):
 
         chat_d = message.command[1]
         if chat_d.startswith(('http')):
-            username, message_id = chat_d.split('/')[-2], chat_d.split('/')[-1]
+            username, message_d = chat_d.split('/')[-2], chat_d.split('/')[-1]
+            chat_id = "@" + username
+            last_message_id = int(message_d)
+
             #return await message.reply_text("9191")
        # try:
             #chat_id = int(chat_id)
@@ -50,9 +53,7 @@ async def start_processing(client, message):
            # await message.reply_text("Invalid chat ID. Please provide a valid integer.")
             #return
 
-        chat_id = "@" + username
-        last_message_id = int(message_id)
-
+        
         try:
             chat = await client.get_chat(chat_id)
             if not chat:
