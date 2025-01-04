@@ -41,6 +41,14 @@ async def start_processing(client, message):
             return
 
         chat_d = message.command[1]
+        skip = message.command[2]
+        if skip.startswith("https://t.me/"):
+            match = re.search(r"/(\d+)$", mrsyd)
+            if match:
+                skip_id = skip.group(1)
+            else:
+                return await message.reply("<b>⚠ Invalid link provided. Make sure it ends with a numeric topic ID.</b>")
+    
         if chat_d.startswith(('http')):
             username, message_d = chat_d.split('/')[-2], chat_d.split('/')[-1]
             chat_id = "@" + username
@@ -64,8 +72,12 @@ async def start_processing(client, message):
             return
 
         prsyd = await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
-        for message_id in range(1, last_message_id + 1):
-            await process_existing_messages(client, chat_id, message_id, message)
+        if skip_id:
+            for message_id in range(skip_id, last_message_id + 1):
+                await process_existing_messages(client, chat_id, message_id, message)
+        else:
+            for message_id in range(1, last_message_id + 1):
+                await process_existing_messages(client, chat_id, message_id, message)
         await prsyd.edit_text("Now Renaming 🎉")
 
         # Process each message ID one by one
