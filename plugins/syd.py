@@ -763,7 +763,7 @@ async def autosyd(client, file_details, sy):
                 reply_to_message_id=topic_syd_id
             )
         except Exception as e:
-            return await message.reply_text(f"Failed to forward to topic: {e}")
+            return await sy.reply_text(f"Failed to forward to topic: {e}")
     if mrsyyd != mrssyd:
         await sydfil.delete()
         try:  # Use 'media_type' variable instead
