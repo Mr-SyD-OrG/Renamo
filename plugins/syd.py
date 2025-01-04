@@ -45,7 +45,7 @@ async def start_processing(client, message):
         if skip.startswith("https://t.me/"):
             match = re.search(r"/(\d+)$", skip)
             if match:
-                skip_id = skip.group(1)
+                skip_id = int(match.group(1))
             else:
                 return await message.reply("<b>⚠ Invalid link provided. Make sure it ends with a numeric topic ID.</b>")
     
