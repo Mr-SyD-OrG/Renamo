@@ -43,7 +43,7 @@ async def start_processing(client, message):
         chat_d = message.command[1]
         skip = message.command[2]
         if skip.startswith("https://t.me/"):
-            match = re.search(r"/(\d+)$", mrsyd)
+            match = re.search(r"/(\d+)$", skip)
             if match:
                 skip_id = skip.group(1)
             else:
