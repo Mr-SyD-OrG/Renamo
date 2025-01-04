@@ -341,9 +341,9 @@ async def autosyd(client, file_details, sy):
         #syd_path = f"download/{syd_name}"
         file = message
 
-        download_msg = await sy.reply_text(text="Trying To Download.....")
+        download_msg = await sy.reply_text(text=f"<code>{sydd}</code> Trying To Download.....")
         try:
-            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
+            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=(f"<code>{sydd}</code> Download Started....", download_msg, time.time()))
         except Exception as e:
             # Mark the file as ignored
             del renaming_operations[file_id]
@@ -493,7 +493,7 @@ async def autosyd(client, file_details, sy):
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started.....", upload_msg, time.time())
+                    progress_args=(f"<code>{sydd}</code> Upload Started.....", upload_msg, time.time())
                 )
             elif type == "video":
                 sydfil = await client.send_video(
@@ -575,9 +575,9 @@ async def autosyd(client, file_details, sy):
             #del renaming_operations[file_id]
             #return await message.reply_text("Size Error")
         if season_no == 0:
-            await message.reply_text(f'Season No. 0 Error <code>{new_file_name}</code>')
+            await sy.reply_text(f'Season No. 0 Error <code>{new_file_name}</code>')
         if episode_number == 0:
-            await message.reply_text(f'Episode No. 0 Error <code>{new_file_name}</code>')
+            await sy.reply_text(f'Episode No. 0 Error <code>{new_file_name}</code>')
         #os.remove(file_path)
         #os.remove(syd_path)
         #await message.delete()
@@ -589,7 +589,7 @@ async def autosyd(client, file_details, sy):
                 reply_to_message_id=topic_syd_id
             )
         except Exception as e:
-            return await message.reply_text(f"Failed to forward to topic: {e}")
+            return await sy.reply_text(f"Failed to forward to topic: {e}")
 
 # Remove the entry from renaming_operations after successful renaming
        # del renaming_operations[file_id]
@@ -631,7 +631,7 @@ async def autosyd(client, file_details, sy):
         sydname = filename.replace("480p", "").replace("720p", "").replace("1080p", "").strip()
         file = message
         topic_syd_id = file_details['topic']
-        download_msg = await message.reply_text(text="Trying To Download.....")
+        download_msg = await sy.reply_text(text=f"<code>{sydd}</code> Trying To Download.....")
         try:
             path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
         except Exception as e:
@@ -812,14 +812,14 @@ async def autosyd(client, file_details, sy):
         if ph_path:
             os.remove(ph_path)
         del renaming_operations[file_id]
-        return await message.reply_text("ʀᴇᴜᴩʟᴏᴀᴅᴇᴅ")
+        return await sy.reply_text(f"<code>{sydd}</code> ʀᴇᴜᴩʟᴏᴀᴅᴇᴅ")
 
         if mrsyyd != mrsydnew:
             if ph_path:
                 os.remove(ph_path)
             if metadata_path:
                 os.remove(metadata_path)
-            return await message.reply_text("ꜱɪᴢᴇ ᴍɪꜱᴍᴀᴛᴄʜ ᴀꜰᴛᴇʀ ꜱᴇᴄᴏɴᴅ ᴛʀʏ")
+            return await sy.reply_text(f"<code>{sydd}</code> ꜱɪᴢᴇ ᴍɪꜱᴍᴀᴛᴄʜ ᴀꜰᴛᴇʀ ꜱᴇᴄᴏɴᴅ ᴛʀʏ")
     if ph_path:
         os.remove(ph_path)
     if _bool_metadata:
