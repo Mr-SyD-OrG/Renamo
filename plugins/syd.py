@@ -63,15 +63,10 @@ async def start_processing(client, message):
             await message.reply_text(f"Error accessing chat: {e}")
             return
 
-        await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
-
-        # Get the last message ID in the chat
-
-      
-        await message.reply_text("1")
+        prsyd = await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
         for message_id in range(1, last_message_id + 1):
             await process_existing_messages(client, chat_id, message_id, message)
-        await message.reply_text("jm1")
+        await prsyd.edit_text("Now Renaming 🎉")
 
         # Process each message ID one by one
         print("All messages processed.")
@@ -89,7 +84,7 @@ async def process_existing_messages(client, chat_id, message_id, syd):
             if file and file.file_size > 10 * 1024 * 1024:  # > 10 MB
                 sydmen = await db.get_sydson(1733124290)
                 syd = file.file_name
-                await asyncio.sleep(1)
+                await asyncio.sleep(0.8)
                 mrsyd = await db.get_topic(1733124290)
                 mrsydt = await db.get_rep(1733124290)
                 syd1 = mrsydt['sydd']
@@ -109,7 +104,7 @@ async def process_existing_messages(client, chat_id, message_id, syd):
                 mrsydt_g.append(sydfile)  # Add to the queue in order
                 if not processing:
                     processing = True  # Set processing flag
-                    await process_queue(client)
+                    await process_queue(client, syd)
     except Exception as e:
         logger.error(f"An error occurred while processing message {message_id}: {e}")
 
@@ -827,7 +822,15 @@ async def autosyd(client, file_details, sy):
 
     os.remove(file_path)
     del renaming_operations[file_id]
-    await message.delete()
+    syd_id = -1002289521919
+    mrsyd_id = 9521
+    try:
+        chat_message = await client.get_messages(syd_id, mrsyd_id)
+        syd_text = chat_message.text
+        new_text = increment_count_in_message(syd_text)
+        await client.edit_message_text(chat_id=syd_id, message_id=mrsyd_id, text=text + f'\n <code>{sydd}</code>')
+    except Exception as e:
+        print(f"An error occurred: {e}")
     
 
 
