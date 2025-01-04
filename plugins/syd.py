@@ -84,10 +84,8 @@ async def start_processing(client, message):
 async def process_existing_messages(client, chat_id, message_id, syd):
     global mrsydt_g, processing
     try:
-        # Fetch the message by ID
-        await syd.reply_text("1bn")
         message = await client.get_messages(chat_id=chat_id, message_ids=message_id)
-        await syd.reply_text("1")
+        #await syd.reply_text("1")
         if message.media:
             file = getattr(message, message.media.value, None)
             if file and file.file_size > 10 * 1024 * 1024:  # > 10 MB
