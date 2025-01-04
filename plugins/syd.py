@@ -82,7 +82,7 @@ async def start_processing(client, message):
         await message.reply_text("An error occurred while starting the processing.")
 
 async def process_existing_messages(client, chat_id, message_id, syd):
-    global mrsydt_g
+    global mrsydt_g, processing
     try:
         # Fetch the message by ID
         await syd.reply_text("1bn")
@@ -111,7 +111,9 @@ async def process_existing_messages(client, chat_id, message_id, syd):
                     'message': message
                 }
                 mrsydt_g.append(sydfile)  # Add to the queue in order
-                print(f"Added file {file.file_name} to the queue.")
+                if not processing:
+                    processing = True  # Set processing flag
+                    await process_queue(client)
     except Exception as e:
         logger.error(f"An error occurred while processing message {message_id}: {e}")
 
