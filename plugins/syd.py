@@ -336,6 +336,8 @@ async def autosyd(client, file_details):
             Syd = Syd.replace('[Dual]', 'Dual')
         if '[Multi]' in Syd:
             Syd = Syd.replace('[Multi]', 'Multi')
+        if '[Sub]' in Syd:
+            Syd = Syd.replace('[Sub]', 'Sub')
         if fulsyd in Syd:
             Syd = Syd.replace(fulsyd, "")
         filenme = ' '.join([
