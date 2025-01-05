@@ -42,27 +42,33 @@ async def start_processing(client, message):
             return
 
         chat_d = message.command[1]
-        skip = message.command[2] if message.command[2] else None
+        skip = message.command[3] if message.command[3] else None
+        top = message.command[2] if message.command[3] else None
+        if top.startswith("https://t.me/"):
+            match = re.search(r"/(\d+)$", top)
+            if match:
+                topic_id = match.group(1)
+            else:
+                return await message.reply("<b>⚠ Invalid link provided. Make sure it ends with a numeric topic ID.</b>")
+    
         if skip.startswith("https://t.me/"):
             match = re.search(r"/(\d+)$", skip)
             if match:
                 skip_id = int(match.group(1))
             else:
                 return await message.reply("<b>⚠ Invalid link provided. Make sure it ends with a numeric topic ID.</b>")
+        else:
+            skip_id = skip
     
         if chat_d.startswith(('http')):
             username, message_d = chat_d.split('/')[-2], chat_d.split('/')[-1]
             chat_id = "@" + username
             last_message_id = int(message_d)
-
-            #return await message.reply_text("9191")
        # try:
             #chat_id = int(chat_id)
       #  except ValueError:
            # await message.reply_text("Invalid chat ID. Please provide a valid integer.")
             #return
-
-        
         try:
             chat = await client.get_chat(chat_id)
             if not chat:
@@ -72,10 +78,11 @@ async def start_processing(client, message):
             await message.reply_text(f"Error accessing chat: {e}")
             return
 
+        topic = topic_id if topic_id else await db.get_topic(1733124290)
         prsyd = await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
         if skip:
             for message_id in range(skip_id, last_message_id + 1):
-                await process_existing_messages(client, chat_id, message_id, message)
+                await process_existing_messages(client, chat_id, message_id, topic)
         else:
             for message_id in range(1, last_message_id + 1):
                 await process_existing_messages(client, chat_id, message_id, message)
@@ -98,7 +105,7 @@ async def process_existing_messages(client, chat_id, message_id, syd):
                 sydmen = await db.get_sydson(1733124290)
                 syd = file.file_name
                 await asyncio.sleep(0.8)
-                mrsyd = await db.get_topic(1733124290)
+                mrsyd = syd
                 mrsydt = await db.get_rep(1733124290)
                 syd1 = mrsydt['sydd']
                 syd2 = mrsydt['syddd']
