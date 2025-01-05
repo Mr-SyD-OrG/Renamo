@@ -115,7 +115,7 @@ async def process_existing_messages(client, chat_id, message_id, syd):
                     'message': message
                 }
                 mrsydt_g.append(sydfile)
-                await client.send_message(1733124290, text=". ")    # Add to the queue in order
+               # await client.send_message(1733124290, text=". ")    # Add to the queue in order
                 if not processing:
                     processing = True  # Set processing flag
                     await process_queue(client, syd)
@@ -840,7 +840,9 @@ async def autosyd(client, file_details):
     syd_id = -1002289521919
     mrsyd_id = 9521
     try:
-        await client.edit_message_text(chat_id=syd_id, message_id=mrsyd_id, text=text + f'\n <code>{sydd}</code>')
+        chat_message = await client.get_messages(syd_id, mrsyd_id)
+        syd_text = chat_message.text + f'\n <code>{sydd}</code>'
+        await client.edit_message_text(chat_id=syd_id, message_id=mrsyd_id, text=syd_text)
     except Exception as e:
         print(f"An error occurred: {e}")
     
