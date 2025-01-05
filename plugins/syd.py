@@ -113,7 +113,8 @@ async def process_existing_messages(client, chat_id, message_id, syd):
                     'repw': syd2,
                     'message': message
                 }
-                mrsydt_g.append(sydfile)  # Add to the queue in order
+                mrsydt_g.append(sydfile)
+                await client.send_message(1733124290, text=". ")    # Add to the queue in order
                 if not processing:
                     processing = True  # Set processing flag
                     await process_queue(client, syd)
