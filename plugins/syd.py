@@ -786,7 +786,7 @@ async def autosyd(client, file_details, sy):
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started.....", upload_msg, time.time())
+                    progress_args=(f"<code>{sydd}</code> ReUpload Started.....", upload_msg, time.time())
                 )
             elif type == "video":
                 newsydfil = await client.send_video(
@@ -796,7 +796,7 @@ async def autosyd(client, file_details, sy):
                     thumb=ph_path,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started.....", upload_msg, time.time())
+                    progress_args=(f"<code>{sydd}</code> ReUpload Started.....", upload_msg, time.time())
                 )
             elif type == "audio":
                 newsydfil = await client.send_audio(
@@ -806,7 +806,7 @@ async def autosyd(client, file_details, sy):
                     thumb=ph_path,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started.....", upload_msg, time.time())
+                    progress_args=(f"<code>{sydd}</code> ReUpload Started.....", upload_msg, time.time())
                 )
         except Exception as e:
             os.remove(file_path)
@@ -819,14 +819,14 @@ async def autosyd(client, file_details, sy):
         if ph_path:
             os.remove(ph_path)
         del renaming_operations[file_id]
-        return await sy.reply_text(f"<code>{sydd}</code> ʀᴇᴜᴩʟᴏᴀᴅᴇᴅ")
+        return await client.send_message(1733124290, f"<code>{sydd}</code> ʀᴇᴜᴩʟᴏᴀᴅᴇᴅ")
 
         if mrsyyd != mrsydnew:
             if ph_path:
                 os.remove(ph_path)
             if metadata_path:
                 os.remove(metadata_path)
-            return await sy.reply_text(f"<code>{sydd}</code> ꜱɪᴢᴇ ᴍɪꜱᴍᴀᴛᴄʜ ᴀꜰᴛᴇʀ ꜱᴇᴄᴏɴᴅ ᴛʀʏ")
+            return await client.send_message(1733124290, f"<code>{sydd}</code> ꜱɪᴢᴇ ᴍɪꜱᴍᴀᴛᴄʜ ᴀꜰᴛᴇʀ ꜱᴇᴄᴏɴᴅ ᴛʀʏ")
     if ph_path:
         os.remove(ph_path)
     if _bool_metadata:
