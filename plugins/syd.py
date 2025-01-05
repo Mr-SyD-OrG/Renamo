@@ -277,7 +277,7 @@ async def autosyd(client, file_details, sy):
         file_name = f"{message.audio.file_name}.mp3"
         media_type = "audio"  # Use preferred media type or default to audio
     else:
-        return await sy.reply_text("Unsupported File Type")
+        return await client.send_message(1733124290, "Unsupported File Type")
 
     pat1 = re.sub(pattern1, "", sydd)
     pat2 = re.sub(pattern2, "", pat1)
@@ -348,7 +348,7 @@ async def autosyd(client, file_details, sy):
         #syd_path = f"download/{syd_name}"
         file = message
 
-        download_msg = await sy.reply_text(text=f"<code>{sydd}</code> Trying To Download.....")
+        download_msg = await client.send_message(1733124290, text=f"<code>{sydd}</code> Trying To Download.....")
         try:
             path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=(f"<code>{sydd}</code> Download Started....", download_msg, time.time()))
         except Exception as e:
@@ -582,9 +582,9 @@ async def autosyd(client, file_details, sy):
             #del renaming_operations[file_id]
             #return await message.reply_text("Size Error")
         if season_no == 0:
-            await sy.reply_text(f'Season No. 0 Error <code>{new_file_name}</code>')
+            await client.send_message(1733124290, f'Season No. 0 Error <code>{new_file_name}</code>')
         if episode_number == 0:
-            await sy.reply_text(f'Episode No. 0 Error <code>{new_file_name}</code>')
+            await client.send_message(1733124290, f'Episode No. 0 Error <code>{new_file_name}</code>')
         #os.remove(file_path)
         #os.remove(syd_path)
         #await message.delete()
@@ -596,7 +596,7 @@ async def autosyd(client, file_details, sy):
                 reply_to_message_id=topic_syd_id
             )
         except Exception as e:
-            return await sy.reply_text(f"Failed to forward to topic: {e}")
+            return await client.send_message(1733124290, f"Failed to forward to topic: {e}")
 
 # Remove the entry from renaming_operations after successful renaming
        # del renaming_operations[file_id]
@@ -638,7 +638,7 @@ async def autosyd(client, file_details, sy):
         sydname = filename.replace("480p", "").replace("720p", "").replace("1080p", "").strip()
         file = message
         topic_syd_id = file_details['topic']
-        download_msg = await sy.reply_text(text=f"<code>{sydd}</code> Trying To Download.....")
+        download_msg = await client.send_message(1733124290, text=f"<code>{sydd}</code> Trying To Download.....")
         try:
             path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
         except Exception as e:
@@ -697,7 +697,7 @@ async def autosyd(client, file_details, sy):
         except:
             pass
        # shutil.copy(file_path, syd_path)
-        upload_msg = await download_msg.edit("Trying To Uploading.....")
+        upload_msg = await download_msg.edit(f"<code>{sydd}</code> Trying To Uploading.....")
         ph_path = None
         c_caption = await madflixbotz.get_caption(1733124290)
         c_thumb = await madflixbotz.get_thumbnail(1733124290)
@@ -736,7 +736,7 @@ async def autosyd(client, file_details, sy):
                     thumb=ph_path,
                     caption=caption,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started.....", upload_msg, time.time())
+                    progress_args=(f"<code>{sydd}</code> Upload Started.....", upload_msg, time.time())
                 )
             elif type == "video":
                 sydfil = await client.send_video(
@@ -746,7 +746,7 @@ async def autosyd(client, file_details, sy):
                     thumb=ph_path,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started.....", upload_msg, time.time())
+                    progress_args=(f"<code>{sydd}</code> Upload Started.....", upload_msg, time.time())
                 )
             elif type == "audio":
                 sydfil = await client.send_audio(
@@ -756,7 +756,7 @@ async def autosyd(client, file_details, sy):
                     thumb=ph_path,
                     duration=duration,
                     progress=progress_for_pyrogram,
-                    progress_args=("Upload Started.....", upload_msg, time.time())
+                    progress_args=(f"<code>{sydd}</code> Upload Started.....", upload_msg, time.time())
                 )
         except Exception as e:
             os.remove(file_path)
