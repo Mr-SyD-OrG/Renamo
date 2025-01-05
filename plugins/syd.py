@@ -87,7 +87,7 @@ async def start_processing(client, message):
         await message.reply_text("An error occurred while starting the processing.")
 
 async def process_existing_messages(client, chat_id, message_id, syd):
-    global mrsydt_g, processing
+    global processing
     try:
         message = await client.get_messages(chat_id=chat_id, message_ids=message_id)
         #await syd.reply_text("1")
