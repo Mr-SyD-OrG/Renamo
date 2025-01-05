@@ -85,7 +85,7 @@ async def start_processing(client, message):
                 await process_existing_messages(client, chat_id, message_id, topic)
         else:
             for message_id in range(1, last_message_id + 1):
-                await process_existing_messages(client, chat_id, message_id, message)
+                await process_existing_messages(client, chat_id, message_id, topic)
         await prsyd.edit_text("Now /process 🎉")
 
         # Process each message ID one by one
@@ -94,7 +94,7 @@ async def start_processing(client, message):
         logger.error(f"An error occurred in start_processing: {e}")
         await message.reply_text("An error occurred while starting the processing.")
 
-async def process_existing_messages(client, chat_id, message_id, syd):
+async def process_existing_messages(client, chat_id, message_id, sydtop):
     global processing
     try:
         message = await client.get_messages(chat_id=chat_id, message_ids=message_id)
@@ -105,7 +105,7 @@ async def process_existing_messages(client, chat_id, message_id, syd):
                 sydmen = await db.get_sydson(1733124290)
                 syd = file.file_name
                 await asyncio.sleep(0.8)
-                mrsyd = syd
+                mrsyd = sydtop
                 mrsydt = await db.get_rep(1733124290)
                 syd1 = mrsydt['sydd']
                 syd2 = mrsydt['syddd']
