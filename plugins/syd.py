@@ -79,7 +79,7 @@ async def start_processing(client, message):
         else:
             for message_id in range(1, last_message_id + 1):
                 await process_existing_messages(client, chat_id, message_id, message)
-        await prsyd.edit_text("Now Renaming 🎉")
+        await prsyd.edit_text("Now /process 🎉")
 
         # Process each message ID one by one
         print("All messages processed.")
