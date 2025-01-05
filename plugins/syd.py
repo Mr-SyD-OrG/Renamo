@@ -43,7 +43,7 @@ async def start_processing(client, message):
 
         chat_d = message.command[1]
         skip = message.command[3] if message.command[3] else None
-        top = message.command[2] if message.command[3] else None
+        top = message.command[2] if message.command[2] else None
         if top.startswith("https://t.me/"):
             match = re.search(r"/(\d+)$", top)
             if match:
