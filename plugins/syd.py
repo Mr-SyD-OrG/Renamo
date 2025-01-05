@@ -837,9 +837,6 @@ async def autosyd(client, file_details, sy):
     syd_id = -1002289521919
     mrsyd_id = 9521
     try:
-        chat_message = await client.get_messages(syd_id, mrsyd_id)
-        syd_text = chat_message.text
-        new_text = increment_count_in_message(syd_text)
         await client.edit_message_text(chat_id=syd_id, message_id=mrsyd_id, text=text + f'\n <code>{sydd}</code>')
     except Exception as e:
         print(f"An error occurred: {e}")
