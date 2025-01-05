@@ -42,7 +42,7 @@ async def start_processing(client, message):
             return
 
         chat_d = message.command[1]
-        skip = message.command[2]
+        skip = message.command[2] if message.command[2] else 1
         if skip.startswith("https://t.me/"):
             match = re.search(r"/(\d+)$", skip)
             if match:
@@ -122,13 +122,14 @@ async def process_existing_messages(client, chat_id, message_id, syd):
     except Exception as e:
         logger.error(f"An error occurred while processing message {message_id}: {e}")
 
-async def process_queue(client, syd):
+@Client.on_message(filters.command("process") & filters.user(1733124290))
+async def process_queue(client, message):
     global processing
     try:
         # Process files one by one from the queue
         while mrsydt_g:
             file_details = mrsydt_g.pop(0)  # Get the first file in the queue
-            await autosyd(client, file_details, syd)  # Process it
+            await autosyd(client, file_details)  # Process it
     finally:
         processing = False  # Reset the processing flag
 
@@ -256,7 +257,7 @@ print(f"Extracted Episode Number: {episode_number}")
 # Inside the handler for file uploads
 
 
-async def autosyd(client, file_details, sy):
+async def autosyd(client, file_details):
     global last_season_number, syd_top, syd_mov, syd_qua
     sydd = file_details['file_name']
     media = file_details['media']
