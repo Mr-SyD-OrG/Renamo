@@ -105,7 +105,7 @@ async def process_existing_messages(client, chat_id, message_id, syd):
                 sydmen = await db.get_sydson(1733124290)
                 syd = file.file_name
                 await asyncio.sleep(0.8)
-                mrsyd = int(syd)
+                mrsyd = syd
                 mrsydt = await db.get_rep(1733124290)
                 syd1 = mrsydt['sydd']
                 syd2 = mrsydt['syddd']
