@@ -17,7 +17,8 @@ import re
 #import shutil
 fulsyd = "fair"
 db = madflixbotz
-mrsydt_g = []
+mrs = []
+mrsydt_g = mrs
 processing = False
 MRSYD = -1002289521919
 sydtg = -1002305372915
