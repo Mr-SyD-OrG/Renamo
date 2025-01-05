@@ -42,7 +42,7 @@ async def start_processing(client, message):
             return
 
         chat_d = message.command[1]
-        skip = message.command[2] if message.command[2] else 1
+        skip = message.command[2] if message.command[2] else None
         if skip.startswith("https://t.me/"):
             match = re.search(r"/(\d+)$", skip)
             if match:
@@ -73,7 +73,7 @@ async def start_processing(client, message):
             return
 
         prsyd = await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
-        if skip_id:
+        if skip:
             for message_id in range(skip_id, last_message_id + 1):
                 await process_existing_messages(client, chat_id, message_id, message)
         else:
