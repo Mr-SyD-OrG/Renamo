@@ -105,7 +105,7 @@ async def process_existing_messages(client, chat_id, message_id, syd):
                 sydmen = await db.get_sydson(1733124290)
                 syd = file.file_name
                 await asyncio.sleep(0.8)
-                mrsyd = syd
+                mrsyd = int(syd)
                 mrsydt = await db.get_rep(1733124290)
                 syd1 = mrsydt['sydd']
                 syd2 = mrsydt['syddd']
@@ -411,7 +411,7 @@ async def autosyd(client, file_details):
         c_caption = await madflixbotz.get_caption(1733124290)
         c_thumb = await madflixbotz.get_thumbnail(1733124290)
 
-        topic_syd_id = int(file_details['topic'])
+        topic_syd_id = file_details['topic']
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
         if syd_top == 0:
             syd_top = topic_syd_id
