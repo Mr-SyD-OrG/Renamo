@@ -30,69 +30,69 @@ syd_top = 0
 syd_qua = "None"
 syd_mov = "None"
 
-
-  # Flag to avoid multiple simultaneous processing
+# Semaphore to ensure only one command is processed at a time
+semaphore = asyncio.Semaphore(1)
 
 @Client.on_message(filters.command("begin") & filters.user(1733124290))  # Replace with your user ID
 async def start_processing(client, message):
-    try:
-        # Validate and extract chat_id from the command
-        if len(message.command) < 2:
-            await message.reply_text("Usage: /begin <chat_id>")
-            return
-
-        chat_d = message.command[1]
-        skip = message.command[3] if message.command[3] else None
-        top = message.command[2] if message.command[2] else None
-        if top.startswith("https://t.me/"):
-            match = re.search(r"/(\d+)$", top)
-            if match:
-                topic_id = match.group(1)
-            else:
-                return await message.reply("<b>⚠ Invalid link provided. Make sure it ends with a numeric topic ID.</b>")
-    
-        if skip.startswith("https://t.me/"):
-            match = re.search(r"/(\d+)$", skip)
-            if match:
-                skip_id = int(match.group(1))
-            else:
-                return await message.reply("<b>⚠ Invalid link provided. Make sure it ends with a numeric topic ID.</b>")
-        else:
-            skip_id = skip
-    
-        if chat_d.startswith(('http')):
-            username, message_d = chat_d.split('/')[-2], chat_d.split('/')[-1]
-            chat_id = "@" + username
-            last_message_id = int(message_d)
-       # try:
-            #chat_id = int(chat_id)
-      #  except ValueError:
-           # await message.reply_text("Invalid chat ID. Please provide a valid integer.")
-            #return
+    async with semaphore:
         try:
-            chat = await client.get_chat(chat_id)
-            if not chat:
-                await message.reply_text("Unable to access the specified chat. Please check the chat ID.")
+            # Validate and extract chat_id from the command
+            if len(message.command) < 2:
+                await message.reply_text("Usage: /begin <chat_id>")
                 return
+
+            chat_d = message.command[1]
+            skip = message.command[3] if len(message.command) > 3 else None
+            top = message.command[2] if len(message.command) > 2 else None
+
+            if top and top.startswith("https://t.me/"):
+                match = re.search(r"/(\d+)$", top)
+                if match:
+                    topic_id = match.group(1)
+                else:
+                    return await message.reply("<b>⚠ Invalid link provided. Make sure it ends with a numeric topic ID.</b>")
+
+            if skip and skip.startswith("https://t.me/"):
+                match = re.search(r"/(\d+)$", skip)
+                if match:
+                    skip_id = int(match.group(1))
+                else:
+                    return await message.reply("<b>⚠ Invalid link provided. Make sure it ends with a numeric topic ID.</b>")
+            else:
+                skip_id = int(skip) if skip else None
+
+            if chat_d.startswith(('http')):
+                username, message_d = chat_d.split('/')[-2], chat_d.split('/')[-1]
+                chat_id = "@" + username
+                last_message_id = int(message_d)
+            else:
+                await message.reply_text("Invalid chat link.")
+                return
+
+            try:
+                chat = await client.get_chat(chat_id)
+                if not chat:
+                    await message.reply_text("Unable to access the specified chat. Please check the chat ID.")
+                    return
+            except Exception as e:
+                await message.reply_text(f"Error accessing chat: {e}")
+                return
+
+            topic = topic_id if 'topic_id' in locals() else await db.get_topic(1733124290)
+            prsyd = await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
+
+            if skip_id:
+                for message_id in range(skip_id, last_message_id + 1):
+                    await process_existing_messages(client, chat_id, message_id, topic)
+            else:
+                for message_id in range(1, last_message_id + 1):
+                    await process_existing_messages(client, chat_id, message_id, topic)
+            await prsyd.edit_text("Now /process 🎉")
         except Exception as e:
-            await message.reply_text(f"Error accessing chat: {e}")
-            return
+            logger.error(f"An error occurred in start_processing: {e}")
+            await message.reply_text("An error occurred while processing your command.")
 
-        topic = topic_id if topic_id else await db.get_topic(1733124290)
-        prsyd = await message.reply_text(f"Processing started for messages in chat ID: {chat_id}")
-        if skip:
-            for message_id in range(skip_id, last_message_id + 1):
-                await process_existing_messages(client, chat_id, message_id, topic)
-        else:
-            for message_id in range(1, last_message_id + 1):
-                await process_existing_messages(client, chat_id, message_id, topic)
-        await prsyd.edit_text("Now /process 🎉")
-
-        # Process each message ID one by one
-        print("All messages processed.")
-    except Exception as e:
-        logger.error(f"An error occurred in start_processing: {e}")
-        await message.reply_text("An error occurred while starting the processing.")
 
 async def process_existing_messages(client, chat_id, message_id, sydtopic):
     global processing
