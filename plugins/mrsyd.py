@@ -273,7 +273,7 @@ async def autosyd(client, file_details):
         sydd2 = file_details['repm']
         if syd1 in Syd:
             Syd = Syd.replace(syd1, syd2)
-        remove_list = ['-', '⌯', '[AL]', '[AH]', 'Esub', '(x265)', '[JoyBoy]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir', '[', ']']
+        remove_list = ['-', '⌯', '[AL]', '[AH]', 'AH', 'Esub', '(x265)', '[JoyBoy]', '[KDL]', '@Anime_Fair', '@Klands', 'Syd', 'KDL', 'foooir', '[', ']']
         for item in remove_list:
             Syd = Syd.replace(item, "")
         if '[Dual]' in Syd:
