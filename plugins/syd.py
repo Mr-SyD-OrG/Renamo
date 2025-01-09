@@ -360,9 +360,9 @@ async def autosyd(client, file_details):
         #syd_path = f"download/{syd_name}"
         file = message
 
-        download_msg = await client.send_message(1733124290, text=f"<code>{sydd}</code> Trying To Download.....")
+        download_msg = await client.send_message(1733124290, text=f"<code>{file_name}</code> Trying To Download.....")
         try:
-            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=(f"<code>{sydd}</code> Download Started....", download_msg, time.time()))
+            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=(f"<code>{file_name}</code> Download Started....", download_msg, time.time()))
         except Exception as e:
             # Mark the file as ignored
             del renaming_operations[file_id]
