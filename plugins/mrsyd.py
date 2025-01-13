@@ -38,7 +38,7 @@ pattern3 = re.compile(r'(?:[([<{]?\s*(?:E|EP)\s*(\d+)\s*[)\]>}]?)')
 # Pattern 3_2: episode number after - [hyphen]
 pattern3_2 = re.compile(r'(?:\s*-\s*(\d+)(?!p)\s*)')
 # Pattern 4: S2 09 ex.
-pattern4 = re.compile(r'S(\d+)[^\d]*(\d+)', re.IGNORECASE)
+pattern4 = re.compile(r'S(\d+)\s*[-E ]\s*(\d+)', re.IGNORECASE)
 # Pattern X: Standalone Episode Number
 patternX = re.compile(r'\b(?!\d{3,4}p\b)\d{3,4}\b', re.IGNORECASE)
 # Pattern 1: Explicit "S" or "Season" with optional separators
@@ -83,9 +83,7 @@ def extract_quality(filename):
         print(f"Quality: {quality7}")
         return quality7
     
-    # Return "Unknown" if no pattern matches
-    unknown_quality = "Unknown"
-    print(f"Quality: {unknown_quality}")
+    # Return "Unknown" 
     return None
     
 
@@ -124,7 +122,7 @@ def extract_episode_number(filename):
     match = re.search(patternX, filename)
     if match:
         print("Matched Pattern X")
-        return match.group(1)  # Extracted episode number
+        return match.group(0)  # Extracted episode number
         
     # Return None if no pattern matches
     return None
