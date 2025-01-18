@@ -1,7 +1,7 @@
 
 from pyrogram import Client, filters, enums
 import asyncio
-from database import db
+from helper.database import db
 
 
 
