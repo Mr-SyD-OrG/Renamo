@@ -4,6 +4,12 @@ import time
 from helper.database import db
 from info import ADMINS
 import asyncio
+import logging
+from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
 
 
 
