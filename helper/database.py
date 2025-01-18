@@ -144,7 +144,7 @@ class Database:
 
 
 madflixbotz = Database(Config.DB_URL, Config.DB_NAME)
-        
+db = madflixbotz
 
 
 # Jishu Developer 
