@@ -27,7 +27,7 @@ async def start(client, message):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(Config.LOG_CHANNEL, Txt.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
-        syd = ["⚡", "🎉", "🫥", "🔥", "🌟", "✨", "🥶", "💫", "🎊", "😶‍🌫️", "👀"]
+        syd = ["⚡", "🎉", "🫥", "🔥", "🌟", "✨", "🥶", "💫", "🎊", "😶‍🌫️", "👀", "😇", "👾", "😁", "🧭"]
         await message.reply_text(random.choice(syd))
         m=await message.reply_text("<b><i>ꜱᴛᴀʀᴛɪɴɢ...</i></b>")
         await asyncio.sleep(1)
@@ -45,7 +45,7 @@ async def start(client, message):
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_text(
-            text=f"<b><blockquote>ʜᴇʏ, {message.from_user.mention}</blockquote> \n Sᴇᴀʀᴄʜ ᴀɴʏ ᴍᴏᴠɪᴇꜱ ʏᴏᴜ ᴡᴀɴᴛ ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴏɴ ʀᴇꜱᴩᴇᴄᴛɪᴠᴇ ʙᴜᴛᴛᴏɴ⚡ \n\n<u>Aɴʏ ᴛʜɪɴɢ ᴍɪꜱꜱɪɴɢ? ᴛʜᴇɴ ᴊᴜꜱᴛ ꜱᴇɴᴅ ɪᴛ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴩ ᴀɴᴅ ʏᴏᴜ'ʟʟ ɢᴇᴛ ☺️</u></b>",
+            text=f"<b><blockquote>ʜᴇʏ, {message.from_user.mention}</blockquote> \n\nSᴇᴀʀᴄʜ ᴀɴʏ ᴍᴏᴠɪᴇꜱ ʏᴏᴜ ᴡᴀɴᴛ ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴏɴ ʀᴇꜱᴩᴇᴄᴛɪᴠᴇ ʙᴜᴛᴛᴏɴ⚡ \n\n<u>Aɴʏ ᴛʜɪɴɢ ᴍɪꜱꜱɪɴɢ? ᴛʜᴇɴ ᴊᴜꜱᴛ ꜱᴇɴᴅ ɪᴛ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴩ ᴀɴᴅ ʏᴏᴜ'ʟʟ ɢᴇᴛ ☺️</u></b>",
            # photo=random.choice(PICS),
            # caption=script.START_TXT.format(message.from_user.mention, gtxt, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
