@@ -26,9 +26,9 @@ async def start(client, message):
         await db.add_user(message.from_user.id, message.from_user.first_name)
         await client.send_message(Config.LOG_CHANNEL, Txt.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
     if len(message.command) != 2:
+        syd = ["⚡", "🎉", "🫥", "🔥", "🌟", "✨", "🥶", "💫", "🎊", "😶‍🌫️", "👀"]
+        await message.reply_text(random.choice(syd))
         m=await message.reply_text("<b><i>ꜱᴛᴀʀᴛɪɴɢ...</i></b>")
-        await asyncio.sleep(0.4)
-        await m.edit_text("Dᴏɴᴛ ꜰᴏʀɢᴇᴛ ᴛᴏ ꜱᴜᴩᴩᴏʀᴛ ᴜꜱ! @BOT_CRAckers 🍋") 
         await asyncio.sleep(1)
         await m.delete()
         buttons = [[
@@ -39,12 +39,12 @@ async def start(client, message):
                 ],[
                     InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛꫀ𝘴 ⚝', url='https://t.me/Bot_Cracker'),
                     InlineKeyboardButton('⊛ Mᴏ∇ɪᴇ ⊛', url='https://t.me/Mod_Moviez_X')
-               # ],[
-                  #  InlineKeyboardButton("◎ Sꪊʙꜱᴄʀɪᴩᴛɪꪮɴ - Fяᴇᴇ Δɴ' Pᴀɪᴅ ◎", callback_data="premium_info")
+                ],[
+                    InlineKeyboardButton("◎   ʙᴏᴛꜱ   ◎", url='https://t.me/Bot_Cracker/6')
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_text(
-            text="ʜᴇʏ,",
+            text=f"<b><blockquote>ʜᴇʏ, {message.from_user.mention}</blockquote> \n Sᴇᴀʀᴄʜ ᴀɴʏ ᴍᴏᴠɪᴇꜱ ʏᴏᴜ ᴡᴀɴᴛ ʙʏ ᴄʟɪᴄᴋɪɴɢ ᴏɴ ʀᴇꜱᴩᴇᴄᴛɪᴠᴇ ʙᴜᴛᴛᴏɴ⚡ \n\n<u>Aɴʏ ᴛʜɪɴɢ ᴍɪꜱꜱɪɴɢ? ᴛʜᴇɴ ᴊᴜꜱᴛ ꜱᴇɴᴅ ɪᴛ ɪɴ ᴛʜᴇ ɢʀᴏᴜᴩ ᴀɴᴅ ʏᴏᴜ'ʟʟ ɢᴇᴛ ☺️</u></b>",
            # photo=random.choice(PICS),
            # caption=script.START_TXT.format(message.from_user.mention, gtxt, temp.U_NAME, temp.B_NAME),
             reply_markup=reply_markup,
