@@ -24,7 +24,8 @@ class Config(object):
 
 class Txt(object):
     # part of text configuration
-        
+
+    LOG_TEXT_P = """ {} {} """
     START_TXT = """Hello {} 
     
 ➻ This Is An Advanced And Yet Powerful Rename Bot.
