@@ -8,6 +8,17 @@ class Database:
         self._client = motor.motor_asyncio.AsyncIOMotorClient(uri)
         self.madflixbotz = self._client[database_name]
         self.col = self.madflixbotz.user
+        self.grp = self.madflixbotz.groups
+
+    def new_group(self, id, title):
+        return dict(
+            id = id,
+            title = title,
+            chat_status=dict(
+                is_disabled=False,
+                reason="",
+            ),
+        )
 
     def new_user(self, id):
         return dict(
@@ -32,6 +43,18 @@ class Database:
             await self.col.insert_one(user)            
             await send_log(b, u)
 
+    async def add_chat(self, chat, title):
+        chat = self.new_group(chat, title)
+        await self.grp.insert_one(chat)
+    
+
+    async def get_chat(self, chat):
+        chat = await selfrequests
+        d_one({'id':int(chat)})
+        return False if not chat else chat.get('chat_status')
+    
+
+    
     async def is_user_exist(self, id):
         user = await self.col.find_one({'_id': int(id)})
         return bool(user)
