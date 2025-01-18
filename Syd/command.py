@@ -3,6 +3,7 @@ from pyrogram import Client, filters, enums
 import asyncio
 from helper.database import db
 from config import Config, Txt
+from pyrogram.types import InlineKeyboardButton
 
 
 
