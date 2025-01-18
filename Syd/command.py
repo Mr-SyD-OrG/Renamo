@@ -41,7 +41,7 @@ async def start(client, message):
                     InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛꫀ𝘴 ⚝', url='https://t.me/Bot_Cracker'),
                     InlineKeyboardButton('⊛ Mᴏ∇ɪᴇ ⊛', url='https://t.me/Mod_Moviez_X')
                 ],[
-                    InlineKeyboardButton("◎   ʙᴏᴛꜱ   ◎", url='https://t.me/Bot_Cracker/6')
+                    InlineKeyboardButton("◎   ʙᴏᴛꜱ   ◎", url='https://t.me/Bot_Cracker/17')
                   ]]
         reply_markup = InlineKeyboardMarkup(buttons)
         await message.reply_text(
