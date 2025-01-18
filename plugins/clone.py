@@ -12,8 +12,20 @@ async def clone_menu(client, message):
         return await message.reply_text("**__Give The ᴅᴜᴍᴩ ᴄʜᴀɴɴᴇʟ ɪᴅ__\n\nExᴀᴍᴩʟᴇ:- `/set_dump -1002042969565`**")
     mrsyd = message.text.split(" ", 1)[1]
     syd = Client(
-        f"{bot_token}", API_ID, API_HASH,
+        f"{mrsyd}", API_ID, API_HASH,
         bot_token=mrsyd,
         plugins={"root": "Syd"}
+    )
+    await syd.start()
+
+@Client.on_message(filters.command("create") & filters.user(ADMINS))
+async def clone_menu(client, message):
+    if len(message.command) == 1:
+        return await message.reply_text("**__Give The ᴅᴜᴍᴩ ᴄʜᴀɴɴᴇʟ ɪᴅ__\n\nExᴀᴍᴩʟᴇ:- `/set_dump -1002042969565`**")
+    mrsyd = message.text.split(" ", 1)[1]
+    syd = Client(
+        f"{mrsyd}", API_ID, API_HASH,
+        bot_token=mrsyd,
+        plugins={"root": "Sydon"}
     )
     await syd.start()
