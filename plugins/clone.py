@@ -1,3 +1,11 @@
+from config import Config
+from pyrogram import Client, filters, enums
+
+
+API_ID = Config.API_ID
+API_HASH = Config.API_HASH
+ADMINS = Config.ADMIN
+
 @Client.on_message(filters.command("clone") & filters.user(ADMINS))
 async def clone_menu(client, message):
     if len(message.command) == 1:
