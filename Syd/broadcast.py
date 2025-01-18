@@ -1,8 +1,9 @@
 from pyrogram import Client, filters
+from config import Config
 import datetime
 import time
 from helper.database import db
-from info import ADMINS
+ADMINS = Config.ADMIN
 import asyncio
 import logging
 from pyrogram.errors import InputUserDeactivated, UserNotParticipant, FloodWait, UserIsBlocked, PeerIdInvalid
