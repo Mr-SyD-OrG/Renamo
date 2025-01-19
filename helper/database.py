@@ -36,12 +36,10 @@ class Database:
             format_template=None  # Add this line for the format template
         )
 
-    async def add_user(self, b, m):
-        u = m.from_user
-        if not await self.is_user_exist(u.id):
-            user = self.new_user(u.id)
-            await self.col.insert_one(user)            
-            await send_log(b, u)
+    async def add_user(self, id, name):
+        user = self.new_user(id, name)
+        await self.col.insert_one(user)
+
 
     async def add_chat(self, chat, title):
         chat = self.new_group(chat, title)
