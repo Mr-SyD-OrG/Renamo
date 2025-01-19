@@ -45,7 +45,7 @@ class Database:
 
 
     async def add_ser(self, id, name):
-        user = self.new_user(id, name)
+        user = self.new_user(id)
         await self.col.insert_one(user)
 
 
