@@ -2,6 +2,7 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from pyrogram.types import InputMediaDocument, Message 
 from PIL import Image
+import requests
 from datetime import datetime
 #from .mrsyd import process_queue
 from hachoir.metadata import extractMetadata
