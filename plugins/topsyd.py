@@ -45,27 +45,35 @@ def fetch_real_name(input_string):
         best_match, score = process.extractOne(input_string, series_list)
         if score > 80:  # Confidence threshold
             return best_match
-    return None
+    return
+    
+    
+def get_topics(bot, limit=100):
+    """Fetch unique topics by analyzing recent messages in chat history."""
+    topics = {}  # Dictionary to store unique topics {name: id}
 
-def get_existing_topics():
-    """Fetch existing topics from the Telegram group."""
-    updates = bot.get_updates()
-    topic_ids = {}
-    for update in updates:
-        if update.message and update.message.is_topic_message:
-            topic_name = update.message.forum_topic.name
-            topic_id = update.message.message_thread_id
-            topic_ids[topic_name] = topic_id
-    return topic_ids
+    # Iterate over recent messages
+    for offset in range(0, limit, 50):  # Telegram API paginates messages
+        messages = bot.get_chat_history(chat_id=chat_id, offset=offset, limit=50)
+        for message in messages:
+            if message.is_topic_message:
+                topic_id = message.message_thread_id
+                topic_name = message.forum_topic.name
+                
+                # Avoid duplicates by checking if topic_id is already added
+                if topic_id not in topics.values():
+                    topics[topic_name] = topic_id
 
-def create_topic_if_not_exists(topic_name):
+    return topics
+
+def create_topic_if_not_exists(bot, topic_name):
     """Create a topic if it doesn't already exist and return its ID."""
-    existing_topics = get_existing_topics()
+    existing_topics = get_topics(bot)
     if topic_name in existing_topics:
         print(f"Topic '{topic_name}' already exists.")
         return existing_topics[topic_name]
     else:
-        # Create the topic
+         Create the topic
         topic = bot.createForumTopic(chat_id=CHAT_ID, name=topic_name)
         print(f"Created new topic: {topic_name}")
         return topic.message_thread_id
