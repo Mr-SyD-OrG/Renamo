@@ -19,6 +19,7 @@ from aiogram.methods import CreateForumTopic
 fulsyd = "fair"
 db = madflixbotz
 mrs = []
+topppsyd = -1002407746052
 mrsydt_g = mrs
 processing = False
 MRSYD = -1002289521919
@@ -54,7 +55,7 @@ def get_topics(bot, limit=100):
 
     # Iterate over recent messages
     for offset in range(0, limit, 50):  # Telegram API paginates messages
-        messages = bot.get_chat_history(chat_id=chat_id, offset=offset, limit=50)
+        messages = bot.get_chat_history(chat_id=topppsyd, offset=offset, limit=50)
         for message in messages:
             if message.is_topic_message:
                 topic_id = message.message_thread_id
@@ -74,7 +75,7 @@ def create_topic_if_not_exists(bot, topic_name):
         return existing_topics[topic_name]
     else:
          Create the topic
-        topic = bot.createForumTopic(chat_id=CHAT_ID, name=topic_name)
+        topic = bot.createForumTopic(chat_id=topppsyd, name=topic_name)
         print(f"Created new topic: {topic_name}")
         return topic.message_thread_id
 
