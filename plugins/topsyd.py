@@ -45,6 +45,31 @@ def fetch_real_name(input_string):
         if score > 80:  # Confidence threshold
             return best_match
     return None
+
+def get_existing_topics():
+    """Fetch existing topics from the Telegram group."""
+    updates = bot.get_updates()
+    topic_ids = {}
+    for update in updates:
+        if update.message and update.message.is_topic_message:
+            topic_name = update.message.forum_topic.name
+            topic_id = update.message.message_thread_id
+            topic_ids[topic_name] = topic_id
+    return topic_ids
+
+def create_topic_if_not_exists(topic_name):
+    """Create a topic if it doesn't already exist and return its ID."""
+    existing_topics = get_existing_topics()
+    if topic_name in existing_topics:
+        print(f"Topic '{topic_name}' already exists.")
+        return existing_topics[topic_name]
+    else:
+        # Create the topic
+        topic = bot.createForumTopic(chat_id=CHAT_ID, name=topic_name)
+        print(f"Created new topic: {topic_name}")
+        return topic.message_thread_id
+
+
 @Client.on_message(filters.command("new") & filters.user(1733124290))  # Replace with your user ID
 async def start_processing(client, message):
     async with semaphore:
@@ -118,17 +143,28 @@ async def process_existing_messages(client, chat_id, message_id, sydtopic):
                 sydmen = await db.get_sydson(1733124290)
                 syd = file.file_name
                 await asyncio.sleep(0.8)
-                mrsyd = sydtopic
+                #mrsyd = sydtopic
                 mrsydt = await db.get_rep(1733124290)
                 syd1 = mrsydt['sydd']
                 syd2 = mrsydt['syddd']
+                real_name = fetch_real_name(syd)
+                if real_name:
+                    print(f"Real name found: {real_name}")
+                    topic_id = create_topic_if_not_exists(real_name)
+                    print(f"Topic ID for '{real_name}': {topic_id}")
+                    topsyd = topic_id
 
+                else:
+                    await client.send_message(1733124290, text="No Name Found For Topic, Please create")
+                    print("Could not find a real name for the input.")
+                    return
+                    
                 sydfile = {
                     'file_name': syd,
                     'file_size': file.file_size,
                     'message_id': message.id,
                     'media': file,
-                    'topic': int(mrsyd),
+                    'topic': int(topsyd),
                     'season': sydmen,
                     'repm': syd1,
                     'repw': syd2,
