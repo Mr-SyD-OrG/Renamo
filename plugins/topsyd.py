@@ -74,7 +74,6 @@ def create_topic_if_not_exists(bot, topic_name):
         print(f"Topic '{topic_name}' already exists.")
         return existing_topics[topic_name]
     else:
-         Create the topic
         topic = bot.createForumTopic(chat_id=topppsyd, name=topic_name)
         print(f"Created new topic: {topic_name}")
         return topic.message_thread_id
