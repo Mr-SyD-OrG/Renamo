@@ -15,6 +15,7 @@ import os
 import time, asyncio
 import logging
 import re
+from fuzzywuzzy import process
 from aiogram.methods import CreateForumTopic
 fulsyd = "fair"
 db = madflixbotz
