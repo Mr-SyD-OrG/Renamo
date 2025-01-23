@@ -4,6 +4,8 @@ pyromod
 TgCrypto
 motor
 dnspython
+requests
+fuzzywuzzy
 hachoir
 Pillow
 aiohttp
