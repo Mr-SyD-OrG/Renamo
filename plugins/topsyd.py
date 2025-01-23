@@ -14,6 +14,7 @@ import os
 import time, asyncio
 import logging
 import re
+from aiogram.methods import CreateForumTopic
 #import shutil
 fulsyd = "fair"
 db = madflixbotz
