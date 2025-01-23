@@ -14,8 +14,7 @@ import os
 import time, asyncio
 import logging
 import re
-from pyrogram import CreateForumTopic
-#import shutil
+from aiogram.methods import CreateForumTopic
 fulsyd = "fair"
 db = madflixbotz
 mrs = []
