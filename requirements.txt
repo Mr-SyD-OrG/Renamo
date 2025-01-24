@@ -4,6 +4,7 @@ pyromod
 TgCrypto
 motor
 dnspython
+Levenshtein
 requests
 fuzzywuzzy
 hachoir
