@@ -186,6 +186,7 @@ async def proces_existing_messages(client, chat_id, message_id, sydtopic):
                   #  processing = True  # Set processing flag
                    # await process_queue(client, syd)
     except Exception as e:
+        await client.send_message(1733124290, text=f"{e}")
         logger.error(f"An error occurred while processing message {message_id}: {e}")
 
 @Client.on_message(filters.command("auto") & filters.user(1733124290))
