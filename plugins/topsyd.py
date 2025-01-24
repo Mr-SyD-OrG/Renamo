@@ -157,18 +157,6 @@ async def proces_existing_messages(client, chat_id, message_id, sydtopic):
                 mrsydt = await db.get_rep(1733124290)
                 syd1 = mrsydt['sydd']
                 syd2 = mrsydt['syddd']
-                real_name = fetch_real_name(syd)
-                if real_name:
-                    print(f"Real name found: {real_name}")
-                    topic_id = create_topic_if_not_exists(real_name)
-                    print(f"Topic ID for '{real_name}': {topic_id}")
-                    topsyd = topic_id
-
-                else:
-                    await client.send_message(1733124290, text="No Name Found For Topic, Please create")
-                    print("Could not find a real name for the input.")
-                    return
-                    
                 sydfile = {
                     'file_name': syd,
                     'file_size': file.file_size,
@@ -378,6 +366,17 @@ async def autosyyd(client, file_details):
             formatted_episode = f"S{syd_xyz:02d}E{syd_tg:02d} "
         else:
             formatted_episode = f"E{syd_tg:02d} "
+        real_name = fetch_real_name(sydX)
+        if real_name:
+            print(f"Real name found: {real_name}")
+            topic_id = create_topic_if_not_exists(real_name)
+            print(f"Topic ID for '{real_name}': {topic_id}")
+            topsyd = topic_id
+
+        else:
+            await client.send_message(1733124290, text="No Name Found For Topic, Please create")
+            print("Could not find a real name for the input.")
+            return
         Syd = formatted_episode + sydX
         mrsyds = ['YTS.MX', 'SH3LBY', 'Telly', 'Moviez', 'NazzY', 'VisTa', 'PiRO', 'PAHE', 'ink', 'mkvcinemas', 'CZ', 'WADU', 'PrimeFix', 'HDA', 'PSA', 'GalaxyRG', '-Bigil', 'TR', 'www.', '@',
             '-TR', '-SH3LBY', '-Telly', '-NazzY', '-PAHE', '-WADU', 'MoviezVerse', 't3nzin', '[Tips', 'Eac3', '(@'
@@ -473,7 +472,8 @@ async def autosyyd(client, file_details):
         c_caption = await madflixbotz.get_caption(1733124290)
         c_thumb = await madflixbotz.get_thumbnail(1733124290)
 
-        topic_syd_id = file_details['topic']
+      #  topic_syd_id = file_details['topic']
+        topic_syd_id = topsyd
         caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
         if syd_top == 0:
             syd_top = topic_syd_id
