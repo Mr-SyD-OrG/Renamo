@@ -81,7 +81,7 @@ def create_topic_if_not_exists(bot, topic_name):
 
 
 @Client.on_message(filters.command("new") & filters.user(1733124290))  # Replace with your user ID
-async def start_processing(client, message):
+async def start_procesing(client, message):
     async with semaphore:
         try:
             # Validate and extract chat_id from the command
@@ -135,14 +135,14 @@ async def start_processing(client, message):
                     await process_existing_messages(client, chat_id, message_id, topic)
             else:
                 for message_id in range(1, last_message_id + 1):
-                    await process_existing_messages(client, chat_id, message_id, topic)
+                    await proces_existing_messages(client, chat_id, message_id, topic)
             await prsyd.edit_text("Now /process 🎉")
         except Exception as e:
             logger.error(f"An error occurred in start_processing: {e}")
             await message.reply_text("An error occurred while processing your command.")
 
 
-async def process_existing_messages(client, chat_id, message_id, sydtopic):
+async def proces_existing_messages(client, chat_id, message_id, sydtopic):
     global processing
     try:
         message = await client.get_messages(chat_id=chat_id, message_ids=message_id)
@@ -189,13 +189,13 @@ async def process_existing_messages(client, chat_id, message_id, sydtopic):
         logger.error(f"An error occurred while processing message {message_id}: {e}")
 
 @Client.on_message(filters.command("auto") & filters.user(1733124290))
-async def process_queue(client, message):
+async def procs_queue(client, message):
     global processing
     try:
         # Process files one by one from the queue
         while mrsydt_g:
             file_details = mrsydt_g.pop(0)  # Get the first file in the queue
-            await autosyd(client, file_details)  # Process it
+            await autosyyd(client, file_details)  # Process it
     finally:
         processing = False  # Reset the processing flag
 
@@ -323,7 +323,7 @@ print(f"Extracted Episode Number: {episode_number}")
 # Inside the handler for file uploads
 
 
-async def autosyd(client, file_details):
+async def autosyyd(client, file_details):
     global last_season_number, syd_top, syd_mov, syd_qua
     sydd = file_details['file_name']
     media = file_details['media']
