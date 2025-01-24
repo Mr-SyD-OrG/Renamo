@@ -162,7 +162,7 @@ async def proces_existing_messages(client, chat_id, message_id, sydtopic):
                     'file_size': file.file_size,
                     'message_id': message.id,
                     'media': file,
-                    'topic': int(topsyd),
+                 #   'topic': int(topsyd),
                     'season': sydmen,
                     'repm': syd1,
                     'repw': syd2,
