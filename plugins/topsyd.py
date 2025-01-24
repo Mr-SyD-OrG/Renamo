@@ -132,7 +132,7 @@ async def start_procesing(client, message):
 
             if skip_id:
                 for message_id in range(skip_id, last_message_id + 1):
-                    await process_existing_messages(client, chat_id, message_id, topic)
+                    await proces_existing_messages(client, chat_id, message_id, topic)
             else:
                 for message_id in range(1, last_message_id + 1):
                     await proces_existing_messages(client, chat_id, message_id, topic)
