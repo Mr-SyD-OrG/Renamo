@@ -59,7 +59,7 @@ Use These Keywords To Setup Custom File Name
     ABOUT_TXT = f"""<b>🤖 My Name :</b> <a href='https://t.me/Mr_File_Rename_Bot'>Auto Rename Bot ⚡</a>
 <b>📝 Language :</b> <a href='https://python.org'>Python 3</a>
 <b>📚 Library :</b> <a href='https://pyrogram.org'>Pyrogram 2.0</a>
-<b>🚀 Server :</b> <a href='https://heroku.com'>Heroku</a>
+<b>🚀 Server :</b> <a href='https://t.me/'>TG</a>
 <b>📢 Channel :</b> <a href='https://t.me/Bot_cracker'>Cʀᴀᴄᴋᴇʀ</a>
 <b>🧑‍💻 Developer :</b> <a href='https://t.me/Syd_Xyz'>Syd</a>
     
@@ -90,7 +90,7 @@ Use These Keywords To Setup Custom File Name
     
 If You Like My Bots & Projects, You Can 🎁 Donate Me Any Amount From 10 Rs Upto Your Choice.
     
-<b>🛍 UPI ID:</b> <code>madflixofficial@axl</code> """
+<b>🛍 UPI ID:</b> <code>ᴄᴏɴᴛᴀᴄᴛ ᴏᴡɴᴇʀ</code> """
 
     SEND_METADATA = """ᴀᴅᴅ"""
     HELP_TXT = """<b>Hey</b> {}
