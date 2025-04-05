@@ -10,11 +10,11 @@ async def start(client, message):
     user = message.from_user
     await madflixbotz.add_user(client, message)                
     button = InlineKeyboardMarkup([[
-      InlineKeyboardButton('Uᴩᴅᴀᴛᴇ', url='https://t.me/Bot_Cracker'),
-      InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Mod_Moviez_X')
+      InlineKeyboardButton('◇ Uᴩᴅᴀᴛᴇ', url='https://t.me/Bot_Cracker'),
+      InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ ◇', url='https://t.me/Mod_Moviez_X')
     ],[
-      InlineKeyboardButton('⚡ Hᴇʟᴩ ⚡', callback_data='help'),
-      InlineKeyboardButton('⚡ Aʙᴏᴜᴛ ⚡', callback_data='about')
+      InlineKeyboardButton('❂ Hᴇʟᴩ', callback_data='help'),
+      InlineKeyboardButton('Aʙᴏᴜᴛ ❂', callback_data='about')
     ]])
     if Config.START_PIC:
         await message.reply_photo(Config.START_PIC, caption=Txt.START_TXT.format(user.mention), reply_markup=button)       
@@ -48,11 +48,11 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.START_TXT.format(query.from_user.mention),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton('Uᴩᴅᴀᴛᴇ', url='https://t.me/Bot_Cracker'),
-                InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ', url='https://t.me/Mod_Moviez_X')
+                InlineKeyboardButton('◇ Uᴩᴅᴀᴛᴇ', url='https://t.me/Bot_Cracker'),
+                InlineKeyboardButton('Sᴜᴩᴩᴏʀᴛ ◇', url='https://t.me/Mod_Moviez_X')
                 ],[
-                InlineKeyboardButton('⚡ Hᴇʟᴩ ⚡', callback_data='help'),
-                InlineKeyboardButton('⚡ Δʙᴏᴜᴛ ⚡', callback_data='about')
+                InlineKeyboardButton('❂ Hᴇʟᴩ', callback_data='help'),
+                InlineKeyboardButton('Aʙᴏᴜᴛ ❂', callback_data='about')
             ]])
         )
     elif data == "caption":
@@ -60,8 +60,8 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.CAPTION_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("✖️ Close", callback_data="close"),
-                InlineKeyboardButton("🔙 Back", callback_data="help")
+                InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close"),
+                InlineKeyboardButton("🔙 Bᴀᴄᴋ", callback_data="help")
             ]])            
         )
     elif data == "help":
@@ -69,7 +69,7 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.HELP_TXT.format(client.mention),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("⚙️ Setup AutoRename Format ⚙️", callback_data='file_names')
+                InlineKeyboardButton("⚙️ Sᴇᴛᴜᴩ AᴜᴛᴏRᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ ⚙️", callback_data='file_names')
                 ],[
                 InlineKeyboardButton('🖼️ Thumbnail', callback_data='thumbnail'),
                 InlineKeyboardButton('✏️ Caption', callback_data='caption')
