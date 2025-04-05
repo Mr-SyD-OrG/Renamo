@@ -52,7 +52,7 @@ Use These Keywords To Setup Custom File Name
 ✓ <code>quality</code> :- To Replace Video Resolution
 ✓ <code>{season}</code> :- To Rᴇᴩʟᴀᴄᴇ Sᴇᴀꜱᴏɴ Nᴜᴍʙᴇʀ
 
-<b>➻ Example :</b> <code> /set_format Naruto Shippuden S02 - EPepisode - quality  [Dual Audio] - @Madflix_Bots </code>
+<b>➻ Example :</b> <code> /set_format Naruto Shippuden S02 - EPepisode - quality  [Dual Audio] - @GetTGLinks </code>
 
 <b>➻ Your Current Auto Rename Format :</b> <code>{format_template}</code> """
     
