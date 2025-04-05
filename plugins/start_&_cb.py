@@ -60,8 +60,8 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.CAPTION_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("✖️ Cʟᴏꜱᴇ", callback_data="close"),
-                InlineKeyboardButton("🔙 Bᴀᴄᴋ", callback_data="help")
+                InlineKeyboardButton("⛒ Cʟᴏꜱᴇ ⛒", callback_data="close"),
+                InlineKeyboardButton("⇇ Bᴀᴄᴋ", callback_data="help")
             ]])            
         )
     elif data == "help":
@@ -69,13 +69,13 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.HELP_TXT.format(client.mention),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("⚙️ Sᴇᴛᴜᴩ AᴜᴛᴏRᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ ⚙️", callback_data='file_names')
+                InlineKeyboardButton("⛭ Sᴇᴛᴜᴩ AᴜᴛᴏRᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ ⛭", callback_data='file_names')
                 ],[
-                InlineKeyboardButton('🖼️ Thumbnail', callback_data='thumbnail'),
-                InlineKeyboardButton('✏️ Caption', callback_data='caption')
+                InlineKeyboardButton('◼ Tʜᴜᴍʙɴᴀɪʟ', callback_data='thumbnail'),
+                InlineKeyboardButton('Cᴀᴩᴛɪᴏɴ ✎', callback_data='caption')
                 ],[
-                InlineKeyboardButton('🏠 Home', callback_data='home'),
-                InlineKeyboardButton('💰 Donate', callback_data='donate')
+                InlineKeyboardButton('⌂ Hᴏᴍᴇ', callback_data='home'),
+                InlineKeyboardButton('Dᴏɴᴀᴛᴇ ◇', callback_data='donate')
                 ]])
         )
     elif data == "donate":
@@ -83,8 +83,8 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.DONATE_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("✖️ Close", callback_data="close"),
-                InlineKeyboardButton("🔙 Back", callback_data="help")
+                InlineKeyboardButton("⛒ Cʟᴏꜱᴇ ⛒", callback_data="close"),
+                InlineKeyboardButton("⇇ Bᴀᴄᴋ", callback_data="help")
             ]])          
         )
     
@@ -96,8 +96,8 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.FILE_NAME_TXT.format(season=season, episode=episode, format_template=format_template),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("✖️ Close", callback_data="close"),
-                InlineKeyboardButton("🔙 Back", callback_data="help")
+                InlineKeyboardButton("⛒ Cʟᴏꜱᴇ ⛒", callback_data="close"),
+                InlineKeyboardButton("⇇ Bᴀᴄᴋ", callback_data="help")
             ]])
         )      
     
@@ -105,8 +105,8 @@ async def cb_handler(client, query: CallbackQuery):
         await query.message.edit_caption(
             caption=Txt.THUMBNAIL_TXT,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("✖️ Close", callback_data="close"),
-                InlineKeyboardButton("🔙 Back", callback_data="help"),
+                InlineKeyboardButton("⛒ Cʟᴏꜱᴇ ⛒", callback_data="close"),
+                InlineKeyboardButton("⇇ Bᴀᴄᴋ", callback_data="help"),
             ]]),
         )
 
@@ -115,8 +115,8 @@ async def cb_handler(client, query: CallbackQuery):
             text=Txt.ABOUT_TXT,
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
-                InlineKeyboardButton("✖️ Close", callback_data="close"),
-                InlineKeyboardButton("🔙 Back", callback_data="home")
+                InlineKeyboardButton("⛒ Cʟᴏꜱᴇ ⛒", callback_data="close"),
+                InlineKeyboardButton("⇇ Bᴀᴄᴋ", callback_data="home")
             ]])          
         )
 
