@@ -45,8 +45,8 @@ Nᴀᴍᴇ - {} """
 
 Use These Keywords To Setup Custom File Name
 
-/see_format
-/set_format
+/see_format - Tᴏ ꜱᴇᴇ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ꜰᴏʀᴍᴀᴛ ꜰᴏʀ ꜰɪʟᴇꜱ
+/set_format - Tᴏ ꜱᴇᴛ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ꜰᴏʀᴍᴀᴛ ꜰᴏʀ ꜰɪʟᴇꜱ
 
 ✓ <code>{episode}</code> :- To Replace Episode Number
 ✓ <code>{quality}</code> :- To Replace Video Resolution
