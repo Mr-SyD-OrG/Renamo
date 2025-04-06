@@ -72,7 +72,7 @@ async def cb_handler(client, query: CallbackQuery):
                 InlineKeyboardButton("⛭ Sᴇᴛᴜᴩ AᴜᴛᴏRᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ ⛭", callback_data='file_names')
                 ],[
                 InlineKeyboardButton('◼ Tʜᴜᴍʙɴᴀɪʟ', callback_data='thumbnail'),
-                InlineKeyboardButton('Pʀᴇ-ꜱᴜꜰꜰɪx', callback_data='thumbnail'),
+                InlineKeyboardButton('Pʀᴇ-ꜱᴜꜰꜰɪx', callback_data='fix'),
                 InlineKeyboardButton('Cᴀᴩᴛɪᴏɴ ✎', callback_data='caption')
                 ],[
                 InlineKeyboardButton('⌂ Hᴏᴍᴇ', callback_data='home'),
