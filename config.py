@@ -85,7 +85,13 @@ Use These Keywords To Setup Custom File Name
 <b>🚀 Speed</b> : {3}/s
 <b>⏰️ ETA</b> : {4} """
 
-    HELP_TXT = """Hi"""
+    PRESUF_TXT = """◽ <b><u>Sᴇᴛ ꜱᴜꜰꜰɪx ᴀɴᴅ ᴩʀᴇꜰɪx.</b></u>
+<b>•></b> /set_prefix - Sᴇᴛ ᴩʀᴇꜰɪx(ꜰɪʀꜱᴛ ᴡᴏʀᴅ)
+<b>•></b> /set_suffix - Sᴇᴛ ꜱᴜꜰꜰɪx(ʟᴀꜱᴛ ᴡᴏʀᴅ)
+<b>•></b> /see_prefix - Sᴇᴇ ᴩʀᴇꜰɪx
+<b>•></b> /see_suffix - Sᴇᴇ ꜱᴜꜰꜰɪx
+<b>•></b> /del_prefix - Dᴇʟᴇᴛᴇ ᴩʀᴇꜰɪx
+<b>•></b> /del_suffix - Dᴇʟᴇᴛᴇ ꜱᴜꜰꜰɪx"""
     
     DONATE_TXT = """<b>🥲 Thanks For Showing Interest In Donation! ❤️</b>
     
