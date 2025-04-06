@@ -255,7 +255,9 @@ async def auto_rname_files(client, message):
                 format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))           
             
         _, file_extension = os.path.splitext(file_name)
-        new_file_name = f"{format_template}{file_extension}"
+        prefix = await db.get_prefix(message.message.chat.id)
+        suffix = await db.get_suffix(message.message.chat.id)
+        new_file_name = f"{prefix} {format_template} {suffix}{file_extension}"
         file_path = f"downloads/{new_file_name}"
         file = message
 
