@@ -72,11 +72,23 @@ async def cb_handler(client, query: CallbackQuery):
                 InlineKeyboardButton("⛭ Sᴇᴛᴜᴩ AᴜᴛᴏRᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ ⛭", callback_data='file_names')
                 ],[
                 InlineKeyboardButton('◼ Tʜᴜᴍʙɴᴀɪʟ', callback_data='thumbnail'),
+                InlineKeyboardButton('Pʀᴇ-ꜱᴜꜰꜰɪx', callback_data='thumbnail'),
                 InlineKeyboardButton('Cᴀᴩᴛɪᴏɴ ✎', callback_data='caption')
                 ],[
                 InlineKeyboardButton('⌂ Hᴏᴍᴇ', callback_data='home'),
                 InlineKeyboardButton('Dᴏɴᴀᴛᴇ ◇', callback_data='donate')
                 ]])
+        )
+
+
+    elif data == "fix":
+        await query.message.edit_text(
+            text=Txt.PRESUF_TXT.format(client.mention),
+            disable_web_page_preview=True,
+            reply_markup=InlineKeyboardMarkup([[
+                InlineKeyboardButton("⛒ Cʟᴏꜱᴇ ⛒", callback_data="close"),
+                InlineKeyboardButton("⇇ Bᴀᴄᴋ", callback_data="help")
+            ]])            
         )
     elif data == "donate":
         await query.message.edit_text(
