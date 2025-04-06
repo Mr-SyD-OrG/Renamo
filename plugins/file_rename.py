@@ -242,7 +242,7 @@ async def auto_rname_files(client, message):
                 format_template = format_template.replace(season_placeholder, f"{int(season_number):02d}", 1)
 
         # Add extracted qualities to the format template
-        quality_placeholders = ["quality", "Quality", "QUALITY", "{quality}"]
+        quality_placeholders = ["{quality}"]
         for quality_placeholder in quality_placeholders:
             if quality_placeholder in format_template:
                 extracted_qualities = extract_quality(file_name)
