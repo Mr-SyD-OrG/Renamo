@@ -52,9 +52,9 @@ Use These Keywords To Setup Custom File Name
 ✓ <code>{quality}</code> :- To Replace Video Resolution
 ✓ <code>{season}</code> :- To Rᴇᴩʟᴀᴄᴇ Sᴇᴀꜱᴏɴ Nᴜᴍʙᴇʀ
 
-<b>➻ Example :</b> <code> /set_format Naruto Shippuden S02 - EPepisode - quality  [Dual Audio] - @GetTGLinks </code>
+<b>➻ Example :</b> <code> /set_format Naruto Shippuden S02 - EP{episode} - {quality}  [Dual Audio] - @GetTGLinks </code>
 
-<b>➻ Your Current Auto Rename Format :</b> <code>{format_template}</code> """
+<b>➻ Yᴏᴜʀ Cᴜʀʀᴇɴᴛ Aᴜᴛᴏ Rᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ :</b> <code>{format_template}</code> """
     
     ABOUT_TXT = f"""<b>🤖 My Name :</b> <a href='https://t.me/Mr_File_Rename_Bot'>Auto Rename Bot ⚡</a>
 <b>📝 Language :</b> <a href='https://python.org'>Python 3</a>
