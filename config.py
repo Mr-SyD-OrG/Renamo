@@ -13,7 +13,7 @@ class Config(object):
  
     # other configs
     BOT_UPTIME  = time.time()
-    START_PIC   = os.environ.get("START_PIC", "https://envs.sh/cKM.jpg")  
+    START_PIC   = os.environ.get("START_PIC", "https://envs.sh/Z0P.jpg https://envs.sh/Z0b.jpg")  
     ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '').split()]
     FORCE_SUB   = os.environ.get("FORCE_SUB", "GetTGLinks") 
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
