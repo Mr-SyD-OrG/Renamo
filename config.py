@@ -13,7 +13,7 @@ class Config(object):
  
     # other configs
     BOT_UPTIME  = time.time()
-    START_PIC   = os.environ.get("START_PIC", "https://envs.sh/Z0P.jpg https://envs.sh/Z0b.jpg")  
+    START_PIC   = os.environ.get("START_PIC", "https://envs.sh/Z0P.jpg https://envs.sh/Z0b.jpg").split()  
     ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '').split()]
     FORCE_SUB   = os.environ.get("FORCE_SUB", "GetTGLinks") 
     LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", ""))
@@ -84,7 +84,8 @@ Use These Keywords To Setup Custom File Name
 <b>⏳️ Done</b> : {0}%
 <b>🚀 Speed</b> : {3}/s
 <b>⏰️ ETA</b> : {4} """
-    
+
+    HELP_TXT = """Hi"""
     
     DONATE_TXT = """<b>🥲 Thanks For Showing Interest In Donation! ❤️</b>
     
