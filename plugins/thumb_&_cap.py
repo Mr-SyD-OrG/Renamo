@@ -50,7 +50,7 @@ async def addthumbs(client, message):
 
 
 @Client.on_message(filters.private & filters.command('set_prefix'))
-async def add_caption(client, message):
+async def add_prefix(client, message):
 
     if len(message.command) == 1:
         return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @Roofiverse`**")
@@ -72,7 +72,7 @@ async def delete_prefix(client, message):
 
 
 @Client.on_message(filters.private & filters.command('see_prefix'))
-async def see_caption(client, message):
+async def see_prefix(client, message):
 
     SnowDev = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
     prefix = await db.get_prefix(message.from_user.id)
