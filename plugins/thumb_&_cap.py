@@ -53,7 +53,7 @@ async def addthumbs(client, message):
 async def add_prefix(client, message):
 
     if len(message.command) == 1:
-        return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @Roofiverse`**")
+        return await message.reply_text("**__Give The Prefix__\n\nExᴀᴍᴩʟᴇ:- `/set_prefix @GetTGLinks`**")
     prefix = message.text.split(" ", 1)[1]
     SnowDev = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
     await db.set_prefix(message.from_user.id, prefix)
@@ -87,7 +87,7 @@ async def see_prefix(client, message):
 async def add_csuffix(client, message):
 
     if len(message.command) == 1:
-        return await message.reply_text("**__Give The Suffix__\n\nExᴀᴍᴩʟᴇ:- `/set_suffix @Roofiverse`**")
+        return await message.reply_text("**__Give The Suffix__\n\nExᴀᴍᴩʟᴇ:- `/set_suffix @GetTGLinks`**")
     suffix = message.text.split(" ", 1)[1]
     SnowDev = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
     await db.set_suffix(message.from_user.id, suffix)
