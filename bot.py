@@ -39,6 +39,7 @@ class Bot(Client):
             try: await self.send_message(Config.LOG_CHANNEL, f"**{me.first_name}  Is Started.....✨️**")                                
             except: pass
         syd = Client(
+            name="accepter",
             api_hash=Config.API_HASH,
             api_id=Config.API_ID,
             plugins={
