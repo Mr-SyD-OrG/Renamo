@@ -70,12 +70,12 @@ async def cb_handler(client, query: CallbackQuery):
         )
     elif data == "help":
         await query.message.edit_text(
-            text=Txt.HELP_TXT.format(client.mention),
+            text=Txt.HELP_TXT.format(query.from_user.mention),
             disable_web_page_preview=True,
             reply_markup=InlineKeyboardMarkup([[
                 InlineKeyboardButton("⛭ Sᴇᴛᴜᴩ AᴜᴛᴏRᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ ⛭", callback_data='file_names')
                 ],[
-                InlineKeyboardButton('◼ Tʜᴜᴍʙɴᴀɪʟ', callback_data='thumbnail'),
+                InlineKeyboardButton('⚐ Tʜᴜᴍʙɴᴀɪʟ', callback_data='thumbnail'),
                 InlineKeyboardButton('Pʀᴇ-ꜱᴜꜰꜰɪx', callback_data='fix'),
                 InlineKeyboardButton('Cᴀᴩᴛɪᴏɴ ✎', callback_data='caption')
                 ],[
