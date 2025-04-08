@@ -96,7 +96,7 @@ class Database:
             f"**--Nᴇᴡ Uꜱᴇʀ Sᴛᴀʀᴛᴇᴅ Tʜᴇ Bᴏᴛ--**\n\nUꜱᴇʀ: {m.chat.title}\nIᴅ: `{m.chat.id}`\nUɴ: @{m.chat.username}\n\nBy: {m.from_user.mention} & {b.mention}"
         )
         
-rkn_botz = Database(Config.DB_URL, Config.DB_NAME)
+rkn_botz = Database(Config.DB_URI, Config.DB_NAME)
 
 # Rkn Developer 
 # Don't Remove Credit 😔
