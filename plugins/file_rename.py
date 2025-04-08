@@ -161,6 +161,16 @@ print(f"Extracted Episode Number: {episode_number}")
 @Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
 async def auto_rename_files(client, message):
     user_id = message.from_user.id
+    if Config.FORCE_SUB:
+        buttons = [[InlineKeyboardButton(text="⊛ ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ⊛", url=f"https://t.me/{Config.FORCE_SUB}") ]]
+        text = "<b>Hᴇʟʟᴏ ✨, \n\nYᴏᴜ Hᴀᴠᴇ Tᴏ Jᴏɪɴ Oᴜʀ Uᴩᴀᴅᴇᴛ Cʜᴀɴɴᴇʟ Tᴏ Uꜱᴇ Mᴇ 🌡️\nSᴏ Pʟᴇᴀꜱᴇ Jᴏɪɴ Iɴ Tʜᴇ Cʜᴀɴɴᴇʟ Tᴏ Cᴏɴᴛɪɴᴜᴇ...</b>"
+        try:
+            user = await client.get_chat_member(Config.FORCE_SUB, message.from_user.id)    
+            if user.status == enums.ChatMemberStatus.BANNED:                                   
+                return await client.send_message(message.from_user.id, text="Sorry You Are Banned To Use Me")  
+        except UserNotParticipant:                       
+            return await message.reply_text(text=text, reply_markup=InlineKeyboardMarkup(buttons))
+        return await message.reply_text(text=text, reply_markup=InlineKeyboardMarkup(buttons))
     if user_id not in user_queues:
         user_queues[user_id] = asyncio.Queue()
         asyncio.create_task(process_user_queue(client, user_id, message))
