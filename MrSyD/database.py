@@ -26,7 +26,7 @@ License Link : https://github.com/RknDeveloper/Rkn_Auto-Request-Approve-bot/blob
 import motor.motor_asyncio, datetime, pytz
 
 # bots imports
-from configs import rkn1
+from configs import Config
 
 class Database:
     def __init__(self, uri, database_name):
@@ -90,13 +90,13 @@ class Database:
         await self.chat.delete_many({'_id': int(user_id)})
     
     async def send_chat_log(self, b, m):
-        if rkn1.LOG_CHANNEL is not None:
+        if Config.LOG_CHANNEL is not None:
             await b.send_message(
-            rkn1.LOG_CHANNEL,
+            Config.LOG_CHANNEL,
             f"**--Nᴇᴡ Uꜱᴇʀ Sᴛᴀʀᴛᴇᴅ Tʜᴇ Bᴏᴛ--**\n\nUꜱᴇʀ: {m.chat.title}\nIᴅ: `{m.chat.id}`\nUɴ: @{m.chat.username}\n\nBy: {m.from_user.mention} & {b.mention}"
         )
         
-rkn_botz = Database(rkn1.DB_URL, rkn1.DB_NAME)
+rkn_botz = Database(Config.DB_URL, Config.DB_NAME)
 
 # Rkn Developer 
 # Don't Remove Credit 😔
