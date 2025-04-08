@@ -31,7 +31,7 @@ Iᴅ - <code>{}</code>
 Nᴀᴍᴇ - {} """
     START_TXT = """Hello {} 
     
-➻ This Is An Advanced And Yet Powerful Rename Bot.
+➻ Tʜɪꜱ Iꜱ Aɴ Aᴅᴠᴀɴᴄᴇᴅ Aɴᴅ Yᴇᴛ Pᴏᴡᴇʀꜰᴜʟ Rᴇɴᴀᴍᴇ Bᴏᴛ.
     
 ➻ Using This Bot You Can Auto Rename Of Your Files.
     
