@@ -38,6 +38,16 @@ class Bot(Client):
         for id in Config.ADMIN:
             try: await self.send_message(Config.LOG_CHANNEL, f"**{me.first_name}  Is Started.....✨️**")                                
             except: pass
+        syd = Client(
+            api_hash=Config.API_HASH,
+            api_id=Config.API_ID,
+            plugins={
+                "root": "SyD"
+            },
+            workers=50,
+            bot_token=Config.BT_TOKEN
+        )
+        await syd.start()
         if Config.LOG_CHANNEL:
             try:
                 curr = datetime.now(timezone("Asia/Kolkata"))
