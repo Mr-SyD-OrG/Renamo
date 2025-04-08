@@ -38,11 +38,11 @@ from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, Peer
 
 # bots imports
 import os, sys, time, asyncio, logging, datetime, pytz
-from RknDeveloper.database import rkn_botz
-from configs import rkn1
+from .database import rkn_botz
+from configs import Config
 
 
-@Client.on_message(filters.command(["stats", "status"]) & filters.user(rkn1.ADMIN))
+@Client.on_message(filters.command(["stats", "status"]) & filters.user(Config.ADMIN))
 async def get_stats(bot, message):
     total_users = await rkn_botz.total_users_count()
     total_chats = await rkn_botz.total_chats_count()
@@ -54,7 +54,7 @@ async def get_stats(bot, message):
     await rkn.edit(text=f"**--Bᴏᴛ Sᴛᴀᴛᴜꜱ--** \n\n**⌚️ Bᴏᴛ Uᴩᴛɪᴍᴇ:** {uptime} \n**🐌 Cᴜʀʀᴇɴᴛ Pɪɴɢ:** `{time_taken_s:.3f} ᴍꜱ` \n**👭 Tᴏᴛᴀʟ Uꜱᴇʀꜱ:** `{total_users}`\n**💸 ᴛᴏᴛᴀʟ Chats:** `{total_chats}`")
 
 # Restart to cancell all process 
-@Client.on_message(filters.private & filters.command("restart") & filters.user(rkn1.ADMIN))
+@Client.on_message(filters.private & filters.command("restart") & filters.user(Config.ADMIN))
 async def restart_bot(b, m):
     rkn = await b.send_message(text="**🔄 ᴘʀᴏᴄᴇssᴇs sᴛᴏᴘᴘᴇᴅ. ʙᴏᴛ ɪs ʀᴇsᴛᴀʀᴛɪɴɢ.....**", chat_id=m.chat.id)
     failed = 0
@@ -89,9 +89,9 @@ async def restart_bot(b, m):
     os.execl(sys.executable, sys.executable, *sys.argv)
     
     
-@Client.on_message(filters.command("broadcast") & filters.user(rkn1.ADMIN) & filters.reply)
+@Client.on_message(filters.command("broadcast") & filters.user(Config.ADMIN) & filters.reply)
 async def broadcast_handler(bot: Client, m: Message):
-    await bot.send_message(rkn1.LOG_CHANNEL, f"{m.from_user.mention} or {m.from_user.id} Iꜱ ꜱᴛᴀʀᴛᴇᴅ ᴛʜᴇ Bʀᴏᴀᴅᴄᴀꜱᴛ......")
+    await bot.send_message(Config.LOG_CHANNEL, f"{m.from_user.mention} or {m.from_user.id} Iꜱ ꜱᴛᴀʀᴛᴇᴅ ᴛʜᴇ Bʀᴏᴀᴅᴄᴀꜱᴛ......")
     all_users = await rkn_botz.get_all_users()
     broadcast_msg = m.reply_to_message
     sts_msg = await m.reply_text("Bʀᴏᴀᴅᴄᴀꜱᴛ Sᴛᴀʀᴛᴇᴅ..!") 
