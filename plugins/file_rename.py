@@ -344,7 +344,7 @@ async def auto_rname_files(client, message):
             if ph_path:
                 os.remove(ph_path)
             del renaming_operations[file_id]
-            return await message.reply_text("Size Error")
+            return await message.reply_text("Sɪᴢᴇ Eʀʀᴏʀ: Pʟᴇᴀꜱᴇ Rᴇɴᴀᴍᴇ Aɢᴀɪɴ...!")
         await download_msg.delete() 
         if user_id != 1733124290:
             await asyncio.sleep(8)
@@ -355,6 +355,119 @@ async def auto_rname_files(client, message):
 
 # Remove the entry from renaming_operations after successful renaming
         del renaming_operations[file_id]
+    else:
+        await message.reply_text("Nᴏ ᴇᴩɪꜱᴏᴅᴇ ᴀɴᴅ ꜱᴇᴀꜱᴏɴ ɴᴏ. ᴄᴏᴍᴛɪɴᴜɪɴɢ ᴛʜᴇ ᴩʀᴏᴄᴄᴇꜱꜱ...!")
+        quality_placeholders = ["{quality}"]
+        for quality_placeholder in quality_placeholders:
+            if quality_placeholder in format_template:
+                extracted_qualities = extract_quality(file_name)
+                if extracted_qualities == "Unknown":
+                    await message.reply_text("I Was Not Able To Extract The Quality Properly. Renaming As 'Unknown'...")
+                    # Mark the file as ignored
+                    del renaming_operations[file_id]
+                    return  # Exit the handler if quality extraction fails
+                
+                format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))           
+            
+        _, file_extension = os.path.splitext(file_name)
+        prefix = await db.get_prefix(message.message.chat.id)
+        suffix = await db.get_suffix(message.message.chat.id)
+        new_file_name = f"{prefix} {format_template} {suffix}{file_extension}"
+        file_path = f"downloads/{new_file_name}"
+        file = message
+
+        download_msg = await message.reply_text(text="Trying To Download.....")
+        try:
+            path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
+        except Exception as e:
+            # Mark the file as ignored
+            del renaming_operations[file_id]
+            return await download_msg.edit(e)     
+
+        duration = 0
+        try:
+            metadata = extractMetadata(createParser(file_path))
+            if metadata.has("duration"):
+                duration = metadata.get('duration').seconds
+        except Exception as e:
+            print(f"Error getting duration: {e}")
+
+        upload_msg = await download_msg.edit("Trying To Uploading.....")
+        ph_path = None
+        c_caption = await madflixbotz.get_caption(message.chat.id)
+        c_thumb = await madflixbotz.get_thumbnail(message.chat.id)
+
+        caption = c_caption.format(filename=new_file_name, filesize=humanbytes(message.document.file_size), duration=convert(duration)) if c_caption else f"**{new_file_name}**"
+
+        if c_thumb:
+            ph_path = await client.download_media(c_thumb)
+            print(f"Thumbnail downloaded successfully. Path: {ph_path}")
+        elif media_type == "video" and message.video.thumbs:
+            ph_path = await client.download_media(message.video.thumbs[0].file_id)
+
+        if ph_path:
+            Image.open(ph_path).convert("RGB").save(ph_path)
+            img = Image.open(ph_path)
+            img.resize((320, 320))
+            img.save(ph_path, "JPEG")    
+        
+
+        try:
+            mrsyd = await db.get_dump(user_id)
+            type = media_type  # Use 'media_type' variable instead
+            if type == "document":
+                sydfil = await client.send_document(
+                    mrsyd,
+                    document=file_path,
+                    thumb=ph_path,
+                    caption=caption,
+                    progress=progress_for_pyrogram,
+                    progress_args=("Upload Started.....", upload_msg, time.time())
+                )
+            elif type == "video":
+                sydfil = await client.send_video(
+                    mrsyd,
+                    video=file_path,
+                    caption=caption,
+                    thumb=ph_path,
+                    duration=duration,
+                    progress=progress_for_pyrogram,
+                    progress_args=("Upload Started.....", upload_msg, time.time())
+                )
+            elif type == "audio":
+                sydfil = await client.send_audio(
+                    mrsyd,
+                    audio=file_path,
+                    caption=caption,
+                    thumb=ph_path,
+                    duration=duration,
+                    progress=progress_for_pyrogram,
+                    progress_args=("Upload Started.....", upload_msg, time.time())
+                )
+        except Exception as e:
+            os.remove(file_path)
+            if ph_path:
+                os.remove(ph_path)
+            # Mark the file as ignored
+            return await upload_msg.edit(f"Error: {e}")
+
+        mrsyyd = sydfil.document.file_size if type == "document" else sydfil.video.file_size if type == "video" else sydfil.audio.file_size
+        mrssyd = message.document.file_size if type == "document" else message.video.file_size if type == "video" else message.audio.file_size
+        if mrsyyd != mrssyd:
+            await sydfil.delete()
+            os.remove(file_path)
+            if ph_path:
+                os.remove(ph_path)
+            del renaming_operations[file_id]
+            return await message.reply_text("Sɪᴢᴇ Eʀʀᴏʀ: Pʟᴇᴀꜱᴇ Rᴇɴᴀᴍᴇ Aɢᴀɪɴ...!")
+        await download_msg.delete() 
+        if user_id != 1733124290:
+            await asyncio.sleep(8)
+        await message.delete()
+        os.remove(file_path)
+        if ph_path:
+            os.remove(ph_path)
+        
 
 
 
