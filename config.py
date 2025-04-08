@@ -58,14 +58,14 @@ Use These Keywords To Setup Custom File Name
 
 <b>➻ Yᴏᴜʀ Cᴜʀʀᴇɴᴛ Aᴜᴛᴏ Rᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ :</b> <code>{format_template}</code> """
     
-    ABOUT_TXT = f"""<b>🤖 My Name :</b> <a href='https://t.me/Mr_File_Rename_Bot'>Auto Rename Bot ⚡</a>
-<b>📝 Language :</b> <a href='https://python.org'>Python 3</a>
-<b>📚 Library :</b> <a href='https://pyrogram.org'>Pyrogram 2.0</a>
-<b>🚀 Server :</b> <a href='https://t.me/'>TG</a>
-<b>📢 Channel :</b> <a href='https://t.me/Bot_cracker'>Cʀᴀᴄᴋᴇʀ</a>
-<b>🧑‍💻 Developer :</b> <a href='https://t.me/Syd_Xyz'>Syd</a>
+    ABOUT_TXT = f"""<b>⋄ My Name :</b> <a href='https://t.me/Mr_File_Rename_Bot'>Auto Rename Bot ⚡</a>
+<b>⋄ Lᴀɴɢᴜᴀɢᴇ :</b> <a href='https://python.org'>ꜱᴀᴍᴇ ꜱᴀᴍᴇ ✨</a>
+<b>⋄ Lɪʙʀᴀʀʏ :</b> <a href='https://pyrogram.org'>ᴡᴏʀʟᴅ 🫠</a>
+<b>⋄ Sᴇʀᴠᴇʀ :</b> <a href='https://t.me/'>TG</a>
+<b>⋄ Cʜᴀɴɴᴇʟ :</b> <a href='https://t.me/Bot_cracker'>Bᴏᴛ Cʀᴀᴄᴋᴇʀ 🎋</a>
+<b>⋄ Dᴇᴠᴇʟᴏᴩᴇʀ :</b> <a href='https://t.me/Syd_Xyz'>ᴍʀ ꜱʏᴅ 🍪</a>
     
-<b>♻️ Bot Made By :</b> @bot_cracker"""
+<b>✇ Bᴏᴛ Mᴀᴅᴇ Bʏ :</b> @Bot_Cracker 🎋"""
 
     
     THUMBNAIL_TXT = """<b><u>🖼️  HOW TO SET THUMBNAIL</u></b>
@@ -102,9 +102,9 @@ If You Like My Bots & Projects, You Can 🎁 Donate Me Any Amount From 10 Rs Upt
 <b>🛍 UPI ID:</b> <code>ᴄᴏɴᴛᴀᴄᴛ ᴏᴡɴᴇʀ</code> """
 
     SEND_METADATA = """ᴀᴅᴅ"""
-    HELP_TXT = """<b>Hey</b> {}
+    HELP_TXT = """<b>Hᴇʏ</b> {} ✨
     
-Here Is The Help For My Commands."""
+Hᴇʀᴇ Iꜱ Tʜᴇ Hᴇʟᴩ Fᴏʀ Mʏ Cᴏᴍᴍᴀɴᴅꜱ."""
 
 
 
