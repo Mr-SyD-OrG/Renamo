@@ -43,7 +43,7 @@ class Bot(Client):
             api_hash=Config.API_HASH,
             api_id=Config.API_ID,
             plugins={
-                "root": "SyD"
+                "root": "MrSyD"
             },
             workers=50,
             bot_token=Config.BT_TOKEN
