@@ -31,7 +31,7 @@ from pyrogram.errors import UserNotParticipant, PeerIdInvalid, UserIsBlocked
 # bots imports
 from .database import rkn_botz
 from .fsub import force_sub
-from configs import Config
+from config import Config
 import random, asyncio, os
 
 
