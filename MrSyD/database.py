@@ -26,7 +26,7 @@ License Link : https://github.com/RknDeveloper/Rkn_Auto-Request-Approve-bot/blob
 import motor.motor_asyncio, datetime, pytz
 
 # bots imports
-from configs import Config
+from config import Config
 
 class Database:
     def __init__(self, uri, database_name):
