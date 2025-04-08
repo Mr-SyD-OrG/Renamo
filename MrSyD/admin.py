@@ -39,7 +39,7 @@ from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, Peer
 # bots imports
 import os, sys, time, asyncio, logging, datetime, pytz
 from .database import rkn_botz
-from configs import Config
+from config import Config
 
 
 @Client.on_message(filters.command(["stats", "status"]) & filters.user(Config.ADMIN))
