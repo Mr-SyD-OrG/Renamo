@@ -31,20 +31,16 @@ class Txt(object):
     
 Iᴅ - <code>{}</code>
 Nᴀᴍᴇ - {} """
-    START_TXT = """Hello {} 
+    START_TXT = """Hᴇʏ {},
     
 ➻ Tʜɪꜱ Iꜱ Aɴ Aᴅᴠᴀɴᴄᴇᴅ Aɴᴅ Yᴇᴛ Pᴏᴡᴇʀꜰᴜʟ Rᴇɴᴀᴍᴇ Bᴏᴛ.
-    
-➻ Using This Bot You Can Auto Rename Of Your Files.
-    
-➻ This Bot Also Supports Custom Thumbnail And Custom Caption.
-    
-➻ Use /tutorial Command To Know How To Use Me.
+➻ Uꜱɪɴɢ Tʜɪꜱ Bᴏᴛ Yᴏᴜ Cᴀɴ AUTO Rᴇɴᴀᴍᴇ Yᴏᴜʀ Fɪʟᴇꜱ.
+➻ Tʜɪꜱ Bᴏᴛ Aʟꜱᴏ Sᴜᴩᴩᴏʀᴛꜱ Cᴜꜱᴛᴏᴍ Tʜᴜᴍʙɴᴀɪʟ Aɴᴅ Cᴀᴩᴛɪᴏɴ.
     
 <b>Bot Is Made By @Bot_Cracker</b>"""
     
     FILE_NAME_TXT = """<b><u>SETUP AUTO RENAME FORMAT</u></b>
-
+   
 Use These Keywords To Setup Custom File Name
 
 /see_format - Tᴏ ꜱᴇᴇ ᴛʜᴇ ᴄᴜʀʀᴇɴᴛ ꜰᴏʀᴍᴀᴛ ꜰᴏʀ ꜰɪʟᴇꜱ
