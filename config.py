@@ -59,9 +59,9 @@ Use These Keywords To Setup Custom File Name
 <b>➻ Yᴏᴜʀ Cᴜʀʀᴇɴᴛ Aᴜᴛᴏ Rᴇɴᴀᴍᴇ Fᴏʀᴍᴀᴛ :</b> <code>{format_template}</code> """
     
     ABOUT_TXT = f"""<b>⋄ My Name :</b> <a href='https://t.me/Mr_File_Rename_Bot'>Auto Rename Bot ⚡</a>
-<b>⋄ Lᴀɴɢᴜᴀɢᴇ :</b> <a href='https://python.org'>ꜱᴀᴍᴇ ꜱᴀᴍᴇ ✨</a>
-<b>⋄ Lɪʙʀᴀʀʏ :</b> <a href='https://pyrogram.org'>ᴡᴏʀʟᴅ 🫠</a>
-<b>⋄ Sᴇʀᴠᴇʀ :</b> <a href='https://t.me/'>TG</a>
+<b>⋄ Lᴀɴɢᴜᴀɢᴇ :</b> <a href='https://t.me/+0Zi1FC4ulo8zYzVl'>ꜱᴀᴍᴇ ꜱᴀᴍᴇ ✨</a>
+<b>⋄ Lɪʙʀᴀʀʏ :</b> <a href='https://t.me/+-VpGTWWWTldhZWNl'>ᴡᴏʀʟᴅ 🫠</a>
+<b>⋄ Sᴇʀᴠᴇʀ :</b> <a href='https://t.me/+vK-YpztZ-x8wYTNl'>TG</a>
 <b>⋄ Cʜᴀɴɴᴇʟ :</b> <a href='https://t.me/Bot_cracker'>Bᴏᴛ Cʀᴀᴄᴋᴇʀ 🎋</a>
 <b>⋄ Dᴇᴠᴇʟᴏᴩᴇʀ :</b> <a href='https://t.me/Syd_Xyz'>ᴍʀ ꜱʏᴅ 🍪</a>
     
