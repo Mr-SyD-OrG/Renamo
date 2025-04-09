@@ -73,11 +73,11 @@ Use These Keywords To Setup Custom File Name
 ⦿ /viewthumb - Use This Command To See Your Thumbnail
 ⦿ /delthumb - Use This Command To Delete Your Thumbnail"""
 
-    CAPTION_TXT = """<b><u>📝  HOW TO SET CAPTION</u></b>
+    CAPTION_TXT = """<b><u>Hᴏᴡ Tᴏ Sᴇᴛ Cᴀᴩᴛɪᴏɴ 🎼 :</u></b>
     
-⦿ /set_caption - Use This Command To Set Your Caption
-⦿ /see_caption - Use This Command To See Your Caption
-⦿ /del_caption - Use This Command To Delete Your Caption"""
+⦿ /set_caption - Use Tʜɪꜱ Cᴏᴍᴍᴀɴᴅ Tᴏ Sᴇᴛ Yᴏᴜʀ Cᴀᴩᴛɪᴏɴ
+⦿ /see_caption - Use Tʜɪꜱ Cᴏᴍᴍᴀɴᴅ Tᴏ Sᴇᴇ Yᴏᴜʀ Cᴀᴩᴛɪᴏɴ
+⦿ /del_caption - Use Tʜɪꜱ Cᴏᴍᴍᴀɴᴅ Tᴏ Dᴇʟᴇᴛᴇ Yᴏᴜʀ Cᴀᴩᴛɪᴏɴ"""
 
     PROGRESS_BAR = """\n
 <b>📁 Size</b> : {1} | {2}
