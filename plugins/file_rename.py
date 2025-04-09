@@ -1,5 +1,5 @@
 from pyrogram import Client, filters
-from pyrogram.errors import FloodWait
+from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import InputMediaDocument, Message, InlineKeyboardButton
 from PIL import Image
 from datetime import datetime
