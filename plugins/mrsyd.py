@@ -149,6 +149,7 @@ print(f"Extracted Episode Number: {episode_number}")
 # Inside the handler for file uploads
 @Client.on_message(filters.document | filters.video | filters.audio)
 async def refuntion(client, message):
+    return
     global processing
     syd_id = {MRSYD, MRSYD}
     if message.chat.id in syd_id :
