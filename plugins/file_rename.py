@@ -160,6 +160,7 @@ print(f"Extracted Episode Number: {episode_number}")
 # Inside the handler for file uploads
 @Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
 async def auto_rename_files(client, message):
+    await message.reply_text("Yo")
     user_id = message.from_user.id
     if Config.FORCE_SUB:
         buttons = [[InlineKeyboardButton(text="⊛ ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ⊛", url=f"https://t.me/{Config.FORCE_SUB}") ]]
