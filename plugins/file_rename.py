@@ -172,9 +172,11 @@ async def auto_rename_files(client, message):
         except UserNotParticipant:                       
             return await message.reply_text(text=text, reply_markup=InlineKeyboardMarkup(buttons))
         return await message.reply_text(text=text, reply_markup=InlineKeyboardMarkup(buttons))
+    await message.reply_text("Yo")
     if user_id not in user_queues:
         user_queues[user_id] = asyncio.Queue()
         asyncio.create_task(process_user_queue(client, user_id, message))
+    await message.reply_text("Yo")
     await user_queues[user_id].put(message)
     syd = await message.reply_text("Your file has been queued for renaming. Please wait...")
     await asyncio.sleep(100)
