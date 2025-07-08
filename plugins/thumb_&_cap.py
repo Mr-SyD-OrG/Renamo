@@ -93,6 +93,16 @@ async def add_csuffix(client, message):
     await db.set_suffix(message.from_user.id, suffix)
     await SnowDev.edit("__**✅ ꜱᴜꜰꜰɪx ꜱᴀᴠᴇᴅ**__")
 
+@Client.on_message(filters.private & filters.command('see_suffix'))
+async def see_suffix(client, message):
+
+    SYD = await message.reply_text("Please Wait ...", reply_to_message_id=message.id)
+    prefix = await db.get_suffix(message.from_user.id)
+    if prefix:
+        await SYD.edit(f"**ʏᴏᴜʀ ꜱᴜꜰꜰɪx:-**\n\n`{prefix}`")
+    else:
+        await SYD.edit("__**😔 ʏᴏᴜ ᴅᴏɴ'ᴛ ʜᴀᴠᴇ ᴀɴʏ ꜱᴜꜰꜰɪx**__")
+
 
 @Client.on_message(filters.private & filters.command('del_suffix'))
 async def delete_suffix(client, message):
