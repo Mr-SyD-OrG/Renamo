@@ -171,7 +171,11 @@ async def auto_rename_files(client, message):
                 return await client.send_message(message.from_user.id, text="Sorry You Are Banned To Use Me")  
         except UserNotParticipant:                       
             return await message.reply_text(text=text, reply_markup=InlineKeyboardMarkup(buttons))
-        return await message.reply_text(text=text, reply_markup=InlineKeyboardMarkup(buttons))
+        except Exception as e:
+            try:
+                await client.send_message(1733124290, f"FsUb : {e}")
+            except:
+                pass
     await message.reply_text("Yo")
     if user_id not in user_queues:
         user_queues[user_id] = asyncio.Queue()
