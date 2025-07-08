@@ -160,7 +160,7 @@ print(f"Extracted Episode Number: {episode_number}")
 # Inside the handler for file uploads
 @Client.on_message(filters.private & (filters.document | filters.video | filters.audio))
 async def auto_rename_files(client, message):
-    await message.reply_text("Yo")
+  #  await message.reply_text("Yo")
     user_id = message.from_user.id
     if Config.FORCE_SUB:
         buttons = [[InlineKeyboardButton(text="⊛ ᴊᴏɪɴ ᴜᴩᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ⊛", url=f"https://t.me/{Config.FORCE_SUB}") ]]
@@ -176,11 +176,11 @@ async def auto_rename_files(client, message):
                 await client.send_message(1733124290, f"FsUb : {e}")
             except:
                 pass
-    await message.reply_text("Yo")
+   # await message.reply_text("Yo")
     if user_id not in user_queues:
         user_queues[user_id] = asyncio.Queue()
         asyncio.create_task(process_user_queue(client, user_id, message))
-    await message.reply_text("Yo")
+  #  await message.reply_text("Yo")
     await user_queues[user_id].put(message)
     syd = await message.reply_text("Your file has been queued for renaming. Please wait...")
     await asyncio.sleep(100)
