@@ -188,39 +188,43 @@ async def auto_rename_files(client, message):
     
     
 async def process_user_queue(client, user_id, message):
-    await message.reply_text("Yo")
     queue = user_queues[user_id]
     active_tasks = set()
-
+    await message.reply_text("Yo")
     while True:
         try:
-	    if not queue.empty() and len(active_tasks) < 2:
+            await message.reply_text("Yo")
+            if not queue.empty() and len(active_tasks) < 2:
+                msg = await queue.get()
+		await message.reply_text("Yowii")
+                task = asyncio.create_task(auto_rname_files(client, msg))
+                active_tasks.add(task)
+                task.add_done_callback(lambda t: active_tasks.discard(t))
+                await asyncio.sleep(1)  # small delay to avoid spam
+            else:
+                await asyncio.sleep(1)
 
-                await message.reply_text("Yjo")
-	        msg = await queue.get()
-	        task = asyncio.create_task(auto_rname_files(client, msg))
-		active_tasks.add(task)
-	        task.add_done_callback(lambda t: active_tasks.discard(t))
-		await asyncio.sleep(1)  # small delay to avoid spam
-	    else:
-		await asyncio.sleep(1)
-
-	    if queue.empty() and len(active_tasks) == 0:
-	        del user_queues[user_id]
-	        break
+	    await message.reply_text("Yo99w0")
+            if queue.empty() and len(active_tasks) == 0:
+                del user_queues[user_id]
+                break
 
         except Exception as e:
-	    try:
-	        await client.send_message(
+            try:
+                await client.send_message(
                     user_id,
-		    f"❌ Error in queue processor:\n<code>{e}</code>"
-		)
-	    except:
-	        pass
-	    break
+                    f"❌ Error in queue processor:\n<code>{e}</code>",
+                    parse_mode="html"
+                )
+            except:
+                pass
+            break
 
-	# Optionally, after finishing queue
-	
+    # Optionally, after finishing queue
+    try:
+        await client.send_message(user_id, "✅ All queued files processed!")
+    except:
+        pass
 
  #   syd = await message.reply_text("Pʀᴏᴄᴇꜱꜱ ᴇɴᴅᴇᴅ...!")
    # await asyncio.sleep(3000)
