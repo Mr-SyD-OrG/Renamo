@@ -190,17 +190,32 @@ async def auto_rename_files(client, message):
 async def process_user_queue(client, user_id, message):
     global user_queues
     active_operations = set()
-    while user_id in user_queues:
-        if len(active_operations) < 2 and not user_queues[user_id].empty():
-            message = await user_queues[user_id].get()
+    while True:
+        queue = user_queues.get(user_id)
+        if queue is None:
+            break
+
+        if not queue.empty() and len(active_tasks) < 2:
+            message = await queue.get()
             task = asyncio.create_task(auto_rname_files(client, message))
-            active_operations.add(task)
-            if user_id != 1733124290:
-                await asyncio.sleep(60)
-            task.add_done_callback(lambda t: active_operations.remove(t))
-        await asyncio.sleep(1)
-    if user_id in user_queues and user_queues[user_id].empty() and len(active_operations) == 0:
-        del user_queues[user_id]
+            active_tasks.add(task)
+
+            # Remove from active when done
+            task.add_done_callback(lambda t: active_tasks.discard(t))
+
+            # wait to limit processing rate
+            await asyncio.sleep(60)
+        else:
+            await asyncio.sleep(1)
+
+        # Stop if queue empty and no active tasks
+        if queue.empty() and len(active_tasks) == 0:
+            del user_queues[user_id]
+            break
+
+    syd = await message.reply_text("Pʀᴏᴄᴇꜱꜱ ᴇɴᴅᴇᴅ...!")
+    await asyncio.sleep(3000)
+    await syd.delete()
 async def auto_rname_files(client, message):
     user_id = message.from_user.id
     firstname = message.from_user.first_name
