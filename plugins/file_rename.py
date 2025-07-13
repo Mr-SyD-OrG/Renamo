@@ -188,24 +188,24 @@ async def auto_rename_files(client, message):
     
     
 async def process_user_queue(client, user_id, message):
-	await message.reply_text("Yo")
-	queue = user_queues[user_id]
-	active_tasks = set()
+    await message.reply_text("Yo")
+    queue = user_queues[user_id]
+    active_tasks = set()
 
-	while True:
-	    try:
-		if not queue.empty() and len(active_tasks) < 2:
+    while True:
+        try:
+	    if not queue.empty() and len(active_tasks) < 2:
 
-                    await message.reply_text("Yjo")
-	   	    msg = await queue.get()
-	            task = asyncio.create_task(auto_rname_files(client, msg))
-		    active_tasks.add(task)
-		    task.add_done_callback(lambda t: active_tasks.discard(t))
-		    await asyncio.sleep(1)  # small delay to avoid spam
-		else:
-		    await asyncio.sleep(1)
+                 await message.reply_text("Yjo")
+	   	 msg = await queue.get()
+	         task = asyncio.create_task(auto_rname_files(client, msg))
+		 active_tasks.add(task)
+	        task.add_done_callback(lambda t: active_tasks.discard(t))
+		await asyncio.sleep(1)  # small delay to avoid spam
+	    else:
+		await asyncio.sleep(1)
 
-		if queue.empty() and len(active_tasks) == 0:
+	    if queue.empty() and len(active_tasks) == 0:
 		    del user_queues[user_id]
 	            break
 
