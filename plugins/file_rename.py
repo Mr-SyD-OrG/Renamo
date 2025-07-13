@@ -195,6 +195,8 @@ async def process_user_queue(client, user_id, message):
 	while True:
 		try:
 			if not queue.empty() and len(active_tasks) < 2:
+
+                                await message.reply_text("Yjo")
 				msg = await queue.get()
 				task = asyncio.create_task(auto_rname_files(client, msg))
 				active_tasks.add(task)
@@ -224,6 +226,7 @@ async def process_user_queue(client, user_id, message):
    # await asyncio.sleep(3000)
    # await syd.delete()
 async def auto_rname_files(client, message):
+    await message.reply_text("Yo")
     user_id = message.from_user.id
     firstname = message.from_user.first_name
     format_template = await madflixbotz.get_format_template(user_id)
