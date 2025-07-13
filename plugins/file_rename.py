@@ -187,35 +187,41 @@ async def auto_rename_files(client, message):
     await syd.delete()
     
     
-async def process_user_queue(client, user_id, message):
-    global user_queues
-    active_operations = set()
-    while True:
-        queue = user_queues.get(user_id)
-        if queue is None:
-            break
+async def process_user_queue(client, user_id):
+	queue = user_queues[user_id]
+	active_tasks = set()
 
-        if not queue.empty() and len(active_tasks) < 2:
-            message = await queue.get()
-            task = asyncio.create_task(auto_rname_files(client, message))
-            active_tasks.add(task)
+	while True:
+		try:
+			if not queue.empty() and len(active_tasks) < 2:
+				msg = await queue.get()
+				task = asyncio.create_task(auto_rname_files(client, msg))
+				active_tasks.add(task)
+				task.add_done_callback(lambda t: active_tasks.discard(t))
+				await asyncio.sleep(1)  # small delay to avoid spam
+			else:
+				await asyncio.sleep(1)
 
-            # Remove from active when done
-            task.add_done_callback(lambda t: active_tasks.discard(t))
+			if queue.empty() and len(active_tasks) == 0:
+				del user_queues[user_id]
+				break
 
-            # wait to limit processing rate
-            await asyncio.sleep(60)
-        else:
-            await asyncio.sleep(1)
+		except Exception as e:
+			try:
+				await client.send_message(
+					user_id,
+					f"❌ Error in queue processor:\n<code>{e}</code>"
+				)
+			except:
+				pass
+			break
 
-        # Stop if queue empty and no active tasks
-        if queue.empty() and len(active_tasks) == 0:
-            del user_queues[user_id]
-            break
+	# Optionally, after finishing queue
+	
 
-    syd = await message.reply_text("Pʀᴏᴄᴇꜱꜱ ᴇɴᴅᴇᴅ...!")
-    await asyncio.sleep(3000)
-    await syd.delete()
+ #   syd = await message.reply_text("Pʀᴏᴄᴇꜱꜱ ᴇɴᴅᴇᴅ...!")
+   # await asyncio.sleep(3000)
+   # await syd.delete()
 async def auto_rname_files(client, message):
     user_id = message.from_user.id
     firstname = message.from_user.first_name
