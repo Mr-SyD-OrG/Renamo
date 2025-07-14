@@ -190,7 +190,6 @@ async def auto_rename_files(client, message):
 async def process_user_queue(client, user_id, message):
     queue = user_queues[user_id]
     active_tasks = set()
-    await message.reply_text("Yo")
     while True:
         try:
             await message.reply_text("Yo")
@@ -200,11 +199,10 @@ async def process_user_queue(client, user_id, message):
                 task = asyncio.create_task(auto_rname_files(client, msg))
                 active_tasks.add(task)
                 task.add_done_callback(lambda t: active_tasks.discard(t))
-                await asyncio.sleep(1)  # small delay to avoid spam
+                await asyncio.sleep(10)  # small delay to avoid spam
             else:
-                await asyncio.sleep(1)
+                await asyncio.sleep(20)
 
-            await message.reply_text("Yo99w0")
             if queue.empty() and len(active_tasks) == 0:
                 del user_queues[user_id]
                 break
@@ -226,14 +224,13 @@ async def process_user_queue(client, user_id, message):
     await asyncio.sleep(3000)
     await syd.delete()
 async def auto_rname_files(client, message):
-    await message.reply_text("Yojj")
     user_id = message.from_user.id
     firstname = message.from_user.first_name
     format_template = await madflixbotz.get_format_template(user_id)
     media_preference = await madflixbotz.get_media_preference(user_id)
 
     if not format_template:
-        return await message.reply_text("Please Set An Auto Rename Format First Using /autorename")
+        return await message.reply_text("Please Set An Auto Rename Format First Using /set_format")
 
     # Extract information from the incoming file name
     if message.document:
@@ -252,24 +249,22 @@ async def auto_rname_files(client, message):
         return await message.reply_text("Unsupported File Type")
 
     
-    await message.reply_text("Yojj")
+    
 
 # Check whether the file is already being renamed or has been renamed recently
     if file_id in renaming_operations:
         elapsed_time = (datetime.now() - renaming_operations[file_id]).seconds
         if elapsed_time < 10:
-            await message.reply_text("1404")
             print("File is being ignored as it is currently being renamed or was renamed recently.")
             return  # Exit the handler if the file is being ignored
-    await message.reply_text("10u20")
+    
     # Mark the file as currently being renamed
     renaming_operations[file_id] = datetime.now()
-    await message.reply_text("12300")
     # Extract episode number and qualities
     episode_number = extract_episode_number(file_name)
     season_number = extract_season_number(file_name) if extract_season_number(file_name) else '01'
     
-    await message.reply_text("1000")
+    
     if episode_number or season_number:
         # Replace episode placeholders
         if episode_number:
@@ -295,16 +290,13 @@ async def auto_rname_files(client, message):
                     return  # Exit the handler if quality extraction fails
                 
                 format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))           
-        await message.reply_text("1100")
+        
         _, file_extension = os.path.splitext(file_name)
-        await message.reply_text("11😉00")
         prefix = await db.get_prefix(user_id)
         suffix = await db.get_suffix(user_id)
-        await message.reply_text("110🎉0")
         new_file_name = f"{prefix} {format_template} {suffix}{file_extension}"
         file_path = f"downloads/{new_file_name}"
         file = message
-        await message.reply_text("11080")
         download_msg = await message.reply_text(text="Trying To Download.....")
         try:
             path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
@@ -414,8 +406,8 @@ async def auto_rname_files(client, message):
                 format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))           
             
         _, file_extension = os.path.splitext(file_name)
-        prefix = await db.get_prefix(message.message.chat.id)
-        suffix = await db.get_suffix(message.message.chat.id)
+        prefix = await db.get_prefix(user_id)
+        suffix = await db.get_suffix(user_id)
         new_file_name = f"{prefix} {format_template} {suffix}{file_extension}"
         file_path = f"downloads/{new_file_name}"
         file = message
