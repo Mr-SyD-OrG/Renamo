@@ -258,17 +258,18 @@ async def auto_rname_files(client, message):
     if file_id in renaming_operations:
         elapsed_time = (datetime.now() - renaming_operations[file_id]).seconds
         if elapsed_time < 10:
+            await message.reply_text("1404")
             print("File is being ignored as it is currently being renamed or was renamed recently.")
             return  # Exit the handler if the file is being ignored
-
+    await message.reply_text("10u20")
     # Mark the file as currently being renamed
     renaming_operations[file_id] = datetime.now()
-
+    await message.reply_text("12300")
     # Extract episode number and qualities
     episode_number = extract_episode_number(file_name)
     season_number = extract_season_number(file_name) if extract_season_number(file_name) else '01'
-    print(f"Extracted Episode Number: {episode_number}")
-
+    
+    await message.reply_text("1000")
     if episode_number or season_number:
         # Replace episode placeholders
         if episode_number:
@@ -294,7 +295,7 @@ async def auto_rname_files(client, message):
                     return  # Exit the handler if quality extraction fails
                 
                 format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))           
-            
+        await message.reply_text("1100")
         _, file_extension = os.path.splitext(file_name)
         prefix = await db.get_prefix(message.message.chat.id)
         suffix = await db.get_suffix(message.message.chat.id)
