@@ -297,12 +297,14 @@ async def auto_rname_files(client, message):
                 format_template = format_template.replace(quality_placeholder, "".join(extracted_qualities))           
         await message.reply_text("1100")
         _, file_extension = os.path.splitext(file_name)
-        prefix = await db.get_prefix(message.message.chat.id)
-        suffix = await db.get_suffix(message.message.chat.id)
+        await message.reply_text("11😉00")
+        prefix = await db.get_prefix(user_id)
+        suffix = await db.get_suffix(user_id)
+        await message.reply_text("110🎉0")
         new_file_name = f"{prefix} {format_template} {suffix}{file_extension}"
         file_path = f"downloads/{new_file_name}"
         file = message
-
+        await message.reply_text("11080")
         download_msg = await message.reply_text(text="Trying To Download.....")
         try:
             path = await client.download_media(message=file, file_name=file_path, progress=progress_for_pyrogram, progress_args=("Download Started....", download_msg, time.time()))
