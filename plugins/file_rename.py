@@ -192,10 +192,8 @@ async def process_user_queue(client, user_id, message):
     active_tasks = set()
     while True:
         try:
-            await message.reply_text("Yo")
             if not queue.empty() and len(active_tasks) < 2:
                 msg = await queue.get()
-                await message.reply_text("Yowii")
                 task = asyncio.create_task(auto_rname_files(client, msg))
                 active_tasks.add(task)
                 task.add_done_callback(lambda t: active_tasks.discard(t))
