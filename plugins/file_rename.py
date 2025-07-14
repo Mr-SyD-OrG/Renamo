@@ -213,24 +213,20 @@ async def process_user_queue(client, user_id, message):
             try:
                 await client.send_message(
                     user_id,
-                    f"❌ Error in queue processor:\n<code>{e}</code>",
-                    parse_mode="html"
+                    f"❌ Error in queue processor:\n<code>{e}</code>"
+                    
                 )
             except:
                 pass
             break
 
-    # Optionally, after finishing queue
-    try:
-        await client.send_message(user_id, "✅ All queued files processed!")
-    except:
-        pass
+    
 
- #   syd = await message.reply_text("Pʀᴏᴄᴇꜱꜱ ᴇɴᴅᴇᴅ...!")
-   # await asyncio.sleep(3000)
-   # await syd.delete()
+    syd = await message.reply_text("Pʀᴏᴄᴇꜱꜱ ᴇɴᴅᴇᴅ...!")
+    await asyncio.sleep(3000)
+    await syd.delete()
 async def auto_rname_files(client, message):
-    await message.reply_text("Yo")
+    await message.reply_text("Yojj")
     user_id = message.from_user.id
     firstname = message.from_user.first_name
     format_template = await madflixbotz.get_format_template(user_id)
@@ -255,9 +251,8 @@ async def auto_rname_files(client, message):
     else:
         return await message.reply_text("Unsupported File Type")
 
-    print(f"Original File Name: {file_name}")
     
-    
+    await message.reply_text("Yojj")
 
 # Check whether the file is already being renamed or has been renamed recently
     if file_id in renaming_operations:
