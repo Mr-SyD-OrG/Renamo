@@ -292,7 +292,7 @@ async def auto_rname_files(client, message):
         _, file_extension = os.path.splitext(file_name)
         prefix = await db.get_prefix(user_id)
         suffix = await db.get_suffix(user_id)
-        new_file_name = f"{prefix} {format_template} {suffix}{file_extension}"
+        new_file_name = (f"{prefix + ' ' if prefix else ''}{format_template}{' ' + suffix if suffix else ''}{file_extension}")
         file_path = f"downloads/{new_file_name}"
         file = message
         download_msg = await message.reply_text(text="Trying To Download.....")
