@@ -73,7 +73,7 @@ async def forward_messages(client, message):
         start_id = int(parts[3])
         end_id = int(parts[4])
         pause_seconds = float(parts[5]) if len(parts) > 5 else 1.0
-
+        await message.reply("Forwarding.")
         for msg_id in range(start_id, end_id + 1):
             try:
                 msg = await client.get_messages(from_chat, msg_id)
