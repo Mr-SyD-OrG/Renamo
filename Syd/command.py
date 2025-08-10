@@ -36,7 +36,7 @@ async def start(client, message):
                     InlineKeyboardButton('☒ Δᴅᴅ Tᴏ Yᴏᴜʀ Gʀᴏᴜᴩ ☒', url=f'http://telegram.me/Pro_Moviez_Bot?startgroup=true')
                 ],[
                     InlineKeyboardButton('⌬ GʀᴏUP¹ ⌬', url='https://t.me/+FLScABTbUTI5NmQ1'),
-                    InlineKeyboardButton('⇱ GʀᴏUP² ⇲', url='https://t.me/+pk0aDZ4QuI00MTRl')
+                    InlineKeyboardButton('⇱ GʀᴏUP² ⇲', url='https://t.me/+SQE8nnzWK-Y3MWE9')
                 ],[
                     InlineKeyboardButton('⚝ ᴜᴘᦔΔᴛꫀ𝘴 ⚝', url='https://t.me/Bot_Cracker'),
                     InlineKeyboardButton('⊛ Mᴏ∇ɪᴇ ⊛', url='https://t.me/Mod_Moviez_X')
@@ -52,3 +52,47 @@ async def start(client, message):
             parse_mode=enums.ParseMode.HTML
         )
         return
+
+from pyrogram import Client, filters
+
+@Client.on_message(filters.command("forward", prefixes="/"))
+async def forward_messages(client, message):
+    try:
+        parts = message.text.split(maxsplit=3)
+        if len(parts) < 3:
+            return await message.reply("Usage: `/forward {from} {to} {skip}`", quote=True)
+
+        from_chat = parts[1]
+        to_chat = parts[2]
+        skip_count = int(parts[3]) if len(parts) > 3 else 0
+
+        async for msg in client.get_chat_history(from_chat, limit=100000):
+            if skip_count > 0:
+                skip_count -= 1
+                continue
+
+            # Prepare caption
+            caption = None
+            if msg.document:
+                caption = msg.document.file_name
+            elif msg.video:
+                caption = msg.video.file_name
+
+            try:
+                if msg.media:
+                    await client.send_cached_media(
+                        chat_id=to_chat,
+                        file_id=msg.media.file_id,
+                        caption=caption or msg.caption or ""
+                    )
+                else:
+                    await client.send_message(
+                        chat_id=to_chat,
+                        text=msg.text or ""
+                    )
+            except Exception as e:
+                print(f"Failed to send message: {e}")
+
+        await message.reply("✅ Forwarding completed.")
+    except Exception as e:
+        await message.reply(f"❌ Error: {e}")
