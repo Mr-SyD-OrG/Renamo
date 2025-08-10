@@ -57,7 +57,6 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 
-
 @Client.on_message(filters.command("forward", prefixes="/"))
 async def forward_messages(client, message):
     try:
@@ -81,32 +80,16 @@ async def forward_messages(client, message):
                 if not msg:
                     continue
 
-                caption = None
-                if msg.document:
-                    caption = msg.document.file_name
-                elif msg.video:
-                    caption = msg.video.file_name
-
                 while True:
                     try:
-                        if msg.media:
-                            await client.send_cached_media(
-                                chat_id=to_chat,
-                                file_id=msg.media.file_id,
-                                caption=caption or msg.caption or ""
-                            )
-                        elif msg.text:
-                            await client.send_message(
-                                chat_id=to_chat,
-                                text=msg.text
-                            )
-                        break  # success, move to next message
+                        await msg.copy(to_chat)
+                        break  # success
                     except FloodWait as e:
                         print(f"FloodWait: Sleeping {e.value} seconds for message {msg_id}")
                         await asyncio.sleep(e.value)
                     except Exception as e:
-                        print(f"Failed to send message {msg_id}: {e}")
-                        break  # skip message on other errors
+                        print(f"Failed to copy message {msg_id}: {e}")
+                        break
 
                 await asyncio.sleep(pause_seconds)
 
