@@ -73,7 +73,11 @@ async def forward_messages(client, message):
         start_id = int(parts[3])
         end_id = int(parts[4])
         pause_seconds = float(parts[5]) if len(parts) > 5 else 1.0
-        await message.reply("Forwarding.")
+
+        sent_count = 0
+        total_messages = end_id - start_id + 1
+        progress_msg = await message.reply("Forwarding started...")
+
         for msg_id in range(start_id, end_id + 1):
             try:
                 msg = await client.get_messages(from_chat, msg_id)
@@ -83,7 +87,8 @@ async def forward_messages(client, message):
                 while True:
                     try:
                         await msg.copy(to_chat)
-                        break  # success
+                        sent_count += 1
+                        break
                     except FloodWait as e:
                         print(f"FloodWait: Sleeping {e.value} seconds for message {msg_id}")
                         await asyncio.sleep(e.value)
@@ -91,12 +96,20 @@ async def forward_messages(client, message):
                         print(f"Failed to copy message {msg_id}: {e}")
                         break
 
+                if sent_count % 100 == 0:
+                    try:
+                        await progress_msg.edit_text(
+                            f"📤 Forwarded {sent_count}/{total_messages} messages..."
+                        )
+                    except Exception as e:
+                        print(f"Progress edit failed: {e}")
+
                 await asyncio.sleep(pause_seconds)
 
             except Exception as e:
                 print(f"Error fetching message {msg_id}: {e}")
 
-        await message.reply("✅ Forwarding completed.")
+        await progress_msg.edit_text("✅ Forwarding completed.")
 
     except Exception as e:
         await message.reply(f"❌ Error: {e}")
