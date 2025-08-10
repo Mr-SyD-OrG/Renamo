@@ -57,56 +57,61 @@ import asyncio
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 
+
 @Client.on_message(filters.command("forward", prefixes="/"))
 async def forward_messages(client, message):
     try:
-        parts = message.text.split(maxsplit=5)
-        if len(parts) < 4:
+        # /forward from_chat to_chat start_id end_id pause_seconds
+        parts = message.text.split()
+        if len(parts) < 5:
             return await message.reply(
-                "Usage: `/forward {from} {to} {limit} {skip} {pause_seconds}`",
+                "Usage: `/forward {from} {to} {start_id} {end_id} {pause_seconds}`",
                 quote=True
             )
 
         from_chat = parts[1]
         to_chat = parts[2]
-        lim_count = int(parts[3])
-        skip_count = int(parts[4]) if len(parts) > 4 else 0
+        start_id = int(parts[3])
+        end_id = int(parts[4])
         pause_seconds = float(parts[5]) if len(parts) > 5 else 1.0
 
-        async for msg in client.get_chat_history(from_chat, limit=lim_count):
-            if skip_count > 0:
-                skip_count -= 1
-                continue
-
-            caption = None
-            if msg.document:
-                caption = msg.document.file_name
-            elif msg.video:
-                caption = msg.video.file_name
-
+        for msg_id in range(start_id, end_id + 1):
             try:
-                if msg.media:
-                    await client.send_cached_media(
-                        chat_id=to_chat,
-                        file_id=msg.media.file_id,
-                        caption=caption or msg.caption or ""
-                    )
-                elif msg.text:
-                    await client.send_message(
-                        chat_id=to_chat,
-                        text=msg.text
-                    )
-                else:
-                    print(f"Skipped unsupported message type: {msg.message_id}")
+                msg = await client.get_messages(from_chat, msg_id)
+                if not msg:
+                    continue
 
-            except FloodWait as e:
-                print(f"FloodWait: Sleeping {e.value} seconds")
-                await asyncio.sleep(e.value)
-                continue  # retry next message
+                caption = None
+                if msg.document:
+                    caption = msg.document.file_name
+                elif msg.video:
+                    caption = msg.video.file_name
+
+                while True:
+                    try:
+                        if msg.media:
+                            await client.send_cached_media(
+                                chat_id=to_chat,
+                                file_id=msg.media.file_id,
+                                caption=caption or msg.caption or ""
+                            )
+                        elif msg.text:
+                            await client.send_message(
+                                chat_id=to_chat,
+                                text=msg.text
+                            )
+                        break  # success, move to next message
+                    except FloodWait as e:
+                        print(f"FloodWait: Sleeping {e.value} seconds for message {msg_id}")
+                        await asyncio.sleep(e.value)
+                    except Exception as e:
+                        print(f"Failed to send message {msg_id}: {e}")
+                        break  # skip message on other errors
+
+                await asyncio.sleep(pause_seconds)
+
             except Exception as e:
-                print(f"Failed to send message: {e}")
-
-            await asyncio.sleep(pause_seconds)  # flood control
+                print(f"Error fetching message {msg_id}: {e}")
 
         await message.reply("✅ Forwarding completed.")
 
