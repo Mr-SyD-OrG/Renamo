@@ -55,7 +55,7 @@ async def start(client, message):
 
 import asyncio
 from pyrogram import Client, filters
-from pyrogram.errors import FloodWait
+from pyrogram.errors import FloodWait, PeerIdInvalid
 
 @Client.on_message(filters.command("forward", prefixes="/"))
 async def forward_messages(client, message):
@@ -92,6 +92,9 @@ async def forward_messages(client, message):
                     except FloodWait as e:
                         print(f"FloodWait: Sleeping {e.value} seconds for message {msg_id}")
                         await asyncio.sleep(e.value)
+                    except PeerIdInvalid:
+                        await message.reply("❌ Invalid `to_chat`. Check IDs/usernames.")
+                        return
                     except Exception as e:
                         print(f"Failed to copy message {msg_id}: {e}")
                         break
