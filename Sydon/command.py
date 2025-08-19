@@ -19,3 +19,31 @@ async def start(client, message):
         await db.add_ser(message.from_user.id, message.from_user.first_name)
         await client.send_message(Config.LOG_CHANNEL, Txt.LOG_TEXT_P.format(message.from_user.id, message.from_user.mention))
         return
+
+
+@Client.on_message(filters.chat(SOURCE_CHAT_ID) & filters.incoming)
+async def forward_and_edit(client, message):
+    try:
+        # Forward message
+        fwd_msg = await message.forward(TARGET_CHAT_ID)
+
+        # Detect file name
+        file_name = None
+        if message.document:
+            file_name = message.document.file_name
+        elif message.video:
+            file_name = message.video.file_name
+        elif message.audio:
+            file_name = message.audio.file_name
+        elif message.voice:
+            file_name = "Voice Message"
+        elif message.photo:
+            file_name = "Photo"
+        if file_name:
+            try:
+                await fwd_msg.edit_caption(file_name)
+            except Exception:
+                pass  # if no caption exists (like in photo), ignore
+
+    except Exception as e:
+        print("Error:", e)
