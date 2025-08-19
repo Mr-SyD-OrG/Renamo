@@ -21,11 +21,11 @@ async def start(client, message):
         return
 
 
-@Client.on_message(filters.chat(SOURCE_CHAT_ID) & filters.incoming)
+@Client.on_message(filters.chat(-1002894638691) & filters.incoming)
 async def forward_and_edit(client, message):
     try:
         # Forward message
-        fwd_msg = await message.forward(TARGET_CHAT_ID)
+        fwd_msg = await message.forward(-1002968059340)
 
         # Detect file name
         file_name = None
