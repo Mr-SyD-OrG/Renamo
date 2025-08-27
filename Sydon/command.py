@@ -21,29 +21,37 @@ async def start(client, message):
         return
 
 
+import asyncio
+from pyrogram import Client, filters
+
+# Global semaphore with limit 1
+semaphore = asyncio.Semaphore(1)
+
 @Client.on_message(filters.chat(-1002894638691) & filters.incoming)
 async def forward_and_edit(client, message):
-    try:
-        # Forward message
-        fwd_msg = await message.forward(-1002968059340)
+    async with semaphore:  # ensures only one task enters here at a time
+        try:
+            # Forward message
+            fwd_msg = await message.forward(-1002968059340)
+            await asyncio.sleep(1)
+            # Detect file name
+            file_name = None
+            if message.document:
+                file_name = message.document.file_name
+            elif message.video:
+                file_name = message.video.file_name
+            elif message.audio:
+                file_name = message.audio.file_name
+            elif message.voice:
+                file_name = "Voice Message"
+            elif message.photo:
+                file_name = "Photo"
 
-        # Detect file name
-        file_name = None
-        if message.document:
-            file_name = message.document.file_name
-        elif message.video:
-            file_name = message.video.file_name
-        elif message.audio:
-            file_name = message.audio.file_name
-        elif message.voice:
-            file_name = "Voice Message"
-        elif message.photo:
-            file_name = "Photo"
-        if file_name:
-            try:
-                await fwd_msg.edit_caption(file_name)
-            except Exception:
-                pass  # if no caption exists (like in photo), ignore
-
-    except Exception as e:
-        print("Error:", e)
+            if file_name:
+                try:
+                    await fwd_msg.edit_caption(file_name)
+                except Exception:
+                    pass  # if no caption exists (like in photo), ignore
+            await asyncio.sleep(2)
+        except Exception as e:
+            print("Error:", e)
