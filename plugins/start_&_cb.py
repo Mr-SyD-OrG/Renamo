@@ -170,7 +170,7 @@ async def cb_handler(client, query: CallbackQuery):
 
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-from pyromod import listen  # pip install pyromod
+#from pyromod import listen  # pip install pyromod
 
 @Client.on_message(filters.command("addbutton") & filters.private)
 async def addbutton(client, message):
